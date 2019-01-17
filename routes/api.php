@@ -23,3 +23,5 @@ Route::post('register', 'Api\AuthController@register');
 
 //Login route 
 Route::post('login', 'Api\AuthController@login');
+
+Route::apiResource('bio', 'BioController');
