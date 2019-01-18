@@ -17,12 +17,12 @@ class CreateExperiencesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade'); 
-            $table->string('title')->nullable()->change();
-            $table->string('company')->nullable()->change();
-            $table->year('from_period')->nullable()->change();
-            $table->year('to_period')->nullable()->change();
-            $table->char('is_current', 1)->nullable()-change();
-            $table->text('description')->nullable()->change();
+            $table->string('title')->nullable();
+            $table->string('company')->nullable();
+            $table->year('from_period')->nullable();
+            $table->year('to_period')->nullable();
+            $table->char('is_current', 1)->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

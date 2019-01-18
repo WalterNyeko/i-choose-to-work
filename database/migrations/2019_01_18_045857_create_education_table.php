@@ -15,7 +15,7 @@ class CreateEducationTable extends Migration
     {
         Schema::create('education', function (Blueprint $table) {
             $table->increments('id');
-            $table->insignedinteger('user_id')->nullable();
+            $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('degree')->nullable();
             $table->string('school')->nullable();
