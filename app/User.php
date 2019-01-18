@@ -4,6 +4,7 @@ namespace App;
 
 use App\Models\Education;
 use App\Models\BioProfile;
+use App\Models\Experience;
 use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -48,5 +49,13 @@ class User extends Authenticatable implements MustVerifyEmail
       public function education()
       {
           return $this->hasMany(Education::class, 'user_id');
+      }
+
+      /**
+       * user experience profile relationship
+       */
+      public function experience()
+      {
+          return $this->hasMany(Experience::class, 'user_id');
       }
 }

@@ -36,5 +36,9 @@ Route::group(['prefix' => 'profile'], function() {
      * education profile routes
      */
     Route::apiResource('education', 'EducationController');
+    /**
+     * Education profile routes
+     */
+    Route::apiResource('experience', 'ExperienceController');
 });
 

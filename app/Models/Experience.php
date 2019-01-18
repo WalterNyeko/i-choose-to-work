@@ -2,9 +2,25 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Experience extends Model
 {
-    //
+    protected $table = 'experiences';
+
+    protected $casts = [
+        'is_current' => 'boolean'
+    ];
+
+    protected $guarded = ['id'];
+
+    /**
+     * user experience
+     */
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
