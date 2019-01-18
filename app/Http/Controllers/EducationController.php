@@ -35,7 +35,26 @@ class EducationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        
+        $validator = \Validator::make($data, [
+            'degree' => ['required', 'max:256'],
+            'school' => ['required'],
+            'from_period' => ['required', 'numeric'],
+            'to_period' => ['required', 'numeric'],
+            'description' => ['nullable'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([$validator->errors()], 422);
+        }
+
+        //id needs to be passed from the frontend, this is for testing
+        $data['user_id'] = 5;
+
+        Education::create($data);
+
+        return response()->json(['Education Profile Successfully Updated'], 200);
     }
 
     /**
@@ -44,9 +63,11 @@ class EducationController extends Controller
      * @param  \App\Models\Education  $education
      * @return \Illuminate\Http\Response
      */
-    public function show(Education $education)
+    public function show($id)
     {
-        //
+        $edu = Education::where('user_id', $id)->latest()->get();
+
+        return $edu->toJson();
     }
 
     /**
@@ -67,9 +88,13 @@ class EducationController extends Controller
      * @param  \App\Models\Education  $education
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Education $education)
+    public function update(Request $request, $id)
     {
-        //
+        $edu = Education::find($id);
+        $data = $request->all();
+        $edu->fill($data);
+        $edu->save();
+        return response()->json($edu);
     }
 
     /**
@@ -78,8 +103,13 @@ class EducationController extends Controller
      * @param  \App\Models\Education  $education
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Education $education)
+    public function destroy($id)
     {
-        //
+        $edu = Education::find($id);
+
+        $edu->delete();
+
+        return response()->json('Item deleted successfully');
+        
     }
 }

@@ -2,12 +2,13 @@
 
 namespace App;
 
+use App\Models\Education;
+use App\Models\BioProfile;
 use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Models\BioProfile;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -39,4 +40,13 @@ class User extends Authenticatable implements MustVerifyEmail
      {
          return $this->hasOne(BioProfile::class , 'user_id');
      }
+
+     /**
+      * user education profile relationship
+      */
+
+      public function education()
+      {
+          return $this->hasMany(Education::class, 'user_id');
+      }
 }
