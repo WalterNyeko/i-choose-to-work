@@ -65,7 +65,7 @@ class EducationController extends Controller
      */
     public function show($id)
     {
-        $edu = Education::where('user_id', $id)->latest()->get();
+        $edu = Education::where('user_id', $id)->with('user')->latest()->get();
 
         return $edu->toJson();
     }

@@ -13,7 +13,7 @@ class CreateProfileSkillsTable extends Migration
      */
     public function up()
     {
-        Schema::create('profile__skills', function (Blueprint $table) {
+        Schema::create('profile_skills', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade'); 
@@ -30,6 +30,6 @@ class CreateProfileSkillsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profile__skills');
+        Schema::dropIfExists('profile_skills');
     }
 }

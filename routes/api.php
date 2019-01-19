@@ -28,6 +28,13 @@ Route::post('login', 'Api\AuthController@login');
 
 Route::group(['prefix' => 'profile'], function() {
     /**
+     * entire profile
+     */
+    Route::get('/{id}', function($id){
+        $user = User::with(['education', 'skills', 'bioProfile', 'experience'])->find($id) ;
+        return response()->json($user);
+    });
+    /**
      * bio profile routes
      */
     Route::apiResource('bio', 'BioController');
@@ -40,5 +47,17 @@ Route::group(['prefix' => 'profile'], function() {
      * Education profile routes
      */
     Route::apiResource('experience', 'ExperienceController');
+
+    /**
+     * adding skills to profile
+     */
+    Route::post('skills', 'ProfileSkillsController@store');
+
+    /**
+     * get users with a particular skill
+     */
+
+     Route::get('skill/{id}', 'ProfileSkillsController@getUserBySkill');
 });
+
 

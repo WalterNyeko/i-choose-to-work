@@ -89,7 +89,7 @@ class BioController extends Controller
      */
     public function show($id)
     {
-        $bio = BioProfile::where('user_id', $id)->first();
+        $bio = BioProfile::where('user_id', $id)->with('user')->first();
 
         if($bio)
         {

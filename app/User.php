@@ -10,6 +10,7 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Skills;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -24,6 +25,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name', 'email', 'password',
     ];
 
+    protected $touches = ['skills'];
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -57,5 +59,13 @@ class User extends Authenticatable implements MustVerifyEmail
       public function experience()
       {
           return $this->hasMany(Experience::class, 'user_id');
+      }
+
+      /**
+       * user skills relationship
+       */
+      public function skills()
+      {
+          return $this->belongsToMany(Skills::class, 'profile__skills', 'user_id', 'skills_id')->withTimestamps();;
       }
 }
