@@ -2,6 +2,9 @@
 
 namespace App;
 
+use App\Models\Skills;
+use App\Models\Service;
+use App\ServiceRequest;
 use App\Models\Education;
 use App\Models\BioProfile;
 use App\Models\Experience;
@@ -10,7 +13,6 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Models\Skills;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -68,4 +70,24 @@ class User extends Authenticatable implements MustVerifyEmail
       {
           return $this->belongsToMany(Skills::class, 'profile__skills', 'user_id', 'skills_id')->withTimestamps();;
       }
+
+      /**
+       * services relationship
+       */
+
+       public function services()
+     {
+         return $this->belongsToMany(Service::class, 'service_provider_map', 'user_id', 'service_id');
+     }
+
+     /**
+      * service requests
+      */
+
+      public function serviceRequests()
+      {
+          return $this->hasMany(ServiceRequest::class, 'customer_id');
+      }
+
+      
 }

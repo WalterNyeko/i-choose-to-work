@@ -31,7 +31,7 @@ Route::group(['prefix' => 'profile'], function() {
      * entire profile
      */
     Route::get('/{id}', function($id){
-        $user = User::with(['education', 'skills', 'bioProfile', 'experience'])->find($id) ;
+        $user = User::with(['education', 'skills', 'bioProfile', 'experience', 'services', 'serviceRequests'])->find($id) ;
         return response()->json($user);
     });
     /**
