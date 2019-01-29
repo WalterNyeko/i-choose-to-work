@@ -68,7 +68,7 @@ class User extends Authenticatable implements MustVerifyEmail
        */
       public function skills()
       {
-          return $this->belongsToMany(Skills::class, 'profile__skills', 'user_id', 'skills_id')->withTimestamps();;
+          return $this->belongsToMany(Skills::class, 'profile__skills', 'user_id', 'skills_id')->withTimestamps();
       }
 
       /**

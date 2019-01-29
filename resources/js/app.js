@@ -14,5 +14,8 @@ require('./bootstrap');
  */
 
 require('./components/Example');
-
+require('./components/Services');
+require('./components/RequestContainer');
+require('./components/ServiceProviders');
+require('./containers/AllRequests');
 

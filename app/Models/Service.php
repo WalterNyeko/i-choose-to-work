@@ -16,9 +16,9 @@ class Service extends Model
     /**
      * service category relationship
      */
-    public function category()
+    public function categories()
     {
-        return $this->belongsTo(ServiceCategory::class, 'category_id');
+        return $this->belongsToMany(ServiceCategory::class, 'services_to_categories', 'service_id', 'category_id');
     }
 
     /**
@@ -27,7 +27,7 @@ class Service extends Model
 
      public function providers()
      {
-         return $this->belongsToMany(User::class, 'service_provider_map', 'user_id', 'service_id');
+         return $this->belongsToMany(User::class, 'service_provider_map', 'service_id', 'user_id');
      }
 
      /**

@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,9 +20,33 @@ Route::get('/users/{id?}', 'WelcomeController@laravel')->where('id', '[0-9]+')->
 
 Route::resource('jobs', 'jobs\JobController');
 
+/**
+ * service request view with services
+ */
 
+Route::get('request', 'ServiceRequestController@index')->name('service.index');
+
+/**
+ * service request form
+ */
+Route::get('request/{id}', 'ServiceRequestController@create')->middleware('auth');
 
 
 Auth::routes(['verify' => true]);
+
+/**
+ * service providers by service
+ */
+Route::get('providers/{id}', 'ServiceRequestController@providers')->middleware('auth');
+
+/**
+ * service biding
+ */
+Route::get('bid/{id}', 'ServiceRequestController@bid')->middleware(['role:provider']);
+
+
+Route::get('service-requests', function(){
+    return view('services.requests');
+});
 
 Route::get('/home', 'HomeController@index')->name('home');

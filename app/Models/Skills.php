@@ -11,8 +11,6 @@ class Skills extends Model
 
     protected $guarded = ['id'];
 
-    protected $touches = ['<users></users>'];
-
     /**
      * skills user relationship
      */

@@ -24,6 +24,25 @@ Route::post('register', 'Api\AuthController@register');
 //Login route 
 Route::post('login', 'Api\AuthController@login');
 
+/**
+ * service category route
+ */
+Route::apiResource('categories', 'ServiceCategoryController');
+
+
+Route::apiResource('services', 'ServiceController');
+
+Route::get('servicess/{id}', 'ServiceController@index2');
+
+Route::post('request', 'ServiceRequestController@store');
+
+Route::get('providers/{id}', 'ServiceRequestController@providers');
+
+Route::get('all-requests/{id?}', 'ServiceRequestController@allRequests');
+
+Route::get('cat-requests/{id}', 'ServiceRequestController@serviceCategory');
+
+Route::post('bid', 'ServiceRequestController@offer');
 
 
 Route::group(['prefix' => 'profile'], function() {
@@ -59,5 +78,9 @@ Route::group(['prefix' => 'profile'], function() {
 
      Route::get('skill/{id}', 'ProfileSkillsController@getUserBySkill');
 });
+
+Route::fallback(function () {
+    return response()->json(['message' => 'Not Found.'], 404);
+})->name('api.fallback.404');
 
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateServicesTable extends Migration
+class AddIsAvailableToServiceProviderMapTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateServicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('services', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name')->nullable();
-            $table->text('description')->nullable();
-            $table->timestamps();
+        Schema::table('service_provider_map', function (Blueprint $table) {
+            $table->boolean('isAvailable')->nullable()->default(true)->after('description');
         });
     }
 
@@ -28,6 +25,8 @@ class CreateServicesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('services');
+        Schema::table('service_provider_map', function (Blueprint $table) {
+            $table->dropColumn('isAvailable');
+        });
     }
 }

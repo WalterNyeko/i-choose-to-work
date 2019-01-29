@@ -23,7 +23,7 @@ class ServiceRequest extends Model
 
      public function service()
      {
-         return $this->belongsTo(Service::class, 'service');
+         return $this->belongsTo(Service::class, 'service_id');
      }
 
      /***

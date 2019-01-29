@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use Illuminate\Http\Request;
+use App\Models\ServiceCategory;
 
 class ServiceController extends Controller
 {
@@ -12,9 +13,21 @@ class ServiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function index2($id)
+    {
+        // $services =  Service::find($id);
+        $cat = ServiceCategory::find($id);
+
+        $services = $cat->services()->get();    
+        return $services->toJson();
+    }
+
+
     public function index()
     {
-        //
+        $services = Service::all();
+
+        return $services->toJson();
     }
 
     /**
@@ -46,7 +59,7 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
-        //
+        return $service->toJson();
     }
 
     /**
