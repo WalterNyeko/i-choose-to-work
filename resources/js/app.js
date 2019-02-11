@@ -18,4 +18,4 @@ require('./components/Services');
 require('./components/RequestContainer');
 require('./components/ServiceProviders');
 require('./containers/AllRequests');
-
+require('./containers/App');

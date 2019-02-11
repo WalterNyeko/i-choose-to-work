@@ -10,8 +10,9 @@ import {
     ModalFooter,
     Form, FormGroup, Label, FormText, Spinner, Alert
 } from 'reactstrap';
+import {connect} from 'react-redux'
 
-export default class AllRequestsComponent extends Component {
+class AllRequestsComponent extends Component {
 
   constructor(props)
   {
@@ -53,6 +54,7 @@ export default class AllRequestsComponent extends Component {
       this.renderErrorFor = this.renderErrorFor.bind(this);
   }
 
+  //on togle of the modal pass the request id to the modal 
     toggle(id) {
     this.setState({
       modal: !this.state.modal,
@@ -113,7 +115,7 @@ export default class AllRequestsComponent extends Component {
         this.setState({
             loadingService: true
         })
-        axios.get('/api/services')
+        axios.get('/api/services1')
             .then((res) => {
                 this.setState({
                     loadingService: false,
@@ -235,7 +237,7 @@ export default class AllRequestsComponent extends Component {
       })
       const data = {
           service_req_id: this.state.requestId,
-          provider_id: localStorage.getItem('serviceProvider'),
+          provider_id: this.props.user.id,
           estimated_cost: this.state.amount
       }
 
@@ -301,7 +303,7 @@ export default class AllRequestsComponent extends Component {
                                                                                         <small>By: {requesti.customer.name}</small><br/>
                                                                                         <Button color="danger" onClick={() => this.toggle(requesti.id)}>Apply</Button>
                                                                                     </div>));
-    const cats = this.state.categories.map((cat) => <a href="#" onClick={() => this.handleCategoryClick(cat.id)} key={cat.id} class="list-group-item list-group-item-action text-capitalize">
+    const cats = this.state.categories.map((cat) => <a onClick={() => this.handleCategoryClick(cat.id)} key={cat.id} class="list-group-item list-group-item-action text-capitalize">
                                                         {cat.name}
                                                     </a>)
     const options = []; 
@@ -335,11 +337,10 @@ export default class AllRequestsComponent extends Component {
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Submit your offer</ModalHeader>
           <ModalBody>
-              <Alert color={`${this.hasErrorFor('role') ? 'danger' : this.hasErrorFor('provider_id') ? 'danger' : 'info'}`} isOpen={this.state.visible} toggle={this.onDismiss}>
+              <Alert color={`${this.hasErrorFor('role') ? 'danger' : this.hasErrorFor('provider_id') ? 'danger' : 'success'}`} isOpen={this.state.visible} toggle={this.onDismiss}>
                     {`${this.hasErrorFor('role') ? this.state.errors['role'] : '' }`}
                     {`${this.hasErrorFor('provider_id') ? this.state.errors['provider_id'] : '' }`}
                     {`${this.hasErrorFor('estimated_cost') ? 'Something went wrong' : '' }`}
-                    {`${!this.state.errors ? 'Submited Successfully' : '' }`}
               </Alert>
             <form onSubmit={this.submitBid}>
                 <FormGroup>
@@ -359,3 +360,9 @@ export default class AllRequestsComponent extends Component {
     )
   }
 }
+
+const mapStateToProps = state => ({
+    user: state.auth.user
+})
+
+export default connect(mapStateToProps, {})(AllRequestsComponent)

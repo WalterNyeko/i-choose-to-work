@@ -18,16 +18,23 @@ class ServiceController extends Controller
         // $services =  Service::find($id);
         $cat = ServiceCategory::find($id);
 
-        $services = $cat->services()->get();    
+        $services = $cat->services()->paginate(50);    
         return $services->toJson();
     }
 
 
     public function index()
     {
+        $services = Service::paginate(6);
+
+        return response()->json($services);
+    }
+
+    public function all()
+    {
         $services = Service::all();
 
-        return $services->toJson();
+        return response()->json($services);
     }
 
     /**

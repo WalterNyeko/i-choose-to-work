@@ -9,6 +9,7 @@ use App\Models\Education;
 use App\Models\BioProfile;
 use App\Models\Experience;
 use Laravel\Passport\HasApiTokens;
+use App\Models\ServiceDeliveryOffer;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -87,6 +88,14 @@ class User extends Authenticatable implements MustVerifyEmail
       public function serviceRequests()
       {
           return $this->hasMany(ServiceRequest::class, 'customer_id');
+      }
+
+      /**
+       * user request offers
+       */
+      public function offers()
+      {
+          return $this->hasMany(ServiceDeliveryOffer::class, 'provider_id');
       }
 
       

@@ -15,8 +15,14 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+    $user = $request->user();
+
+    return $user;
 });
+
+//check the role of the user
+Route::get('/is-provider', 'Api\AuthController@isProvider')->middleware('auth:api');
+
 
 //Register route  
 Route::post('register', 'Api\AuthController@register');
@@ -29,6 +35,7 @@ Route::post('login', 'Api\AuthController@login');
  */
 Route::apiResource('categories', 'ServiceCategoryController');
 
+Route::get('services1/', 'ServiceController@all');
 
 Route::apiResource('services', 'ServiceController');
 
@@ -43,6 +50,16 @@ Route::get('all-requests/{id?}', 'ServiceRequestController@allRequests');
 Route::get('cat-requests/{id}', 'ServiceRequestController@serviceCategory');
 
 Route::post('bid', 'ServiceRequestController@offer');
+
+/**
+ * get user requests
+ */
+Route::get('my-requests', 'ServiceRequestController@getRequestByUser')->middleware('auth:api');
+
+/**
+ * get user offers
+ */
+Route::get('my-offers', 'ServiceRequestController@getUserOffers')->middleware('auth:api');
 
 
 Route::group(['prefix' => 'profile'], function() {

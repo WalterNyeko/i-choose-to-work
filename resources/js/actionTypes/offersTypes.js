@@ -1,0 +1,5 @@
+export const offersTypes = {
+    REQUEST_OFFERS: 'REQUEST_OFFERS',
+    OFFERS_SUCCESS: 'OFFERS_SUCCESS',
+    OFFERS_ERROR: 'OFFERS_ERROR',
+}

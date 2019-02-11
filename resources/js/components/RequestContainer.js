@@ -1,8 +1,8 @@
 import React, {Component, Fragment} from 'react';
 import  ReactDOM from 'react-dom';
 import {Link, HashRouter, Route} from 'react-router-dom';
-import Request from './Request';
 import ServiceProvider from './ServiceProviders';
+import Request from './Requests/RequestForm/Request';
 
 class RequestContainer extends Component
 {

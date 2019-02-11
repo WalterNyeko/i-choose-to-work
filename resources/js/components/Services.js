@@ -4,6 +4,7 @@ import Service from './Service';
 import {Spinner} from 'reactstrap';
 import ListGroupo from './ListGroup';
 import {ListGroup} from 'reactstrap';
+import PaginationComponent from './pagination';
 
 
 export default class ServiceComponent extends Component {
@@ -16,7 +17,10 @@ export default class ServiceComponent extends Component {
           loading: false,
           errors: [],
           id: '',
-          loadingService: false
+          loadingService: false,
+          offset: 1,
+          lastPage: '',
+          total: '',
       }
       this.getCategories = this.getCategories.bind(this);
       this.getServices = this.getServices.bind(this);
@@ -50,17 +54,47 @@ export default class ServiceComponent extends Component {
 
   getServices()
   {
-    if(this.state.id === '')
+    if (this.state.offset === 1)
     {
         this.setState({
             loadingService: true
         })
         axios.get('/api/services')
             .then((res) => {
+                this.setState( {
+                    loadingService: false,
+                    services: res.data.data,
+                    lastPage: res.data.last_page,
+                    total: res.data.total,
+                    perPage: res.data.per_page,
+                    offset: this.state.offset + 1,
+                    pervious: res.data.prev_page_url
+                });
+            })
+            .catch((err) => {
                 this.setState({
                     loadingService: false,
-                    services: res.data
-                })
+                    errors: err.message
+                });
+            })
+            console.log(this.state.offset)
+    }
+    else
+    {
+        this.setState({
+            loadingService: true
+        })
+        axios.get(`/api/services?page=${this.state.offset}`)
+            .then((res) => {
+                this.setState({
+                    loadingService: false,
+                    services: [...res.data.data],
+                    lastPage: res.data.last_page,
+                    total: res.data.total,
+                    perPage: res.data.per_page + this.state.perPage,
+                    offset: this.state.offset + 1,
+                    pervious: res.data.prev_page_url
+                });
             })
             .catch((err) => {
                 this.setState({
@@ -116,10 +150,16 @@ export default class ServiceComponent extends Component {
                 </ListGroup>
             </div>
             <div className="col-md-9">
+                <div className="row">
+                    {this.state.perPage } of {this.state.total} Services
+                </div>
                 <div className="row justify-content-center">
                     {this.state.loadingService === true ? <Spinner color="primary" /> : <div></div>}
-                    {services}
+                    {this.state.services.length ? services : 'No services found'}
+                    <hr/>
+                    
                 </div>
+                {this.state.offset != this.state.total ? <button className="btn btn-primary" onClick={() => this.getServices() }>Load Others</button> : null }
             </div>
           </div>
       </Fragment>

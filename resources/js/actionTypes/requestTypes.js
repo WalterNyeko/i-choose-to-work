@@ -1,0 +1,6 @@
+export const requestTypes = {
+    REQUEST_ALL: 'REQUEST_ALL',
+    REQUEST_SUCCESS: 'REQUEST_SUCCESS',
+    REQUEST_ERROR: 'REQUEST_ERROR',
+
+}

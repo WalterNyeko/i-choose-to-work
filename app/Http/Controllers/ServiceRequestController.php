@@ -47,7 +47,6 @@ class ServiceRequestController extends Controller
         {
             return response()->json(['errors' => $validator->errors()], 422);
         }
-        
         $req = ServiceRequest::create($request->all());
 
         return response()->json(['message' => 'Request Successful', 'id' => $req->id], 200);
@@ -174,5 +173,28 @@ class ServiceRequestController extends Controller
         }
 
         return $offer;
+    }
+
+    /**
+     * return users service requests
+     */
+    public function getRequestByUser(Request $request)
+    {
+        $user = $request->user();
+        $requests = $user->serviceRequests()->latest()->with(['service'])->get();
+
+        return response()->json($requests);
+    }
+
+    /**
+     * get all user offers for a request
+     */
+    public function getUserOffers(Request $request)
+    {
+        $user = $request->user();
+
+        $offers = $user->offers()->latest()->with(['seviceRequest'])->get();
+
+        return response()->json($offers);
     }
 }

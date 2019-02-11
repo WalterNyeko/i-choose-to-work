@@ -46,16 +46,20 @@ class AuthController extends Controller
 
             $user->assignRole($request->roles);
 
-            return $this->grant_token($data);
+            $user->services()->attach($request->services);
+
+            $isProvider = $this->isProvider($user);
+
+            return $this->grant_token($data, $user, $isProvider);
         
         }
     }
 
-    public function grant_token($data)
+    public function grant_token($data, $user, $isProvider)
     {
         $http = new Client();
 
-        $response = $http->post('http://localhost:8004/oauth/token', [
+        $response = $http->post(env('AUTH_SERVER').'/oauth/token', [
             'form_params' => [
                 'grant_type' => 'password',
                 'client_id' => '2',
@@ -66,7 +70,9 @@ class AuthController extends Controller
             ],
         ]);
         
-        return json_decode((string)$response->getBody(), true);
+        $token = json_decode((string)$response->getBody(), true);
+
+        return response()->json(['token' => $token, 'user' => $user, 'isProvider' => $isProvider], 200);
         
     }
 
@@ -95,7 +101,9 @@ class AuthController extends Controller
         {
             if (\Auth::attempt($data) )
             {
-                return $this->grant_token($data);
+                $user = \Auth::user();
+                $isProvider = $this->isProvider($user);
+                return $this->grant_token($data, $user, $isProvider);
             }
             else 
             {
@@ -105,5 +113,32 @@ class AuthController extends Controller
         }
 
 
+    }
+    /**
+     * check if the user is a service provider
+     */
+    public function isProvider($user)
+    {
+        // $user = $request->user();
+
+        if($user->hasRole('provider'))
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
+    }
+    /**
+     * change account type to service provider
+     */
+    public function becomeProvider(Request $request)
+    {
+        $user = $request->user();
+
+        $user->syncRoles(['provider', 'public']);
+
+        return response()->json('Successfully registered as a Service Provider');
     }
 }
