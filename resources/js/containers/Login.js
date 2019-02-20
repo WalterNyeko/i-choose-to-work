@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {login} from '../actions/authAction'
 import {Redirect} from 'react-router-dom';
 import {Alert} from 'reactstrap';
-import { Button } from 'antd';
+import { Button, Radio, Icon } from 'antd';
 import "antd/dist/antd.css";
 
 class LoginContainer extends Component {
@@ -14,11 +14,13 @@ class LoginContainer extends Component {
           name: '',
           pass: '',
           visible: true,
+          size: 'large'
       }
 
       this.onLoginClick = this.onLoginClick.bind(this);
       this.handleOnChange = this.handleOnChange.bind(this);
       this.onDismiss = this.onDismiss.bind(this);
+      this.handleSizeChange = this.handleSizeChange.bind(this);
   }
 
   onDismiss() {
@@ -40,6 +42,10 @@ class LoginContainer extends Component {
       this.props.login(name, pass);
   }
 
+  handleSizeChange(e){
+    this.setState({ size: e.target.value });
+  }
+
 
   render() {
     let authRedirect = null;
@@ -56,11 +62,17 @@ class LoginContainer extends Component {
     const alert = <Alert color="danger" isOpen={this.state.visible} toggle={this.onDismiss}>
         Invalid User credentials
       </Alert>
+    const size = this.state.size;
     return (
       <div className="container">
          {authRedirect}
         <div className="row justify-content-center">
             <div className="col-md-8">
+                <Radio.Group value={size} onChange={this.handleSizeChange}>
+                    <Radio.Button value="large">Large</Radio.Button>
+                    <Radio.Button value="default">Default</Radio.Button>
+                    <Radio.Button value="small">Small</Radio.Button>
+                </Radio.Group>
                 <div className="card">
                     <div class="card-header">Login</div>
                     <div className="card-body">

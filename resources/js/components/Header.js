@@ -132,7 +132,7 @@ class HeaderComponent extends Component {
                             </li>
                             
                             <li className="nav-item" >
-                                <NavLink to="register" className="btn btn-outline-danger" >Become Service Provider</NavLink>
+                                <NavLink to="register-provider" className="btn btn-outline-danger" >Become Service Provider</NavLink>
                             </li>
                         </ul>
                     }
