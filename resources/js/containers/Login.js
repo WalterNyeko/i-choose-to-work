@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {login} from '../actions/authAction'
 import {Redirect} from 'react-router-dom';
 import {Alert} from 'reactstrap';
+import { Button } from 'antd';
+import "antd/dist/antd.css";
 
 class LoginContainer extends Component {
   constructor(props)
@@ -81,6 +83,8 @@ class LoginContainer extends Component {
                                     <button type="submit" class="btn btn-primary">
                                         Login
                                     </button>
+
+                                    <Button type="primary">Dashed</Button>
                                     
                                     <a class="btn btn-link" href="">
                                         Forgot Your Password?
