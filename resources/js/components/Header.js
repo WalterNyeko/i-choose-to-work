@@ -112,7 +112,7 @@ class HeaderComponent extends Component {
                             
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle text-capitalize" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                     {this.props.isLoginedin === true ? this.props.user.name : null }
+                                     {/* {this.props.isLoginedin === true ? this.props.user.name : null } */}
                                         <span class="caret"></span>
                                 </a>
 
@@ -128,11 +128,11 @@ class HeaderComponent extends Component {
                         : 
                         <ul className="navbar-nav ml-auto">
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="/login">Login</NavLink>
+                                <NavLink className="nav-link" to="/login">Login / Register</NavLink>
                             </li>
                             
                             <li className="nav-item">
-                                <NavLink to="register" className="nav-link">Register</NavLink>
+                                <NavLink to="register" className="nav-link" style={ styles.pro }>Become Service Provider</NavLink>
                             </li>
                         </ul>
                     }
@@ -142,33 +142,8 @@ class HeaderComponent extends Component {
         </nav>
         <div>
 
-            <Modal isOpen={this.state.loginModal} toggle={() => this.toggle('login')} className={this.props.className}>
-                <ModalHeader toggle={() => this.toggle('login')}>Login</ModalHeader>
-                <ModalBody>
-                    <form>
-                        <div className="form-group">
-                          <input name="name" type="email" onChange={this.handleOnChange} value={this.state.name} className="form-control" placeholder="email"/>
-                        </div>
-                        <div className="form-group"></div>
-                        <input name="pass" type="password" onChange={this.handleOnChange} value={this.state.pass} className="form-control" placeholder="your user password"/>
-                    </form>
-                </ModalBody>
-                <ModalFooter>
-                    <Button type="submit" color="primary" onClick={this.onLoginClick}>Login</Button>{' '}
-                    <Button color="secondary" onClick={() => this.toggle('login')}>Close</Button>
-                </ModalFooter>
-            </Modal>
             
-            <Modal isOpen={this.state.registerModal} toggle={() => this.toggle('register')} className={this.props.className}>
-                <ModalHeader toggle={() => this.toggle('register')}>Register</ModalHeader>
-                <ModalBody>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </ModalBody>
-                <ModalFooter>
-                    <Button color="primary" onClick={() => this.toggle('register')}>Do Something</Button>{' '}
-                    <Button color="secondary" onClick={() => this.toggle('register')}>Cancel</Button>
-                </ModalFooter>
-            </Modal>
+            
         </div>
       </Fragment>
     )
@@ -179,5 +154,11 @@ const mapStateToProps = state => ({
     isLoginedin: state.auth.isAutheticate,
     user: state.auth.user
 })
+
+const styles = {
+    pro : {
+        color: 'red'
+    }
+}
 
 export default connect(mapStateToProps, {login, logout})(HeaderComponent)

@@ -93838,8 +93838,6 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
-
       var routes = [{
         label: 'Request Service',
         path: '/request-service'
@@ -93895,7 +93893,7 @@ function (_Component) {
         "aria-haspopup": "true",
         "aria-expanded": "false",
         "v-pre": true
-      }, this.props.isLoginedin === true ? this.props.user.name : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         class: "caret"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         class: "dropdown-menu dropdown-menu-right",
@@ -93910,69 +93908,13 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["NavLink"], {
         className: "nav-link",
         to: "/login"
-      }, "Login")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      }, "Login / Register")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "nav-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["NavLink"], {
         to: "register",
-        className: "nav-link"
-      }, "Register")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Modal"], {
-        isOpen: this.state.loginModal,
-        toggle: function toggle() {
-          return _this2.toggle('login');
-        },
-        className: this.props.className
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["ModalHeader"], {
-        toggle: function toggle() {
-          return _this2.toggle('login');
-        }
-      }, "Login"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["ModalBody"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        name: "name",
-        type: "email",
-        onChange: this.handleOnChange,
-        value: this.state.name,
-        className: "form-control",
-        placeholder: "email"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        name: "pass",
-        type: "password",
-        onChange: this.handleOnChange,
-        value: this.state.pass,
-        className: "form-control",
-        placeholder: "your user password"
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["ModalFooter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Button"], {
-        type: "submit",
-        color: "primary",
-        onClick: this.onLoginClick
-      }, "Login"), ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Button"], {
-        color: "secondary",
-        onClick: function onClick() {
-          return _this2.toggle('login');
-        }
-      }, "Close"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Modal"], {
-        isOpen: this.state.registerModal,
-        toggle: function toggle() {
-          return _this2.toggle('register');
-        },
-        className: this.props.className
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["ModalHeader"], {
-        toggle: function toggle() {
-          return _this2.toggle('register');
-        }
-      }, "Register"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["ModalBody"], null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["ModalFooter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Button"], {
-        color: "primary",
-        onClick: function onClick() {
-          return _this2.toggle('register');
-        }
-      }, "Do Something"), ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Button"], {
-        color: "secondary",
-        onClick: function onClick() {
-          return _this2.toggle('register');
-        }
-      }, "Cancel")))));
+        className: "nav-link",
+        style: styles.pro
+      }, "Become Service Provider")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null));
     }
   }]);
 
@@ -93986,6 +93928,11 @@ var mapStateToProps = function mapStateToProps(state) {
   };
 };
 
+var styles = {
+  pro: {
+    color: 'red'
+  }
+};
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, {
   login: _actions_authAction__WEBPACK_IMPORTED_MODULE_3__["login"],
   logout: _actions_authAction__WEBPACK_IMPORTED_MODULE_3__["logout"]
