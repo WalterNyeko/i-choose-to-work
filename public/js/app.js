@@ -93912,8 +93912,7 @@ function (_Component) {
         className: "nav-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["NavLink"], {
         to: "register",
-        className: "nav-link",
-        style: styles.pro
+        className: "btn btn-outline-danger"
       }, "Become Service Provider")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null));
     }
   }]);
@@ -93930,7 +93929,10 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var styles = {
   pro: {
-    color: 'red'
+    color: 'red',
+    borderRadius: 5,
+    borderWidth: 3,
+    borderColor: 'red'
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, {

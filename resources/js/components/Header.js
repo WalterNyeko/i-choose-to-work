@@ -131,8 +131,8 @@ class HeaderComponent extends Component {
                                 <NavLink className="nav-link" to="/login">Login / Register</NavLink>
                             </li>
                             
-                            <li className="nav-item">
-                                <NavLink to="register" className="nav-link" style={ styles.pro }>Become Service Provider</NavLink>
+                            <li className="nav-item" >
+                                <NavLink to="register" className="btn btn-outline-danger" >Become Service Provider</NavLink>
                             </li>
                         </ul>
                     }
@@ -141,8 +141,6 @@ class HeaderComponent extends Component {
             </div>
         </nav>
         <div>
-
-            
             
         </div>
       </Fragment>
@@ -157,7 +155,10 @@ const mapStateToProps = state => ({
 
 const styles = {
     pro : {
-        color: 'red'
+        color: 'red',
+        borderRadius: 5,
+        borderWidth: 3,
+        borderColor: 'red',
     }
 }
 
