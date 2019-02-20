@@ -84,7 +84,6 @@ class LoginContainer extends Component {
                                         Login
                                     </button>
 
-                                    <Button type="primary">Dashed</Button>
                                     
                                     <a class="btn btn-link" href="">
                                         Forgot Your Password?
