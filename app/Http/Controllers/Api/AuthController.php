@@ -3,76 +3,39 @@
 namespace App\Http\Controllers\Api;
 
 use App\User;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Route;
 use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Client;
 
 class AuthController extends Controller
 {
-    public function register(Request $request)
+
+    public function grant_token($data, $request)
     {
-        $validator = \Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-            'roles' => ['required'],
-            'roles.*' => ['exists:roles,name']
-        ],[
-            'roles.*.exists' => 'Role doesnot exist.',
-            'roles.required' => 'Please select atleast one Role.',
-            'password.min' => 'Password must atleast be 6 characters.',
-            'password.required' => 'Password is required',
-            'password.confirmed' => 'Please confirm password.',
-            'email.email' => 'Please enter a valid email address.',
-            'email.unique' => 'Email is already taken.'
-        ]);
+        $params = [
+            'grant_type' => 'password',
+            'client_id' => '4',
+            'client_secret' => '5TDSVWuWybJ4Z28DHzZfr9mfX3njMMBlqiB0Cvbh',
+            'username' => $data['email'],
+            'password' => $data['password'],
+            'scope' => '*',
+        ];
+        $request->request->add($params);
 
-        if($validator->fails())
-        {
-            return response()->json([$validator->errors()], 422);
-        }
-        else {
-            $data = [
-                'email' => $request->email,
-                'password' => $request->password,
-            ];
-            $user = User::create([
-                        'name' => $request->name,
-                        'email' => $request->email,
-                        'password' => Hash::make($data['password']),
-                    ]);
+        $requestToken = Request::create("oauth/token", "POST");
+        $response = Route::dispatch($requestToken);
 
-            $user->assignRole($request->roles);
+        $token =  $response;
 
-            $user->services()->attach($request->services);
-
-            $isProvider = $this->isProvider($user);
-
-            return $this->grant_token($data, $user, $isProvider);
+        return $token;
         
-        }
-    }
-
-    public function grant_token($data, $user, $isProvider)
-    {
-        $http = new Client();
-
-        $response = $http->post(env('AUTH_SERVER').'/oauth/token', [
-            'form_params' => [
-                'grant_type' => 'password',
-                'client_id' => '2',
-                'client_secret' => 'KTooL3sT5Mo4ehUPQDt6ts3RDuavwuHBykjVEvu5',
-                'username' => $data['email'],
-                'password' => $data['password'],
-                'scope' => '*',
-            ],
-        ]);
         
-        $token = json_decode((string)$response->getBody(), true);
+        // $token = json_decode((string)$response->getBody(), true);
 
-        return response()->json(['token' => $token, 'user' => $user, 'isProvider' => $isProvider], 200);
+        // return \Json(['token' => $token->getBody(), 'user' => $user, 'isProvider' => $isProvider], 200);
         
     }
 
@@ -101,9 +64,9 @@ class AuthController extends Controller
         {
             if (\Auth::attempt($data) )
             {
-                $user = \Auth::user();
-                $isProvider = $this->isProvider($user);
-                return $this->grant_token($data, $user, $isProvider);
+                // $user = \Auth::user();
+                // $isProvider = $this->isProvider($user);
+                return $this->grant_token($data, $request);
             }
             else 
             {

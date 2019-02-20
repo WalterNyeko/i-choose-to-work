@@ -89,7 +89,7 @@ export const login = (name, pass) => dispatch => {
             dispatch(isProvider(res.data.isProvider));
         })
         .catch((err) => {
-            const errors = err.response.data;
+            const errors = err;
             dispatch(loginFails(errors));
         })
 }

@@ -20,6 +20,23 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $user;
 });
 
+//auth routes
+Route::group(['prefix' => 'auth'], function() {
+    Route::post('register-public', 'Api\RegisterController@registerNormal');
+    Route::post('register-provider', 'Api\RegisterController@registerPublic');
+});
+
+
+//service provider update  
+Route::post('service-provider/{id}', 'Api\ServiceProvider@updateService')->middleware('auth:api');  
+
+//add a service to a service provider
+Route::post('add/service-provider', 'Api\ServiceProvider@addService')->middleware('auth:api');  
+
+//remove a sevice from a service provider by service provider
+Route::get('remove/service/{id}', 'Api\ServiceProvider@removeService')->middleware('auth:api');
+
+
 //check the role of the user
 Route::get('/is-provider', 'Api\AuthController@isProvider')->middleware('auth:api');
 
@@ -43,12 +60,18 @@ Route::get('servicess/{id}', 'ServiceController@index2');
 
 Route::post('request', 'ServiceRequestController@store');
 
+
+//return service providers that offer a given service
 Route::get('providers/{id}', 'ServiceRequestController@providers');
 
+//return all service requests or requests for a given service
 Route::get('all-requests/{id?}', 'ServiceRequestController@allRequests');
 
+//return requests for a given service categories
 Route::get('cat-requests/{id}', 'ServiceRequestController@serviceCategory');
 
+
+//bid on a project
 Route::post('bid', 'ServiceRequestController@offer');
 
 /**

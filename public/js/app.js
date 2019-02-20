@@ -92677,7 +92677,7 @@ var login = function login(name, pass) {
       localStorage.setItem('isProvider', res.data.isProvider);
       dispatch(isProvider(res.data.isProvider));
     }).catch(function (err) {
-      var errors = err.response.data;
+      var errors = err;
       dispatch(loginFails(errors));
     });
   };

@@ -78,7 +78,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
        public function services()
      {
-         return $this->belongsToMany(Service::class, 'service_provider_map', 'user_id', 'service_id');
+         return $this->belongsToMany(Service::class, 'service_provider_map', 'user_id', 'service_id')->withPivot('billing_rate_per_hour', 'experience_in_months', 'description', 'isVerified', 'isAvailable', 'created_at', 'updated_at');
      }
 
      /**
