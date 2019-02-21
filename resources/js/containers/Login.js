@@ -52,7 +52,7 @@ class LoginContainer extends Component {
     }
 
     const alert = <Alert color="danger" isOpen={this.state.visible} toggle={this.onDismiss}>
-        {this.props.errors[0]}
+        Invalid Credentails
       </Alert>
     return (
       <div className="container">
