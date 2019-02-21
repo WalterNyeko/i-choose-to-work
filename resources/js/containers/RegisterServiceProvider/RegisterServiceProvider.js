@@ -52,24 +52,33 @@ export default class RegisterServiceProvider extends Component {
             </div>
         </div>
         <div className="row justify-content-center">
-            <div className="col-md-10">
-            {
-              current < steps.length - 1
-              && <Button type="primary" onClick={() => this.next()}>Next</Button>
-            }
-            {
-              current === steps.length - 1
-              && <Button type="primary" onClick={() => message.success('Processing complete!')}>Done</Button>
-            }
-            {
-              current > 0
-              && (
-              <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
-                Previous
+           
+          <div className="col-md-10">
+          <div className="row">
+              <div className="col-md-9 text-left">
+                {
+                  current > 0
+                  && (
+                    <Button onClick={() => this.prev()}>
+                      Previous
               </Button>
-              )
-            }
-            </div>
+                  )
+                }
+              </div>
+              <div className="col-md-3 text-right">
+              {
+                current < steps.length - 1
+                && <Button type="primary" onClick={() => this.next()}>Next</Button>
+              }
+              {
+                current === steps.length - 1
+                && <Button type="primary" onClick={() => message.success('Processing complete!')}>Done</Button>
+              }
+            </div>       
+             
+           </div>
+         </div>
+            
         </div>
       </div>
     );
