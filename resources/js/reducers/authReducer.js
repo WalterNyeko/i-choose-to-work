@@ -1,13 +1,13 @@
 import {authTypes} from '../actionTypes'
 const initialState = {
-    isAutheticate: false,
     token: localStorage.getItem('token'),
     loading: false,
     errors: [],
     successMsg: '',
     authRedirectPath: '/dashboard',
-    user: JSON.parse(localStorage.getItem('user')),
-    isProvider: localStorage.getItem('isProvider'),
+    isAutheticate: localStorage.getItem('token') ? true : false,
+    //user: JSON.parse(localStorage.getItem('user')),
+    //isProvider: localStorage.getItem('isProvider'),
 }
 
 export default (state = initialState, action) => {
@@ -25,7 +25,7 @@ export default (state = initialState, action) => {
             token: action.payload,
             isAutheticate: true,
             errors: [],
-            successMsg: action.successMsg,
+            //successMsg: action.successMsg,
         }
     case authTypes.LOGIN_FAIL:
         return{
