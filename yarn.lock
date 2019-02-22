@@ -5452,6 +5452,11 @@ react-load-script@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/react-load-script/-/react-load-script-0.0.6.tgz#db6851236aaa25bb622677a2eb51dad4f8d2c258"
 
+react-malarquee@^0.0.13:
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/react-malarquee/-/react-malarquee-0.0.13.tgz#bb21fce6847c1646ee6516a5a295fb2a16d303ba"
+  integrity sha512-OCMe8lH3MZRTcnNoiE7tcWF2waiT1tWzCQqFCBrqQwufQM7g29xbEtHrks2wejCtxG1UbKUzvEfUalF42lqu6w==
+
 react-notify-toast@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/react-notify-toast/-/react-notify-toast-0.5.0.tgz#b00cf50a3cc97a1d222ecd7d7a8e7f14bef5fa67"
@@ -6947,3 +6952,8 @@ yargs@^12.0.4, yargs@^12.0.5:
     which-module "^2.0.0"
     y18n "^3.2.1 || ^4.0.0"
     yargs-parser "^11.1.1"
+
+yarn@^1.13.0:
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/yarn/-/yarn-1.13.0.tgz#affa9c956739548024068532a902cf18c9cb523f"
+  integrity sha512-Unfw2eefv8imt4ZMPhvFVP44WCz38huDxkHs+Yqrx4wBTK75Tr0mh3V4rh+2Nw5iQq0rcM/VafotCZo9qTb5DA==
