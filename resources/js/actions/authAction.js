@@ -79,17 +79,17 @@ export const login = (name, pass) => dispatch => {
     }
     axios.post('/api/login', postData)
         .then((res) => {
-            const token = res.data.token.access_token;
+            const token = res.data.access_token;
             dispatch(loginSuccess(token));
             localStorage.setItem('token', token);
-            dispatch(getUserCredentials(res.data.user))
-            const user = JSON.stringify(res.data.user)
-            localStorage.setItem('user', user);
-            localStorage.setItem('isProvider', res.data.isProvider);
-            dispatch(isProvider(res.data.isProvider));
+            // dispatch(getUserCredentials(res.data.user))
+            // const user = JSON.stringify(res.data.user)
+            // localStorage.setItem('user', user);
+            // localStorage.setItem('isProvider', res.data.isProvider);
+            // dispatch(isProvider(res.data.isProvider));
         })
         .catch((err) => {
-            const errors = err;
+            const errors = err.response.data;
             dispatch(loginFails(errors));
         })
 }
@@ -102,12 +102,13 @@ export const register = (data) => dispatch => {
         .then((res) => {
             const token = res.data.token.access_token;
             dispatch(registerSuccess(token));
-            localStorage.setItem('token', token);
-            dispatch(getUserCredentials(res.data.user));
+            // localStorage.setItem('token', token);
+            // dispatch(getUserCredentials(res.data.user));
             const user = JSON.stringify(res.data.user)
-            localStorage.setItem('user', user);
-            localStorage.setItem('isProvider', res.data.isProvider);
-            dispatch(isProvider(res.data.isProvider));
+            // localStorage.setItem('user', user);
+            // localStorage.setItem('isProvider', res.data.isProvider);
+            // dispatch(isProvider(res.data.isProvider));
+            this.login(data.email, data.password);
         })
         .catch((err) => {
             const errors = err.response.data;

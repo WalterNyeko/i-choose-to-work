@@ -1,33 +1,133 @@
-.headermain{
-    background-image: url("../images/v2images/board-carpenter-carpentry-1249610.jpg");
+.headermain {
+    background-image: url("../images/carpenter.jpg");
     background-position: center;
     width: 100%;
-   
+
     margin-top: -30px;
 }
-.headerfilter{
-    background-image: linear-gradient(to bottom, #111010e8,#111010ce,#11101096);
+.headerfilter {
+    background-image: linear-gradient(
+        to bottom,
+        #111010e8,
+        #111010ce,
+        #11101096
+    );
     width: 100%;
     height: 100%;
 }
-.myclass{
-    color:snow;
+.headerfilter h2 {
+    color: aliceblue;
+    text-align: center;
 }
-.myBtnwhiteborder{
-    border: snow solid 2px;
+
+@media only screen and (max-width: 750px) {
+    .headerfilter h2 {
+        color: aliceblue;
+        font-size: 32px;
+    }
+    .listclass ul li {
+        text-decoration: none;
+        align-items: center;
+        margin: 10px;
+    
+        list-style-type: none;
+        display: list-item;
+        line-height: 20px;
+    }
+    
+    .listclass ul li a {
+        text-decoration: none;
+        margin: 10px;
+    
+        align-items: center;
+        list-style-type: none;
+        display: list-item;
+        line-height: 20px;
+        color: #fafafa;
+    }
+    
+    .listclass ul li a:hover {
+        text-decoration: none;
+        margin: 10px;
+    
+        list-style-type: none;
+        display: list-item;
+        line-height: 20px;
+    
+        color: #cbe2f1;
+        cursor: pointer;
+    }
 }
-ul#sociallist li {
-    display:inline;
-    background-color: #00000000;
-    margin:5px;
-  }
-  ul#sociallist li a{
+.listclass ul li {
     text-decoration: none;
-  }
-.footerlayer{
-    background-color: black;
+    align-items: center;
+    margin: 10px;
+    list-style-type: none;
+    display: inline;
+    line-height: 20px;
+}
+
+.listclass ul li a {
+    text-decoration: none;
+    margin: 10px;
+
+    align-items: center;
+    list-style-type: none;
+    display: inline;
+    line-height: 20px;
+    color: #fafafa;
+}
+
+.listclass ul li a:hover {
+    text-decoration: none;
+    margin: 10px;
+    list-style-type: none;
+    line-height: 20px;
+    color: #cbe2f1;
+    cursor: pointer;
+}
+
+
+.myclass {
+    color: snow;
+}
+.Btnwhiteborder {
+    border: snow solid 2px;
+    margin: 5px;
+}
+
+
+.catandpat a {
+    text-decoration: none;
+    margin: 10px 0px;
+
+    align-items: center;
+    list-style-type: none;
+    display: list-item;
+    line-height: 20px;
+    color: #fafafa;
+}
+.catandpat a:hover {
+    text-decoration: none;
+    margin: 10px 0px;
+
+    list-style-type: none;
+    display: list-item;
+    line-height: 20px;
+
+    color: #cbe2f1;
+    cursor: pointer;
+}
+
+.footerlayer {
+    background-color: #000000;
     width: 100%;
     color: aliceblue;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 14px;
 }
+.footerlayer h3 {
+    color: aliceblue;
+}
+
+

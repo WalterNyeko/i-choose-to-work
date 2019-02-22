@@ -8,6 +8,11 @@ import {
     CarouselCaption
 } from 'reactstrap';
 import HeaderHeader from './homeHeader';
+import ServiceComponent from './serviceComp';
+import HowItWorks from './HowItWorks';
+import FooterComp from './footerComponent';
+import ParternLog from './partnersLogos';
+
 
 
 const items = [{
@@ -87,8 +92,13 @@ class HomeComponent extends Component {
             );
         });
         return (
-            <div>
+            <div style={{width:"100%"}}>
                 <HeaderHeader></HeaderHeader>
+                <ServiceComponent/>
+                <HowItWorks/>
+                <ParternLog/>
+                
+                <FooterComp/>
                 
             </div>
         )

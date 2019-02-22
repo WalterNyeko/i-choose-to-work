@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import "../../../public/css/my.css";
-import ServiceComponent from "./serviceComp";
-import HowItWorks from "./HowItWorks";
 import { Jumbotron, Button } from "reactstrap";
-import FooterComp from "./footerComponent";
+
 
 class HeaderHeader extends Component {
     render() {
@@ -19,9 +17,9 @@ class HeaderHeader extends Component {
                                 }}
                                 className="text-center"
                             >
-                                <h1 className="display-3">
+                                <h2 className="display-3">
                                     Welcome to ichuzz2work
-                                </h1>
+                                </h2>
                                 <p className="lead">
                                     Lorem ipsum dolor sit amet consectetur
                                     adipisicing elit. Tenetur, similique
@@ -35,14 +33,14 @@ class HeaderHeader extends Component {
                                 </p>
                                 <p className="lead">
                                     <Button
-                                        className="myBtnwhiteborder"
+                                        className="Btnwhiteborder"
                                         color="danger"
                                         size="lg"
                                     >
                                         Become Service Provider
                                     </Button>{" "}
                                     <Button
-                                        className="myBtnwhiteborder"
+                                        className="Btnwhiteborder"
                                         color="danger"
                                         size="lg"
                                     >
@@ -53,9 +51,7 @@ class HeaderHeader extends Component {
                         </div>
                     </div>
                 </header>
-                <ServiceComponent />
-                <HowItWorks />
-                <FooterComp />
+                
             </div>
         );
     }

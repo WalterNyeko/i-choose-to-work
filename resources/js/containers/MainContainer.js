@@ -11,6 +11,7 @@ import RequestContainer from './Requests';
 import MakeRequest from './MakeRequest';
 import FindWork from './FindWork';
 import Dashboard from './Dashboard';
+import RegisterServiceProvider from './RegisterServiceProvider/RegisterServiceProvider';
 
 class MainContainer extends Component {
   constructor(props)
@@ -61,6 +62,7 @@ class MainContainer extends Component {
                 <Route path="/" exact component={() =><HomeComponent/>} />
                 <Route path="/login" exact component={LoginContainer} />
                 <Route path="/register" exact component={RegisterComponent} />
+                <Route path="/register-provider" exact component={RegisterServiceProvider} />
                 <Route path="/request-service" exact component={RequestContainer}  />
                 <PrivateRoute path="/request/:id" exact component={MakeRequest} />
                 <Route path="/requests"  exact component={FindWork} />

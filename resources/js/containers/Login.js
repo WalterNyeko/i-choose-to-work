@@ -52,7 +52,7 @@ class LoginContainer extends Component {
     }
 
     const alert = <Alert color="danger" isOpen={this.state.visible} toggle={this.onDismiss}>
-        Invalid User credentials
+        Invalid Credentails
       </Alert>
     return (
       <div className="container">
@@ -62,7 +62,7 @@ class LoginContainer extends Component {
                 <div className="card">
                     <div class="card-header">Login</div>
                     <div className="card-body">
-                        {this.props.errors['error'] ? alert : null}
+                        {this.props.errors.length ? alert : null }
                         <form onSubmit={this.onLoginClick}>
                             <div className="form-group row">
                                 <label  className="col-md-4 col-form-label text-md-right">Email</label>
