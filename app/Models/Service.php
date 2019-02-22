@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use App\User;
+use App\ServiceRequest;
+use App\Models\Question;
 use App\Models\ServiceCategory;
 use Illuminate\Database\Eloquent\Model;
-use App\ServiceRequest;
 
+    
 class Service extends Model
 {
     protected $table = 'services';
@@ -36,5 +38,13 @@ class Service extends Model
     public function requests()
     {
         return $this->hasMany(ServiceRequest::class, 'service_id');
+    }
+
+    /**
+     * service has many questions
+     */
+    public function questions()
+    {
+        return $this->hasMany(Question::class, 'service_id');
     }
 }

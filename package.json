@@ -45,6 +45,10 @@
         "redux-thunk": "^2.3.0",
         "render-field": "^1.0.0",
         "select2": "^4.0.6-rc.1",
+<<<<<<< HEAD
         "yarn": "^1.13.0"
+=======
+        "simple-react-validator": "^1.0.5"
+>>>>>>> 557c4642387d6bfef775c6576bcd3b139b128407
     }
 }

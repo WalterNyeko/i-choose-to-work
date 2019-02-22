@@ -1,6 +1,8 @@
 import React from 'react'
+import PicturesWall from '../ProfilePicUpload';
+import { Button } from 'antd';
 
-const Step3 = () => {
+const Step3 = (props) => {
   return (
     <div class="container">
       <div class="row justify-content-center">
@@ -13,12 +15,8 @@ const Step3 = () => {
                 
                     <div class="row">
                       <div class="col-md-4" >
-                        <div class="card" >
-                          <img class="card-img-top" src="images/pic.png" alt="Card image cap"></img>
-                            <div class="card-body">
-                              <a href="#" class="btn btn-primary">Upload Profile Picture</a>
-                            </div>
-                          </div>
+                        <PicturesWall/>
+                        <h3>Profile Pic</h3>
                       </div>
                       <div class="col-md-8">
                         <label for="name">About Me</label>
@@ -31,9 +29,9 @@ const Step3 = () => {
                     <hr />
 
                     <div class="form-group row mb-0 justify-content-center">
-                      <div class="col-md-8">
+                      <div class="col-md-8 text-right">
                         <span class="text-muted">
-                          
+                          <Button type="primary" onClick={props.finish} >Finish</Button>
                         </span>
                       </div>
                     </div>
