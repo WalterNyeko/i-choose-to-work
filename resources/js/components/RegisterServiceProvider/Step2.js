@@ -1,6 +1,7 @@
 import React from 'react'
+import { Button } from 'antd';
 
-const Step2 = () => {
+const Step2 = (props) => {
   return (
     // <div>
     //   <h2>Hello this is step 2</h2>
@@ -63,10 +64,11 @@ const Step2 = () => {
                   <hr />
 
                     <div class="form-group row mb-0 justify-content-center">
-                      <div class="col-md-8">                        
+                      <div class="col-md-8">       
+                        <Button type = "primary" onClick={props.saveAndNew} > Add Another Service</Button>
                       </div>
                       <div class="col-md-4">
-                        <a href="#"><button type="submit" class="btn btn-primary">Add Another Service</button></a>
+                        <Button type="primary" onClick={props.saveServiceContinue} >Save and continue</Button>
                       </div>
                     </div>
               </form>

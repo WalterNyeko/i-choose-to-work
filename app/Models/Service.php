@@ -3,9 +3,10 @@
 namespace App\Models;
 
 use App\User;
+use App\ServiceRequest;
 use App\Models\ServiceCategory;
 use Illuminate\Database\Eloquent\Model;
-use App\ServiceRequest;
+use Symfony\Component\Console\Question\Question;
 
 class Service extends Model
 {
@@ -36,5 +37,13 @@ class Service extends Model
     public function requests()
     {
         return $this->hasMany(ServiceRequest::class, 'service_id');
+    }
+
+    /**
+     * service has many questions
+     */
+    public function questions()
+    {
+        return $this->hasMany(Question::class, 'service_id');
     }
 }
