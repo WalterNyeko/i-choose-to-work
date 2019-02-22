@@ -119,6 +119,9 @@ Route::group(['prefix' => 'profile'], function() {
      Route::get('skill/{id}', 'ProfileSkillsController@getUserBySkill');
 });
 
+//get questions according to service  
+Route::get('/questions/{id}', 'Api\QuestionsController@getQuestions');
+
 Route::fallback(function () {
     return response()->json(['message' => 'Not Found.'], 404);
 })->name('api.fallback.404');

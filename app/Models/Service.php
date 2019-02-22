@@ -4,10 +4,11 @@ namespace App\Models;
 
 use App\User;
 use App\ServiceRequest;
+use App\Models\Question;
 use App\Models\ServiceCategory;
 use Illuminate\Database\Eloquent\Model;
-use Symfony\Component\Console\Question\Question;
 
+    
 class Service extends Model
 {
     protected $table = 'services';
