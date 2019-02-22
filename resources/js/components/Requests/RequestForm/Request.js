@@ -3,6 +3,7 @@ import {Alert} from 'reactstrap'
 //Import React Scrit Libraray to load Google object
 import Script from 'react-load-script';
 import {connect} from 'react-redux';
+import {fetchQuestions} from '../../../actions/questionsAction'
 
 import {withRouter} from 'react-router-dom'
 
@@ -45,6 +46,12 @@ class Request extends Component {
           rate: [...previousState.rate, 1]
       }))
   }
+
+  componentDidMount (){
+    const { match: { params }, history } = this.props;
+    this.props.fetchQuestions(params.id);
+  };
+  
 
   handleRemove(e)
   {
@@ -166,6 +173,7 @@ class Request extends Component {
 
   render() {
     const id = this.props.userid;
+    const questions = this.props.questions.map((qn) => <div>hello</div>);
     const some = this.state.rate.map((sm, index) => <div key={index} className="form-group row">
                     <div className="col-md-4">
                         <label className="col-form-label">Address</label>
@@ -246,6 +254,7 @@ class Request extends Component {
                                                                 </label>
                                                             </div>
                                                         </div>
+                                                        {questions}
                                                     </div>
                                                     <button className="btn btn-primary">{this.state.isSelect === false ? 'submit' : 'Select Pro'}</button>
                                                 </form>
@@ -262,7 +271,9 @@ class Request extends Component {
 const mapStateToProps = state => ({
     token: state.auth.token,
     user: state.auth.user,
+    questions: state.questions.items,
+    loadingQns: state.questions.loading
 })
 
-export default withRouter(connect(mapStateToProps, {})(Request));
+export default withRouter(connect(mapStateToProps, {fetchQuestions})(Request));
 
