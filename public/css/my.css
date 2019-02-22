@@ -1,0 +1,33 @@
+.headermain{
+    background-image: url("../images/v2images/board-carpenter-carpentry-1249610.jpg");
+    background-position: center;
+    width: 100%;
+   
+    margin-top: -30px;
+}
+.headerfilter{
+    background-image: linear-gradient(to bottom, #111010e8,#111010ce,#11101096);
+    width: 100%;
+    height: 100%;
+}
+.myclass{
+    color:snow;
+}
+.myBtnwhiteborder{
+    border: snow solid 2px;
+}
+ul#sociallist li {
+    display:inline;
+    background-color: #00000000;
+    margin:5px;
+  }
+  ul#sociallist li a{
+    text-decoration: none;
+  }
+.footerlayer{
+    background-color: black;
+    width: 100%;
+    color: aliceblue;
+    font-weight: bold;
+    font-size: 12px;
+}
