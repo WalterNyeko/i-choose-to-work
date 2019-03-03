@@ -65,6 +65,7 @@ class RegisterComponent extends Component {
           name: this.state.name,
           email: this.state.email,
           password: this.state.password,
+          phone: this.state.phone,
           password_confirmation: this.state.confirmed,
           roles: this.state.roles,
           services: this.state.services
@@ -114,7 +115,7 @@ class RegisterComponent extends Component {
                                 </div>
                             </div>
 
-                            <div class="form-group row">
+                            {/* <div class="form-group row">
                                 <label for="role" class="col-md-4 col-form-label text-md-right">Do you want a Pro Account</label>
 
                                 <div class="col-md-6 checkbox">
@@ -129,7 +130,7 @@ class RegisterComponent extends Component {
                                         </span>
                                 </div>
                                 
-                            </div>
+                            </div> */}
 
                             {this.state.isPro ? 
                               <div class="form-group row">

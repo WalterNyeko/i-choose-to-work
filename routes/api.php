@@ -2,6 +2,7 @@
 
 use App\User;
 use Illuminate\Http\Request;
+use App\Models\ServiceCategory;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +17,13 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     $user = $request->user();
-
-    return $user;
+    if($user->hasRole('provider'))
+    {
+        return response()->json(['user' => $user, 'role' => 'provider'], 200);
+    }
+    else {
+        return reponse()->json([$user, 'role' => 'public'], 200);
+    }
 });
 
 //auth routes
@@ -52,13 +58,13 @@ Route::post('login', 'Api\AuthController@login');
  */
 Route::apiResource('categories', 'ServiceCategoryController');
 
-Route::get('services1/', 'ServiceController@all');
+Route::get('services1', 'ServiceController@all');
 
 Route::apiResource('services', 'ServiceController');
 
 Route::get('servicess/{id}', 'ServiceController@index2');
 
-Route::post('request', 'ServiceRequestController@store');
+Route::post('request', 'ServiceRequestController@store')->middleware('auth:api');
 
 
 //return service providers that offer a given service
@@ -72,7 +78,7 @@ Route::get('cat-requests/{id}', 'ServiceRequestController@serviceCategory');
 
 
 //bid on a project
-Route::post('bid', 'ServiceRequestController@offer');
+Route::post('bid', 'ServiceRequestController@offer')->middleware('auth:api');
 
 /**
  * get user requests
@@ -121,6 +127,12 @@ Route::group(['prefix' => 'profile'], function() {
 
 //get questions according to service  
 Route::get('/questions/{id}', 'Api\QuestionsController@getQuestions');
+
+//test 
+Route::get('/categories-wth-request/{id}', function($id) {
+    $cat = ServiceCategory::find($id);
+    return $cat->requests->get();
+});
 
 Route::fallback(function () {
     return response()->json(['message' => 'Not Found.'], 404);

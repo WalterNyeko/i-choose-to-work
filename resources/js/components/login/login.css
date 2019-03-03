@@ -1,0 +1,25 @@
+.auth {
+    margin-bottom: 1em;
+    border: 1px solid black;
+}
+.login {
+    background-color:#e3342f;
+    width: 50%;
+    text-align: center;
+}
+.login:hover {
+    cursor: pointer
+}
+.login h4 {
+    color: white;
+    padding: 5;
+}
+.register {
+    background-color: white;
+    color: 'red';
+    width: 50%;
+    text-align: center
+}
+.register:hover {
+    cursor: pointer
+}

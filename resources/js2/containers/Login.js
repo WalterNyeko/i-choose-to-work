@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {login} from '../actions/authAction'
-import {Redirect} from 'react-router-dom';
+import {Redirect, NavLink} from 'react-router-dom';
 import {Alert} from 'reactstrap';
 
 class LoginContainer extends Component {
@@ -91,6 +91,11 @@ class LoginContainer extends Component {
                         </form>
                     </div>
                 </div>
+
+                <div style={styles.auth} className="d-flex justify-content-between" >
+                    <div><NavLink to="register" className="btn btn-outline-primary" >Register</NavLink></div>
+                    <div><NavLink to="register-provider" className="btn btn-outline-danger" >Become Service Provider</NavLink></div>
+                </div>
             </div>
         </div>
       </div>
@@ -103,5 +108,12 @@ const mapStateToProps = state => ({
     errors: state.auth.errors,
     authRedirectPath: state.auth.authRedirectPath,
 })
+
+const styles = {
+    auth: {
+        marginBottom: '2rem',
+        marginTop: '1rem',
+    }
+}
 
 export default connect(mapStateToProps, {login})(LoginContainer);

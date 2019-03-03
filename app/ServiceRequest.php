@@ -42,4 +42,6 @@ class ServiceRequest extends Model
       {
           return $this->hasMany(ServiceDeliveryOffer::class, 'service_req_id');
       }
+
+    
 }

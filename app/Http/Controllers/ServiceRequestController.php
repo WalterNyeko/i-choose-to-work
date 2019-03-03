@@ -8,6 +8,7 @@ use App\ServiceRequest;
 use Illuminate\Http\Request;
 use App\Models\ServiceCategory;
 use App\Models\ServiceDeliveryOffer;
+use App\Notifications\RequestNotification;
 
 
 class ServiceRequestController extends Controller
@@ -37,17 +38,21 @@ class ServiceRequestController extends Controller
         $data = $request->all();
         $validator = \Validator::make($data, 
         [
-            'customer_id' => ['required', 'exists:users,id'],
             'address' => ['required'], 
             'service_id' => ['required', 'exists:services,id'],
-            'description' => ['required', 'min:15'],
-            'expected_start_date' => ['required', 'date']
+            'description' => ['required'],
+            'expected_start_date' => ['required', 'date'],
+            'payment_method' => ['required']
         ],[]);
+        $user = $request->user();
         if($validator->fails())
         {
             return response()->json(['errors' => $validator->errors()], 422);
         }
-        $req = ServiceRequest::create($request->all());
+        // $req = ServiceRequest::create($request->all());
+
+        $req = $user->serviceRequests()->create($request->all());
+
 
         return response()->json(['message' => 'Request Successful', 'id' => $req->id], 200);
     }
@@ -60,7 +65,7 @@ class ServiceRequestController extends Controller
     {
         $service = Service::find($id);
 
-        $providers = $service->providers()->get();
+        $providers = $service->providers()->with('bioProfile', 'services')->get();
 
         return $providers->toJson();    
     }
@@ -142,7 +147,7 @@ class ServiceRequestController extends Controller
     {   
         $data = $request->all();
         $validator = \Validator::make($data, [
-            'estimated_cost' => ['required', 'numeric'],
+            'estimated_cost' => ['numeric'],
             'provider_id' => ['required', 'exists:users,id'],
             'service_req_id' => ['required', 'exists:service_requests,id']
         ],
@@ -159,18 +164,21 @@ class ServiceRequestController extends Controller
            return response()->json(['errors' => $validator->errors()], 422);
         }
 
+        $offer = ServiceDeliveryOffer::create($request->all());
         $user = User::find($request->provider_id);
-        if($user->hasRole('provider'))
-        {
-            $offer = ServiceDeliveryOffer::create($request->all());
-        }
-        else 
-        {
-            $role = [
-                'role' => 'Please sign up as a Service Provider'
-            ];
-            return response()->json(['errors' => $role ], 422);
-        }
+        \Notification::route('mail', $user->email)
+            ->notify(new RequestNotification());
+        // if($user->hasRole('provider'))
+        // {
+            
+        // }
+        // else 
+        // {
+        //     $role = [
+        //         'role' => 'Please sign up as a Service Provider'
+        //     ];
+        //     return response()->json(['errors' => $role ], 422);
+        // }
 
         return $offer;
     }
@@ -197,4 +205,9 @@ class ServiceRequestController extends Controller
 
         return response()->json($offers);
     }
+
+    /**
+     * hire request 
+     * 
+     */
 }

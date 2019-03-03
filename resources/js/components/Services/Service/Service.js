@@ -1,17 +1,19 @@
 import React from 'react';
 import { Card, CardTitle, CardText, CardImg, CardImgOverlay, Button } from 'reactstrap';
-import {Link} from 'react-router-dom'
 
 const Service = (props) => {
   return (
-    <div className="mb-3">
-      <Card body outline color="danger">
-        <CardTitle className="text-capitalize">{props.title}</CardTitle>
-        <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
-        <Link to={props.link} className="btn btn-danger">Request</Link>
+    <div>
+      <Card inverse>
+        <CardImg width="100%" src={require('../../../assets/service.jpg')} alt="Card image cap" />
+        <CardImgOverlay style={{ backgroundColor: 'rgba(0,0,0,0.7)' }}>
+          <CardTitle className="text-uppercase">{props.name ? props.name : 'Service Title'}</CardTitle>
+          <CardText>{props.description ? props.description : 'Get work done by pros'}</CardText>
+          <Button color="danger" onClick={(id) => props.click()} style={{ marginTop: '1em' }}>Request</Button>
+        </CardImgOverlay>
       </Card>
     </div>
   );
 };
 
-export default Service;
+export default Service

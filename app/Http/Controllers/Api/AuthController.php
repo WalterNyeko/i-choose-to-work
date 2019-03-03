@@ -12,6 +12,62 @@ use GuzzleHttp\Exception\GuzzleException;
 
 class AuthController extends Controller
 {
+    public function register(Request $request)
+    {
+        $data = $request->all();
+
+        $validator = \Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+            'password' => ['required', 'string', 'min:6'],
+            'phone' => ['numeric', 'required', 'unique:bio_profiles,phone_number'],
+        ], [
+            'password.min' => 'Password must atleast be 6 characters.',
+            'password.required' => 'Password is required',
+            'password.confirmed' => 'Please confirm password.',
+            'email.email' => 'Please enter a valid email address.',
+            'email.unique' => 'Email is already taken.',
+            'phone.numeric' => 'Please enter a valid phone number',
+            'phone.required' => 'The phone number is required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([$validator->errors()], 422);
+        }
+        else 
+        {
+            //create the user 
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($data['password']),
+            ]);
+            //
+            $user->bioProfile()->create([
+                'profile_pic' => 'user.png',
+                'phone_number' => $request->phone
+            ]);
+
+            if($data['role'] === 'public')
+            {
+                $user->assignRole(['public']);
+            }
+
+            if($data['role'] === 'provider')
+            {
+                $user->assignRole(['public', 'provider']);
+            }
+            
+
+            $data1 = [
+                'email' => $request->email,
+                'password' => $data['password'],
+            ];
+
+            return $this-> grant_token($data1, $request);    
+        }
+    }
+
 
     public function grant_token($data, $request)
     {

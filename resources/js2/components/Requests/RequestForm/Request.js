@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import {fetchQuestions} from '../../../actions/questionsAction'
 
 import {withRouter} from 'react-router-dom'
+import Questionso from '../../../containers/Questions/Questionso';
 
 class Request extends Component {
   constructor(props)
@@ -173,7 +174,6 @@ class Request extends Component {
 
   render() {
     const id = this.props.userid;
-    const questions = this.props.questions.map((qn) => <div>hello</div>);
     const some = this.state.rate.map((sm, index) => <div key={index} className="form-group row">
                     <div className="col-md-4">
                         <label className="col-form-label">Address</label>
@@ -226,36 +226,18 @@ class Request extends Component {
                                                     </div>
                                                     {some}  
                                                     <div className="form-group row">
-                                                        <div className="col-md-4">
+                                                        <div className="col-md-12">
                                                             <label className="col-form-label">
                                                                 Description of Request
                                                             </label>
                                                         </div>
-                                                        <div className="col-md-8">
+                                                        <div className="col-md-12">
                                                             <textarea className={`form-control ${this.hasErrorFor('description') ? 'is-invalid' : ''}`} name="description" onChange={this.handleInputChange} id="" rows="3"></textarea>
                                                             {this.renderErrorFor('description')}
                                                         </div>
                                                     </div>
-                                                    <div className="form-group row">
-                                                
-                                                        <div className="col-md-6">
-                                                            <div className="form-check">
-                                                                <label className="form-check-label">
-                                                                <input type="radio" className="form-check-input" name="isSel" value="false" onChange={this.handleNext} />
-                                                                Post
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                        <div className="col-md-6">
-                                                            <div className="form-check">
-                                                                <label className="form-check-label">
-                                                                <input type="radio" className="form-check-input" name="isSel" id="" value="true" onChange={this.handleNext} />
-                                                                Chose Provider
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                        {questions}
-                                                    </div>
+                                                   
+                                                    <Questionso questions={this.props.questions} />
                                                     <button className="btn btn-primary">{this.state.isSelect === false ? 'submit' : 'Select Pro'}</button>
                                                 </form>
                                             </div>
