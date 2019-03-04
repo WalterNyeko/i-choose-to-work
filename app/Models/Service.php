@@ -47,4 +47,12 @@ class Service extends Model
     {
         return $this->hasMany(Question::class, 'service_id');
     }
+
+    /**
+     * Get all of the services comments.
+     */
+    public function comments()
+    {
+        return $this->morphMany('App\Comment', 'commentable');
+    }
 }

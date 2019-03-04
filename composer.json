@@ -14,8 +14,11 @@
         "guzzlehttp/guzzle": "~6.0",
         "laravel/framework": "5.7.*",
         "laravel/passport": "^7.0",
+        "laravel/scout": "^7.1",
         "laravel/tinker": "^1.0",
-        "spatie/laravel-permission": "^2.29"
+        "spatie/laravel-permission": "^2.29",
+        "teamtnt/laravel-scout-tntsearch-driver": "^7.0",
+        "tucker-eric/eloquentfilter": "^1.4"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
