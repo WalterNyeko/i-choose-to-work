@@ -7,10 +7,15 @@ use App\ServiceRequest;
 use App\Models\Question;
 use App\Models\ServiceCategory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
-    
+
 class Service extends Model
 {
+    use Searchable;
+
+    public $asYouType = true;
+
     protected $table = 'services';
 
     protected $fillable = ['name', 'description', 'category_id'];
@@ -54,5 +59,15 @@ class Service extends Model
     public function comments()
     {
         return $this->morphMany('App\Comment', 'commentable');
+    }
+
+    /**
+     * Get the index name for the model.
+     *
+     * @return string
+     */
+    public function searchableAs()
+    {
+        return 'services_index';
     }
 }
