@@ -153,6 +153,11 @@ Route::namespace('Api')->group(function () {
     /* Service Requests Routes */
     Route::get('services/requests/{id}', 'ServiceRequestController@show');
     Route::post('services/requests', 'ServiceRequestController@store');
+
+    /* Cancelled/Not Service Requests Routes */
+    Route::get('services/requests/true/cancelled', 'ServiceRequestController@cancelledServiceRequests');
+    Route::get('services/requests/false/cancelled', 'ServiceRequestController@notCancelledServiceRequests');
+    Route::post('services/requests/cancelled', 'ServiceRequestController@cancelRequest');
 });
 
 
