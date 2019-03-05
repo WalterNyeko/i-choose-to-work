@@ -9,3 +9,9 @@ export const savingServiceTypes = {
     REQUEST_SUCCESS: 'REQUEST_SUCCESS',
     REQUEST_FAIL: 'REQUEST_FAIL'
 }
+
+export const singleServiceTypes = {
+    REQUEST_SERVICE: 'REQUEST_SERVICE',
+    SERVICE_SUCCESS: 'SERVICE_SUCCESS',
+    FAIL_SERVICE: 'FAIL_SERVICE'
+}

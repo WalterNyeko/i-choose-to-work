@@ -82,94 +82,101 @@ class GeneralRegistration extends Component {
     return (
       <div className="container">
            {authRedirect}
-          <div className="row justify-content-center">
+          < div className = "row justify-content-center margin-top-30" >
               <div className="col-md-8">
                   <div className="card">
-                      <div className="card-header">Register</div>
+                      {/* <div className="card-header">Register</div> */}
 
                       <div className="card-body">
                           <Form onSubmit={this.handleSubmit} >
                            
-                            <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
-                                <div class="col-md-6">
-                                    <Form.Item>
-                                        {getFieldDecorator('name', {
-                                            rules: [{required:true, message: 'Please enter your name'}],
-                                        })(
-                                            <input id="name" type="text" class="form-control" name="name"   autoFocus/>
-                                        )}
-                                    </Form.Item>
+                            <div class="row">
+                                <div className="col-xl-6">
+                                    <div className="submit-field">
+                                        <h5>Name</h5>
+                                        <Form.Item>
+                                            {getFieldDecorator('name', {
+                                                rules: [{required:true, message: 'Please enter your name'}],
+                                            })(
+                                                <input id="name" type="text" class="with-border" name="name"   autoFocus/>
+                                            )}
+                                        </Form.Item>
+                                    </div>
+                                </div>
+                                <div className="col-xl-6">
+                                    <div className="submit-field">
+                                        <h5>Email</h5>
+                                        <Form.Item>
+                                            {getFieldDecorator('email', {
+                                                rules: [{required:true, message: 'Please provide a valid email'}, 
+                                                        {type: 'email', message: 'The input is not valid E-mail!'},
+                                                    ]
+                                            })(
+                                                <input id="email" type="email" class="with-border" name="email" />
+                                            )}
+                                        </Form.Item>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
+                            <div class="submit-field">
+                                <h5>Phone Number</h5>
 
-                                <div class="col-md-6">
-                                    <Form.Item>
-                                        {getFieldDecorator('email', {
-                                            rules: [{required:true, message: 'Please provide a valid email'}, 
-                                                    {type: 'email', message: 'The input is not valid E-mail!'},
-                                                   ]
-                                        })(
-                                            <input id="email" type="email" class="form-control" name="email" />
-                                        )}
-                                    </Form.Item>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">Phone Number</label>
-
-                                <div class="col-md-6">
+                                
                                     <Form.Item>
                                         {getFieldDecorator('phone', {
-                                            rules: [{required:true, message: 'Please enter a phone number'}]
-                                        })(
-                                            <input id="phone" type="phone" class="form-control" name="phone" />
-                                        )}
-                                    </Form.Item>
-                                </div>
-                            </div>
-
-                            
-
-                            
-
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-
-                                <div class="col-md-6">
-                                    <Form.Item>
-                                        {getFieldDecorator('password', {
-                                            rules: [
-                                                {required:true, message: 'enter a strong password'},
-                                                {validator: this.validateToNextPassword,}
-                                            ]
-                                        })(                                        
-                                        <input id="password" type="password" class="form-control" name="password"  />
-                                        )}
-                                    </Form.Item>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confrm Password</label>
-
-                                <div class="col-md-6">
-                                <Form.Item>
-                                    {getFieldDecorator('confirm', {
-                                        rules: [
-                                            {required: true, message: 'Please confirm password'},
-                                            {validator: this.compareToFirstPassword,}
+                                            rules: [{required:true, message: 'Please enter a phone number'}, 
+                                                {max: 12, message: 'Please enter a valid phone number (start with 256)'},
+                                                {min: 12, message: 'Please provide a valid phone number (start with 256)'}
                                         ]
-                                    }) (
-                                        <input id="password-confirm" type="password" class="form-control" name="confirmed" />
-                                    )}
-                                </Form.Item>
-                                </div>
+                                        })(
+                                            <input id="phone" type="phone" class="with-border" name="phone" />
+                                        )}
+                                    </Form.Item>
+                                
                             </div>
+
+                            <div className="row">
+                                <div className="col-xl-6">
+                                    <div class="submit-field">
+                                        <h5>Password</h5>
+
+                                        
+                                            <Form.Item>
+                                                {getFieldDecorator('password', {
+                                                    rules: [
+                                                        {required:true, message: 'enter a strong password'},
+                                                        {min: 8, message: 'Password must be between 8 to 64'},
+                                                        {validator: this.validateToNextPassword,}
+                                                    ]
+                                                })(                                        
+                                                <input id="password" type="password" class="with-border" name="password"  />
+                                                )}
+                                            </Form.Item>
+                                    
+                                    </div>
+                                </div>
+                                <div className="col-xl-6">
+                                    <div class="submit-field">
+                                        <h5>Confrm Password</h5>
+
+                                        
+                                        <Form.Item>
+                                            {getFieldDecorator('confirm', {
+                                                rules: [
+                                                    {required: true, message: 'Please confirm password'},
+                                                    {validator: this.compareToFirstPassword,}
+                                                ]
+                                            }) (
+                                                <input id="password-confirm" type="password" class="with-border" name="confirmed" />
+                                            )}
+                                        </Form.Item>
+                                        
+                                    </div>
+                                </div>
+                           </div>
+
+                            
 
                             <hr/>
 
@@ -180,9 +187,7 @@ class GeneralRegistration extends Component {
                                     </span>
                                 </div>
                                 <div class="col-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        Register
-                                    </button>
+                                    <button class="button full-width button-sliding-icon ripple-effect" type="submit" >Register <i class="icon-material-outline-arrow-right-alt"></i></button>
                                 </div>
                             </div>
                         </Form>

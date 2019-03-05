@@ -1,17 +1,22 @@
 import React from 'react';
-import { Card, CardTitle, CardText, CardImg, CardImgOverlay, Button } from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.css'
+import {Link} from 'react-router-dom'
+import { Api } from '../../../constants';
 
 const Service = (props) => {
   return (
     <div>
-      <Card inverse>
-        <CardImg width="100%" src={require('../../../assets/service.jpg')} alt="Card image cap" />
-        <CardImgOverlay style={{ backgroundColor: 'rgba(0,0,0,0.7)' }}>
-          <CardTitle className="text-uppercase">{props.name ? props.name : 'Service Title'}</CardTitle>
-          <CardText>{props.description ? props.description : 'Get work done by pros'}</CardText>
-          <Button color="danger" onClick={(id) => props.click()} style={{ marginTop: '1em' }}>Request</Button>
-        </CardImgOverlay>
-      </Card>
+      <Link to={`/book/${props.id}`} class="blog-compact-item-container">
+        <div class="blog-compact-item">
+          <img src="images/blog-04a.jpg" alt=""/>
+          <span class="blog-item-tag text-capitalize">{props.name}</span>
+          <div class="blog-compact-item-content">
+            
+            <button class="btn btn-outline-danger btn-block">Book Now</button> <br/>
+            <p>{props.description ? props.description : 'Get work done'}</p>
+          </div>
+        </div>
+      </Link>
     </div>
   );
 };

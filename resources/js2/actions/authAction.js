@@ -104,7 +104,7 @@ export const register = (data) => dispatch => {
             dispatch(registerSuccess(token));
             // localStorage.setItem('token', token);
             // dispatch(getUserCredentials(res.data.user));
-            const user = JSON.stringify(res.data.user)
+            // const user = JSON.stringify(res.data.user)
             // localStorage.setItem('user', user);
             // localStorage.setItem('isProvider', res.data.isProvider);
             // dispatch(isProvider(res.data.isProvider));
@@ -140,7 +140,19 @@ export const isLogin = () => dispatch => {
 
 //get user id
 export const getUser = (token) => dispatch => {
-    dispatch(getUserCredentials(res.data));
+    axios.get('api/user', {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+    .then((res) => {
+        const user = JSON.stringify(res.data.user)
+        localStorage.setItem('user', user);
+        dispatch(getUserCredentials(res.data.user))
+    })
+    .catch((error) => {
+        console.log(error)
+    })
 }
 
 

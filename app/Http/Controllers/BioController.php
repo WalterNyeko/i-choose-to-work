@@ -67,7 +67,7 @@ class BioController extends Controller
 
         $bio = new BioProfile();
         //this is for testing though in production the user id must be picked
-        $user = User::find(9);
+        $user = $request->user();
 
         $bio->profile_pic = $request->profile_pic;
         $bio->tagline = $request->tagline;

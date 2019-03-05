@@ -4,6 +4,12 @@ import ServiceSidebar from '../../components/sidebar/servicesSidebar/serviceSide
 import {getCategories} from '../../store/actions/categories/categoriesAction'
 import {getReqests, getCateRequests} from '../../store/actions/requestsActions/reqActions'
 import RequestList from '../../components/RequestListView';
+import SearchFilter from '../../components/search';
+import LocationSearch from '../../components/LocationSearch';
+import { Select } from 'antd';
+
+const Option = Select.Option;
+
 
 class Gigs extends Component {
   constructor(props) {
@@ -55,18 +61,48 @@ class Gigs extends Component {
     }
     
     return (
-      <div className="container">
+      <>
+        <div class="margin-top-30"></div>
+        <div className="container">
         <div className="row">
-          <div className="col-md-3">
-            <ServiceSidebar categories={this.props.categories} clicked={(id) => this.getCatRequests(id)}/>
-          </div>
-          <div className="col-md-9">
-            <div className="row">
-              {requestList}
+          <div className="col-xl-3 col-lg-4">
+            <div class="sidebar-container">
+        
+              <LocationSearch/>
+
+              <SearchFilter/>
+
+             
+              <div class="sidebar-widget">
+                <h3>Category</h3>
+                <Select
+                  showSearch
+                  style={{ width: '100%' }}
+                  placeholder="Select a category"
+                  optionFilterProp="children"
+                  // onChange={handleChange}
+                  // onFocus={handleFocus}
+                  // onBlur={handleBlur}
+                  filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+                >
+                    {this.props.categories.map((cat, i) => 
+                                        <option value={cat.id} key={i}>{cat.name}</option>
+                    )}
+                </Select>
+              </div>
+            
             </div>
+          </div>
+          <div className="col-xl-9 col-lg-8 content-left-offset">
+            <h3 class="page-title">Search Results</h3>
+            
+            
+              {requestList}
+            
           </div>
         </div>
       </div>
+      </>
     )
   }
 }

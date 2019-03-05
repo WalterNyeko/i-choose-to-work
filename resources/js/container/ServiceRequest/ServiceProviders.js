@@ -6,6 +6,11 @@ import 'antd/dist/antd.min.css'
 import ServiceProviderList from '../../components/serviceProviders/serviceProviderList';
 import {makeOffer} from '../../store/actions/offers/offersAction'
 import { routes } from '../../constants';
+import Sidebar2 from '../../components/Sidebar2';
+import LineBreak from '../../components/lineBreak';
+import Main from '../../components/Main';
+import LocationSearch from '../../components/LocationSearch';
+import SearchFilter from '../../components/search';
 
 
 class ServiceProviders extends Component {
@@ -13,7 +18,7 @@ class ServiceProviders extends Component {
     super(props)
   
     this.state = {
-       
+       providers: []
     }
 
     this.openNotification = this.openNotification.bind(this);
@@ -37,7 +42,18 @@ class ServiceProviders extends Component {
 
       this.props.getProviders(params.id);
       this.openNotification();
+      this.searchProvider = this.searchProvider.bind(this);
   }
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.providers)
+    {
+      this.setState({
+        providers: nextProps.providers
+      })
+    }
+  }
+  
 
   openSuccess(){
     notification.success({
@@ -61,19 +77,34 @@ class ServiceProviders extends Component {
     this.props.history.push(routes.DASHBOARD)
     this.openSuccess();
   }
+  searchProvider(value)
+  {
+    console.log(value);
+  }
   
   render() {
     let providers = null;
     if (this.props.providers.length) {
-        providers = this.props.providers.map((provider, i) => <ServiceProviderList name={provider.name} id={provider.id} hire={() => this.hire(provider.id)} about={provider.bio_profile ? provider.bio_profile.description : 'Service provider' }/>)
+        providers = this.state.providers.map((provider, i) => <ServiceProviderList name={provider.name} id={provider.id} hire={() => this.hire(provider.id)} about={provider.bio_profile ? provider.bio_profile.description : 'Service provider' }/>)
     }
     else 
     {
         providers = <div><h2>There are no providers yet</h2></div>
     }
     return (
-      <div>
-        {this.props.loadingProviders === true ? <Spin/> : providers}
+      <div className="container">
+        <LineBreak/>
+        <div class="row">
+          <Sidebar2>
+            <LocationSearch/>
+            <SearchFilter onSearch={(value) => this.searchProvider(value)}/>
+          </Sidebar2>
+          <Main header="Service Providers Available">
+            <div class="freelancers-container freelancers-list-layout margin-top-35">
+              {providers}
+            </div>
+          </Main>
+        </div>
       </div>
     )
   }

@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import {connect} from 'react-redux';
-import {NavLink} from 'react-router-dom';
+import {NavLink, Link} from 'react-router-dom';
 import {mainLinks, routes} from '../../constants';
 import {logout, getUser} from '../../store/actions/auth/loginAction'
+import UserMenu from '../Usermenu/UserMenu';
 
 class MainNav extends Component {
 
@@ -49,71 +50,72 @@ class MainNav extends Component {
 
   render() {
 
-    const links = mainLinks.map((route, index) => <li className="nav-item" key={index} >
-                                                        <NavLink to={route.path} className="nav-link">{route.label}</NavLink>
-                                                </li>);
+    const links = mainLinks.map((route, index) => <li  key={index} >
+                                                        <NavLink to={route.path} activeClassName="current" >{route.label}</NavLink>
+                                                  </li>);
     return (
-      <Fragment>
-        <nav className="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div className="container">
-                <NavLink className="navbar-brand" to="/">
-                    Ichuzz2work
-                </NavLink>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
+        <>
+            <header id="header-container" class="fullwidth">
 
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                   
-                    <ul className="navbar-nav mr-auto ml-auto">
-                        {links}
-                        <li className="nav-item" >
-                                <a href="https://ichuzz2work.com/" style={{ color: 'red' }} target="blank" className="nav-link">Jobs</a>
-                        </li>
-                    </ul>
-
-                    {this.props.isLogin === true
-                         ? 
-                        <ul className = "navbar-nav ml-auto" >
-                            <li className="nav-item" onClick={() => this.props.logout()}>
-                                <a className="nav-link">Logout</a>
-                            </li>
+                
+                <div id="header">
+                    <div class="container">
+                        
+                        
+                        <div class="left-side">
                             
-                            <li className="nav-item dropdown">
-                                <a id="navbarDropdown" className="nav-link dropdown-toggle text-capitalize" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                     {this.props.user === true ? this.props.user.name : 'Account' }
-                                        <span className="caret"></span>
-                                </a>
+                           
+                            <div id="logo">
+                                <Link to="/"><img src="weblogo.png" alt=""/></Link>
+                            </div>
 
-                                <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <NavLink className="dropdown-item"
-                                       to={routes.DASHBOARD}>
-                                        Dashboard
-                                    </NavLink>
+                            
+                            <nav id="navigation">
+                                <ul id="responsive">
+                                    {links}
+                                    <li>
+                                        <a href="https://ichuzz2work.com/" target="blank">Jobs</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <div class="clearfix"></div>
+                           
+                            
+                        </div>
+                        
+                        
+                        <div class="right-side">
+                            {this.props.isLogin === false ?
+                            <>
+                                <div class="header-widget">
+                                    <NavLink to={routes.LOGIN} class="log-in-button"><i class="icon-feather-log-in"></i> <span>Log In / Register</span></NavLink>
                                 </div>
-                            </li>
-                        
-                        </ul>
-                        : 
-                        <ul className="navbar-nav ml-auto">
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to={routes.LOGIN}>Login / Register</NavLink>
-                            </li>
+                                <div class="header-widget">
+                                    <NavLink to={routes.BECOME_PROVIDER} class="log-in-button"><i class="icon-material-outline-monetization-on"></i> <span>Become Service Provider</span></NavLink>
+                                </div>
+                            </>
+                            :
+                            <UserMenu/>
+                            }
+
                             
-                            <li className="nav-item" >
-                                <NavLink to={routes.BECOME_PROVIDER} className="btn btn-outline-danger" >Become Service Provider</NavLink>
-                            </li>
-                        </ul>
-                    }
-                        
+                            <span class="mmenu-trigger">
+                                <button class="hamburger hamburger--collapse" type="button">
+                                    <span class="hamburger-box">
+                                        <span class="hamburger-inner"></span>
+                                    </span>
+                                </button>
+                            </span>
+
+                        </div>
+                    
+                    </div>
                 </div>
-            </div>
-        </nav>
-        <div>
-            
-        </div>
-      </Fragment>
+               
+
+            </header>
+            <div class="clearfix"></div>
+        </>   
     )
   }
 }
@@ -121,7 +123,7 @@ class MainNav extends Component {
 const mapStateToProps = state => ({
     isLogin: state.auth.isLogin,
     user: state.auth.user,
-    token: state.auth.token
+    token: state.auth.token,
 })
 
 const styles = {

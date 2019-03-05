@@ -65,7 +65,8 @@ export const logout = () => dispatch => {
     localStorage.removeItem('role');
 }
 
-export const getUser = (token) => dispatch => {
+export const getUser = () => dispatch => {
+    const token = localStorage.getItem('token')
     axios.get(Api.USER, {
         headers: {
             Authorization: `Bearer ${token}`
