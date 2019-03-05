@@ -158,6 +158,9 @@ Route::namespace('Api')->group(function () {
     Route::get('services/requests/true/cancelled', 'ServiceRequestController@cancelledServiceRequests');
     Route::get('services/requests/false/cancelled', 'ServiceRequestController@notCancelledServiceRequests');
     Route::post('services/requests/cancelled', 'ServiceRequestController@cancelRequest');
+
+    /* Filters */
+    Route::get('services/filters/providers', 'ServiceProviderFilterController@index');
 });
 
 

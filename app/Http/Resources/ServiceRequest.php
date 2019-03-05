@@ -2,8 +2,6 @@
 
 namespace App\Http\Resources;
 
-use App\Http\Resources\User as UserResource;
-use App\Http\Resources\Service as ServiceResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ServiceRequest extends JsonResource
