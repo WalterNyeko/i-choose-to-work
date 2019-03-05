@@ -17,27 +17,25 @@ use App\Models\ServiceCategory;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     $user = $request->user();
-    if($user->hasRole('provider'))
-    {
+    if ($user->hasRole('provider')) {
         return response()->json(['user' => $user, 'role' => 'provider'], 200);
-    }
-    else {
+    } else {
         return reponse()->json([$user, 'role' => 'public'], 200);
     }
 });
 
 //auth routes
-Route::group(['prefix' => 'auth'], function() {
+Route::group(['prefix' => 'auth'], function () {
     Route::post('register-public', 'Api\RegisterController@registerNormal');
     Route::post('register-provider', 'Api\RegisterController@registerPublic');
 });
 
 
 //service provider update  
-Route::post('service-provider/{id}', 'Api\ServiceProvider@updateService')->middleware('auth:api');  
+Route::post('service-provider/{id}', 'Api\ServiceProvider@updateService')->middleware('auth:api');
 
 //add a service to a service provider
-Route::post('add/service-provider', 'Api\ServiceProvider@addService')->middleware('auth:api');  
+Route::post('add/service-provider', 'Api\ServiceProvider@addService')->middleware('auth:api');
 
 //remove a sevice from a service provider by service provider
 Route::get('remove/service/{id}', 'Api\ServiceProvider@removeService')->middleware('auth:api');
@@ -91,12 +89,12 @@ Route::get('my-requests', 'ServiceRequestController@getRequestByUser')->middlewa
 Route::get('my-offers', 'ServiceRequestController@getUserOffers')->middleware('auth:api');
 
 
-Route::group(['prefix' => 'profile'], function() {
+Route::group(['prefix' => 'profile'], function () {
     /**
      * entire profile
      */
-    Route::get('/{id}', function($id){
-        $user = User::with(['education', 'skills', 'bioProfile', 'experience', 'services', 'serviceRequests'])->find($id) ;
+    Route::get('/{id}', function ($id) {
+        $user = User::with(['education', 'skills', 'bioProfile', 'experience', 'services', 'serviceRequests'])->find($id);
         return response()->json($user);
     });
     /**
@@ -122,14 +120,14 @@ Route::group(['prefix' => 'profile'], function() {
      * get users with a particular skill
      */
 
-     Route::get('skill/{id}', 'ProfileSkillsController@getUserBySkill');
+    Route::get('skill/{id}', 'ProfileSkillsController@getUserBySkill');
 });
 
 //get questions according to service  
 Route::get('/questions/{id}', 'Api\QuestionsController@getQuestions');
 
 //test 
-Route::get('/categories-wth-request/{id}', function($id) {
+Route::get('/categories-wth-request/{id}', function ($id) {
     $cat = ServiceCategory::find($id);
     return $cat->requests->get();
 });
@@ -137,5 +135,25 @@ Route::get('/categories-wth-request/{id}', function($id) {
 Route::fallback(function () {
     return response()->json(['message' => 'Not Found.'], 404);
 })->name('api.fallback.404');
+
+
+
+Route::namespace('Api')->group(function () {
+
+    /* Search Api Routes */
+    Route::prefix('search')->group(function () {
+        Route::get('services', 'SearchServiceController@search');
+        Route::get('services/requests/', 'SearchServiceRequestController@search');
+    });
+
+    /* Partner Routes */
+    Route::get('partners', 'PartnerController@index');
+    Route::get('partners/{id}', 'PartnerController@show');
+
+    /* Service Requests Routes */
+    Route::get('services/requests/{id}', 'ServiceRequestController@show');
+    Route::post('services/requests', 'ServiceRequestController@store');
+});
+
 
 
