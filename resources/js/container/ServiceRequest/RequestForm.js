@@ -9,6 +9,7 @@ import moment from 'moment';
 import Script from 'react-load-script';
 import {postRequest} from '../../store/actions/requestsActions/reqActions'
 import { routes } from '../../constants';
+import {getSingleService} from '../../store/actions/services/servicesAction'
 
 const {
     MonthPicker,
@@ -23,7 +24,8 @@ class RequestForm extends Component {
     super(props)
   
     this.state = {
-       questions: []
+       questions: [],
+       service: {}
     }
     this.handleQuestions = this.handleQuestions.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
@@ -38,20 +40,16 @@ class RequestForm extends Component {
   componentDidMount() {
       const { match: { params } } = this.props;
       this.props.fetchQuestions(params.id);
+      this.props.getSingleService(params.id);
   }
 
   componentWillReceiveProps(nextProps) {
-      if(nextProps.questions)
+      if(nextProps.service)
       {
-          console.log(nextProps.questions)
-      }
-      if(nextProps.postErrors)
-      {
-          nextProps.postErrors
-      }
-      if(nextProps.postLoading)
-      {
-          nextProps.postLoading
+        this.setState({
+            service: JSON.parse(sessionStorage.getItem('service'))
+        })  
+        console.log(this.state.service)
       }
   }
   
@@ -163,15 +161,17 @@ class RequestForm extends Component {
   
   
   render() {
+    const service = this.state.service
     return (
       <div className="container">
+        <div class="margin-top-30"></div>
         <Script url="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhV7K0LTU02IbjYC1Tz6GEpF3z5TU2_xs&libraries=places" onLoad={this.handleScriptLoad}        
         /> 
         <div className="row justify-content-center">
             <div className="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        Please answer some questions to help you get the perfect service Provider
+                        Request <span className="text-capitalize text-danger">{service.name}</span> expert
                     </div>
                     <div className="card-body">
                         <form onSubmit={this.handleSubmit}>
@@ -235,7 +235,8 @@ const mapStateToProps = state => ({
     errors: state.questions.errors,
     questions: state.questions.items,
     postLoading: state.makeRequest.loading,
-    postErrors: state.makeRequest.errors
+    postErrors: state.makeRequest.errors,
+    service: state.services.service
 })
 
-export default connect(mapStateToProps, {fetchQuestions, postRequest})(RequestForm)
+export default connect(mapStateToProps, {fetchQuestions, postRequest, getSingleService})(RequestForm)

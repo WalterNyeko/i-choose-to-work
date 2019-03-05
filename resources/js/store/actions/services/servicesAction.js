@@ -1,4 +1,4 @@
-import { serviceTypes } from '../../types';
+import { serviceTypes, singleServiceTypes } from '../../types';
 import { Api } from '../../../constants';
 
 export const requestServices = () => {
@@ -37,6 +37,30 @@ export const getServices = () => dispatch => {
          })
 }
 
+export const requestService = () => {
+    return {
+        type: singleServiceTypes.REQUEST_SERVICE
+    }
+}
+
+export const successService = (service) => {
+    return {
+        type: singleServiceTypes.SERVICE_SUCCESS,
+        payload: {
+            service
+        }
+    }
+}
+
+export const failService = (errors) => {
+    return {
+        type: singleServiceTypes.FAIL_SERVICE,
+        payload: {
+            errors
+        }
+    }
+}
+
 export const getServicesPaginated = () => dispatch => {
     dispatch(requestServices());
     axios.get(Api.SERVICES_PAGINATED)
@@ -48,6 +72,7 @@ export const getServicesPaginated = () => dispatch => {
         })
 }
 
+
 export const getServiceCategory = (id) => dispatch => {
     dispatch(requestServices());
     axios.get(Api.CATEGORY_SERVICES + '/' + id)
@@ -57,5 +82,18 @@ export const getServiceCategory = (id) => dispatch => {
         .catch((err) => {
             const errors = err;
             dispatch(failServices(errors))
+        })
+}
+
+export const getSingleService = (id) => dispatch => {
+    dispatch(requestService());
+    axios.get(`api/services/${id}`)
+        .then((res) => {
+            const service = JSON.stringify(res.data)
+            sessionStorage.setItem('service', service)
+            dispatch(successService(service))
+        })
+        .catch((err) => {
+            dispatch(failService(err))
         })
 }

@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import {connect} from 'react-redux';
 import {Route, HashRouter as Router, withRouter, Redirect} from 'react-router-dom';
+import $ from 'jquery';
 import MainNav from '../../components/Header/MainNav';
 import Home from '../Home/Home';
 import { routes } from '../../constants';
@@ -56,9 +57,9 @@ class MainApp extends Component {
 
     return (
       <Router>
-        <Fragment>
+        <>
             <MainNav/>
-            <main className="py-4">
+            
                 <Route exact component={Home}  path="/"/>
                 <Route exact path={routes.LOGIN} component={Login} />
                 <Route exact path={routes.REQUEST} component={MakeRequest} />
@@ -69,8 +70,7 @@ class MainApp extends Component {
                 <PrivateRoute exact path={routes.PROVIDER_SERVICE} component={ServiceForm} />
                 <PrivateRoute exact path="/book/:id" component={RequestForm} />
                 <PrivateRoute exact path={`${routes.SERVICE_PROVIDERS}/:id`} component={ServiceProviders} />
-            </main>
-        </Fragment>
+        </>
       </Router>
     )
   }

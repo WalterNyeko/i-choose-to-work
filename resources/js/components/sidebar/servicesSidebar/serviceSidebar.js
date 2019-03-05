@@ -1,5 +1,6 @@
 import React from 'react'
 import { ListGroup, ListGroupItem } from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {Input} from 'antd';
 
 const Search = Input.Search;

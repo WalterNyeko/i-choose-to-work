@@ -1,5 +1,13 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux';
+import HomeHeader from '../../components/home/HomeHeader';
+import {getCategories} from '../../store/actions/categories/categoriesAction'
+import PopularCategories from '../../components/home/PopularCategories';
+import HowItWorks from '../../components/home/HowItWorks';
+import CallToAction from '../../components/home/CallToAction';
+import Partners from '../../components/home/Partners';
+import Footer from '../../components/home/footer';
+
 
 class Home extends Component {
   constructor(props) {
@@ -11,18 +19,30 @@ class Home extends Component {
    
   }
 
+  componentDidMount() {
+    this.props.getCategories()
+  }
+
   
   
   render() {
     return (
-      <div>
-        <h3>The home goes here</h3>
-      </div>
+      <>
+        <HomeHeader/>
+        <PopularCategories categories={this.props.categories}/>
+        <CallToAction/>
+        <HowItWorks/>
+        <Partners/>
+        <Footer/>
+      </>
     )
   }
 }
 const mapStateToProps = state => ({
-  token: state.auth.token
+  token: state.auth.token,
+  categories: state.categories.cats,
+  loading: state.categories.loading,
+  errors: state.categories.errors
 })
 
-export default connect(null, {})(Home);
+export default connect(mapStateToProps, {getCategories})(Home);

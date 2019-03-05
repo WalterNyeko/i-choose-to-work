@@ -14,9 +14,9 @@ export default class App extends Component {
   }
 }
 
-if(document.getElementById('root'))
+if(document.getElementById('wrapper'))
 {
-    const element = document.getElementById('root');
+    const element = document.getElementById('wrapper');
 
     const props = Object.assign({}, element.dataset);
 

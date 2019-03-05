@@ -8,6 +8,7 @@ import {Redirect, Link} from 'react-router-dom';
 import {getServices} from '../.../../../../store/actions/services/servicesAction'
 import {saveService} from '../.../../../../store/actions/services/savingServiceAction'
 import { routes } from '../../../constants';
+import LineBreak from '../../lineBreak';
 
 // const dataSource = ['Service 1', 'Tiling', 'Plumbing'];
 
@@ -133,6 +134,7 @@ class ProviderServices extends Component {
     const options = this.props.services.map((service, index) => <Option key={index} value={service.id}>{service.name}</Option> );
     return (
       <div className="container">
+        <LineBreak/>
         <div className="row justify-content-center">
             <div className="col-md-8">
                 <div className="card">

@@ -4,6 +4,8 @@ import ServiceSidebar from '../../components/sidebar/servicesSidebar/serviceSide
 import {getCategories} from '../../store/actions/categories/categoriesAction'
 import {getServices, getServiceCategory} from '../../store/actions/services/servicesAction'
 import AllServices from '../../components/services/AllServices/allServices';
+import Search from '../../components/search';
+import SearchFilter from '../../components/search';
 
 class MakeRequest extends Component {
   constructor(props) {
@@ -28,7 +30,6 @@ class MakeRequest extends Component {
       this.setState({
         services: nextProps.services
       })
-      console.log(this.state.services)
     }
   }
 
@@ -39,12 +40,7 @@ class MakeRequest extends Component {
 
   searchServices(value)
   {
-    this.state.services.filter(service => {
-      // const lc = service.toLowerCase();
-      const filter = value.toLowerCase();
-      return service.includes(filter);
-    })
-    console.log(this.state.services);
+    console.log(value);
   }
   
   goToRequest(id)
@@ -55,18 +51,24 @@ class MakeRequest extends Component {
   
   render() {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-md-3">
-            <ServiceSidebar categories={this.props.categories} clicked={(id) => this.filterByCat(id)} search={(value) => this.searchServices(value)}/>
-          </div>
-          <div className="col-md-9">
+      <>
+        <div class="margin-top-30"></div>
+          <div className="container">
             <div className="row">
-              <AllServices services={this.state.services} goTo={(id) => this.goToRequest(id)}/>
+              <div className="col-xl-3 col-lg-4">
+                <div class="sidebar-container">
+                  <SearchFilter onSearch={(value) => this.searchServices(value)}/>
+                  <ServiceSidebar categories={this.props.categories} clicked={(id) => this.filterByCat(id)} search={(value) => this.searchServices(value)}/>
+                </div>
+              </div>
+              <div className="col-md-9">
+                <div className="row">
+                  <AllServices services={this.state.services} goTo={(id) => this.goToRequest(id)}/>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+      </>
     )
   }
 }

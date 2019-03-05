@@ -1,9 +1,10 @@
-import { serviceTypes } from '../types';
+import { serviceTypes, singleServiceTypes } from '../types';
 
 const INITIAL_STATE = {
     loading: false,
     services: [],
     errors: [],
+    service: sessionStorage.getItem('service') ? JSON.parse(sessionStorage.getItem('service')) : []
 };
 
 /**
@@ -30,6 +31,23 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 loading: false,
                 errors: action.payload.errors
+            }
+        case singleServiceTypes.REQUEST_SERVICE:
+            return {
+                ...state,
+                loading: true
+            }
+        case singleServiceTypes.SERVICE_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                service: action.payload.service
+            }
+        case singleServiceTypes.FAIL_SERVICE:
+            return {
+                ...state,
+                loading: false,
+                errors: actions.payload.errors
             }
         default: return state;
     }
