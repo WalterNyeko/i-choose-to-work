@@ -137,16 +137,23 @@ Route::fallback(function () {
 })->name('api.fallback.404');
 
 
-//Search Api Routes
-Route::prefix('search')->namespace('Api')->group(function () {
-    Route::get('services', 'SearchServiceController@search');
-    Route::get('services/requests/', 'SearchServiceRequestController@search');
-});
 
-
-//Partners
 Route::namespace('Api')->group(function () {
+
+    /* Search Api Routes */
+    Route::prefix('search')->group(function () {
+        Route::get('services', 'SearchServiceController@search');
+        Route::get('services/requests/', 'SearchServiceRequestController@search');
+    });
+
+    /* Partner Routes */
     Route::get('partners', 'PartnerController@index');
     Route::get('partners/{id}', 'PartnerController@show');
+
+    /* Service Requests Routes */
+    Route::get('services/requests/{id}', 'ServiceRequestController@show');
+    Route::post('services/requests', 'ServiceRequestController@store');
 });
+
+
 

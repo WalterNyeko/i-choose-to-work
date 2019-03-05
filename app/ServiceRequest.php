@@ -20,6 +20,8 @@ class ServiceRequest extends Model
 
     protected $dates = ['deleted_on'];
 
+    protected $casts = ['questions' => 'array'];
+
     /**
      * service relationship
      */
@@ -54,6 +56,28 @@ class ServiceRequest extends Model
     public function searchableAs()
     {
         return 'service_requests_index';
+    }
+
+    /**
+     * Get the questions inform of an array.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getQuestionsAttribute($value)
+    {
+        return unserialize($value);
+    }
+
+    /**
+     * Set the questions inform of an array.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setQuestionsAttribute($value)
+    {
+        $this->attributes['questions'] = serialize($value);
     }
 
 

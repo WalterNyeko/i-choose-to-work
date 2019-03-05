@@ -49,6 +49,8 @@ class ServiceRequestController extends Controller
         {
             return response()->json(['errors' => $validator->errors()], 422);
         }
+
+
         // $req = ServiceRequest::create($request->all());
 
         $req = $user->serviceRequests()->create($request->all());
