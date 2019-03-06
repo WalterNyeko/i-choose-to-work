@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 const Single = (props) => {
   return (
-    <a href="#" class="task-listing">
+    <div class="task-listing">
 
        
         <div class="task-listing-details">
@@ -31,7 +31,7 @@ const Single = (props) => {
                 <span class="button button-sliding-icon ripple-effect">Bid Now <i class="icon-material-outline-arrow-right-alt"></i></span>
             </div>
         </div>
-    </a>
+    </div>
   )
 }
 
