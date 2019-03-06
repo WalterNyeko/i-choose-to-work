@@ -8,6 +8,7 @@ use App\ServiceRequest;
 use App\Models\Education;
 use App\Models\BioProfile;
 use App\Models\Experience;
+use EloquentFilter\Filterable;
 use Laravel\Passport\HasApiTokens;
 use App\Models\ServiceDeliveryOffer;
 use Spatie\Permission\Traits\HasRoles;
@@ -18,6 +19,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, Notifiable, HasRoles;
+    use Filterable;
 
     /**
      * The attributes that are mass assignable.

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\ServiceRequestRequest;
+use App\Http\Resources\ServiceRequestCollection;
 use App\ServiceRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -90,6 +91,13 @@ class ServiceRequestController extends Controller
         //
     }
 
+
+    /**
+     * Validate Request Data
+     *
+     * @param $data
+     * @return mixed
+     */
     private function validateRequest($data)
     {
         $validator = \Validator::make($data,
@@ -102,5 +110,57 @@ class ServiceRequestController extends Controller
             ],[]);
 
         return $validator;
+    }
+
+    /**
+     * Get All Cancelled Service Requests
+     *
+     * @return ServiceRequestCollection
+     */
+    public function cancelledServiceRequests()
+    {
+        $serviceRequests = ServiceRequest::cancelled()->get();
+        return new ServiceRequestCollection($serviceRequests);
+    }
+
+    /**
+     * Get All Non Cancelled Service Requests
+     *
+     * @return ServiceRequestCollection
+     */
+    public function notCancelledServiceRequests()
+    {
+        $serviceRequests = ServiceRequest::notCancelled()->get();
+        return new ServiceRequestCollection($serviceRequests);
+    }
+
+
+    /**
+     * Cancel Service Request
+     *
+     * @param Request $request
+     * @return ServiceRequestResource
+     */
+    public function cancelRequest(Request $request)
+    {
+
+        try {
+
+            $serviceRequest = '';
+            $serviceRequestId = ServiceRequest::whereId($request->id)->update(['cancelled' => 1]);
+            if ($serviceRequestId) {
+                /* Return the service request that has been cancelled */
+                $serviceRequest = ServiceRequest::find($request->id);
+            } else {
+                return response()->json(['message' => 'Cancelling request failed']);
+            }
+
+            return new ServiceRequestResource($serviceRequest);
+
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Cancelling request failed']);
+        }
+
+
     }
 }
