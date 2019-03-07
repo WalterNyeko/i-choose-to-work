@@ -5,7 +5,7 @@ const Question = (props) => {
       <div className="form-group row">
             <label  className="col-md-4 col-form-label text-md-right text-captalize">{props.label}</label>
             <div className="col-md-6">
-                <input name={props.name} type="text" onInput={(e) => props.onChangeQn(e.target.name, e.target.value)}  className="form-control" placeholder={props.help}/>
+                <input name={props.name} type="text" onChange={(e) => console.log(e.target.value) }  className="form-control" placeholder={props.help}/>
             </div>
         </div>
   )

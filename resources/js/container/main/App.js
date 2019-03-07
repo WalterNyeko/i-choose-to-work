@@ -15,6 +15,8 @@ import RegisterProvider from '../Registera/RegisterProvider';
 import ServiceForm from '../../components/services/ProviderServices/ProviderServices';
 import RequestForm from '../ServiceRequest/RequestForm';
 import ServiceProviders from '../ServiceRequest/ServiceProviders';
+import SingleRequest from '../../components/requests/SingleRequest';
+import Biding from '../Biding/Biding';
 
 
 class MainApp extends Component {
@@ -70,6 +72,8 @@ class MainApp extends Component {
                 <PrivateRoute exact path={routes.PROVIDER_SERVICE} component={ServiceForm} />
                 <PrivateRoute exact path="/book/:id" component={RequestForm} />
                 <PrivateRoute exact path={`${routes.SERVICE_PROVIDERS}/:id`} component={ServiceProviders} />
+                <PrivateRoute exact path='/view-request/:id' component={SingleRequest} />
+                <PrivateRoute exact path={`${routes.BIDDING}/:id`} component={Biding} />
         </>
       </Router>
     )

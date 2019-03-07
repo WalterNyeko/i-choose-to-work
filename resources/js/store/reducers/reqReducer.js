@@ -4,7 +4,10 @@ const INITIAL_STATE = {
     loading: false,
     message: '',
     errors: [],
-    requests: []
+    requests: [],
+    request: {},
+    service: {},
+    customer: {},
 };
 
 /**
@@ -48,6 +51,14 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 loading: false,
                 errors: action.payload.errors
+            }
+        case reqTypes.GET_SINGLE:
+            return {
+                ...state,
+                loading: false,
+                customer: action.payload.customer,
+                service: action.payload.service,
+                request: action.payload.request
             }
         default: return state;
     }

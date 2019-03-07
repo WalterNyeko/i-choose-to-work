@@ -11,5 +11,6 @@ export const Api = {
     SERVICE_PROVIDERS: '/api/providers',
     OFFER: '/api/bid',
     ALL_REQUESTS: '/api/all-requests',
-    CATEGORY_REQUESTS: '/api/cat-requests'
+    CATEGORY_REQUESTS: '/api/cat-requests',
+    BID: '/api/bid'
 }

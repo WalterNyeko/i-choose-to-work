@@ -48,6 +48,17 @@ export const fetchErrors = (errors) => {
         }
     }
 }
+
+export const getSingleSucess = (request, customer, service) => {
+    return {
+        type: reqTypes.GET_SINGLE,
+        payload: {
+            request,
+            customer,
+            service
+        }
+    }
+}
 export const postRequest = (data) => dispatch => {
     dispatch(startRequest());
     const token = localStorage.getItem('token');
@@ -84,5 +95,16 @@ export const getCateRequests = (id) => dispatch => {
         })
         .catch((err) => {
             dispatch(fetchErrors(err))
+        })
+}
+
+export const getSingleRequest = (id) => dispatch => {
+    dispatch(startRequest())
+    axios.get(`api/services/requests/${id}`)
+        .then((res) => {
+            dispatch(getSingleSucess(res.data.data, res.data.data.customer, res.data.data.service))
+        })
+        .catch((errors) => {
+            dispatch(fetchErrors(errors))
         })
 }

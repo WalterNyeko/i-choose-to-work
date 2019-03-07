@@ -12,13 +12,26 @@ class GeneralRegistration extends Component {
     super(props)
   
     this.state = {
-       
+        errors: []
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleConfirmBlur = this.handleConfirmBlur.bind(this);
     this.compareToFirstPassword = this.compareToFirstPassword.bind(this);
     this.validateToNextPassword = this.validateToNextPassword.bind(this);
+    this.renderErrorFor = this.renderErrorFor.bind(this);
+    this.hasErrorFor = this.hasErrorFor.bind(this);
   }
+
+  componentWillReceiveProps(nextProps) {
+      if(nextProps.errors)
+      {
+          this.setState({
+              errors: nextProps.errors
+          })
+          console.log(this.state.errors)
+      }
+  }
+  
   
   handleSubmit(e){
     e.preventDefault();
@@ -65,6 +78,20 @@ class GeneralRegistration extends Component {
         callback();
     }
 
+    hasErrorFor (field) {
+        return !!this.state.errors[field]
+      }
+
+   renderErrorFor (field) {
+    if (this.hasErrorFor(field)) {
+        return (
+        <span className='invalid-feedback'>
+            <strong>{this.state.errors[field][0]}</strong>
+        </span>
+        )
+    }
+    }
+
   render() {
     const { getFieldDecorator } = this.props.form;
     let authRedirect = null;
@@ -77,6 +104,18 @@ class GeneralRegistration extends Component {
     //         <Redirect to={this.props.location.state.from} />
     //     );
     // }
+    let alert = null;
+    if(this.state.errors.length)
+    {
+      alert =  <Alert
+                    message="Ooops"
+                    description="Something went wrong, check email and phone number"
+                    type="error"
+                    closable
+                    onClose={() => {}}
+                    style={{ marginBottom: 5 }}
+                />
+    }
 
     return (
       <div className="container">
@@ -87,8 +126,9 @@ class GeneralRegistration extends Component {
                       
 
                       <div className="card-body">
+                            {alert}
                           <Form onSubmit={this.handleSubmit} >
-                           
+
                             <div className="row">
                                 <div className="col-xl-6">
                                     <div class="submit-field">
@@ -99,6 +139,7 @@ class GeneralRegistration extends Component {
                                                     rules: [{required:true, message: 'Please enter your name'}],
                                                 })(
                                                     <input id="name" type="text" class="with-border" name="name"   autoFocus/>
+                                                    
                                                 )}
                                             </Form.Item>
                                         
@@ -119,6 +160,7 @@ class GeneralRegistration extends Component {
                                                     <input id="email" type="email" class="with-border" name="email" />
                                                 )}
                                             </Form.Item>
+                                             
                                         
                                     </div>
                                 </div>
@@ -130,7 +172,10 @@ class GeneralRegistration extends Component {
                                 
                                     <Form.Item>
                                         {getFieldDecorator('phone', {
-                                            rules: [{required:true, message: 'Please enter a phone number'}]
+                                            rules: [{required:true, message: 'Please enter a phone number'},
+                                                    {max: 12, message: 'Please enter a valid phone number (start with 256)'},
+                                                    {min: 12, message: 'Please provide a valid phone number (start with 256)'}  
+                                        ]
                                         })(
                                             <input id="phone" type="phone" class="with-border" name="phone" />
                                         )}
@@ -151,6 +196,7 @@ class GeneralRegistration extends Component {
                                                 {getFieldDecorator('password', {
                                                     rules: [
                                                         {required:true, message: 'enter a strong password'},
+                                                        {min: 8, message: 'Password must be between 8 to 64'},
                                                         {validator: this.validateToNextPassword,}
                                                     ]
                                                 })(                                        
@@ -203,7 +249,7 @@ class GeneralRegistration extends Component {
 }
 
 const mapStateToProps = state => ({
-
+    errors: state.auth.errors,
     isLoginedin: state.auth.isLogin,
 })
 

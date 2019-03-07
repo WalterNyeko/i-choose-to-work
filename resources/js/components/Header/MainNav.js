@@ -51,7 +51,7 @@ class MainNav extends Component {
   render() {
 
     const links = mainLinks.map((route, index) => <li  key={index} >
-                                                        <NavLink to={route.path} activeClassName="current" >{route.label}</NavLink>
+                                                        <a href={route.path} activeClassName="current" >{route.label}</a>
                                                   </li>);
     return (
         <>
@@ -66,7 +66,7 @@ class MainNav extends Component {
                             
                            
                             <div id="logo">
-                                <Link to="/"><img src="weblogo.png" alt=""/></Link>
+                                <a href="/"><img src="weblogo.png" alt=""/></a>
                             </div>
 
                             

@@ -3,14 +3,14 @@ import {Link} from 'react-router-dom'
 
 const Single = (props) => {
   return (
-    <a href="#" class="task-listing">
+    <div class="task-listing">
 
        
         <div class="task-listing-details">
 
             
             <div class="task-listing-description">
-                <h3 class="task-listing-title">{props.service ? props.service : 'Service'}</h3>
+                <h3 class="task-listing-title text-capitalize" onClick={(id) => props.goTo(props.id)}>{props.service ? props.service : 'Service'}</h3>
                 <ul class="task-icons">
                     <li><i class="icon-material-outline-location-on"></i> {props.address ? props.address : 'Address'}</li>
                     <li><i class="icon-material-outline-access-time"></i> 2 minutes ago</li>
@@ -28,10 +28,10 @@ const Single = (props) => {
                 <div class="task-offers">
                     
                 </div>
-                <span class="button button-sliding-icon ripple-effect">Bid Now <i class="icon-material-outline-arrow-right-alt"></i></span>
+                <span class="button button-sliding-icon ripple-effect" onClick={(id) => props.bid(id)}>Bid Now <i class="icon-material-outline-arrow-right-alt"></i></span>
             </div>
         </div>
-    </a>
+    </div>
   )
 }
 

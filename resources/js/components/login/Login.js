@@ -67,54 +67,7 @@ class Login extends Component {
     return (
       <>
         {authRedirect}   
-        {/* <div className="container">
-          {authRedirect}   
-          <div className="row justify-content-center">
-            <div class="sign-in-form col-md-8 ">
-
-              <ul class="popup-tabs-nav">
-                <li><a href="#login">Log In</a></li>
-                <li><a href="#register">Register</a></li>
-              </ul>
-              <div class="popup-tabs-container">
-                <div class="welcome-text">
-                  <h3>We're glad to see you again!</h3>
-                  <span>Don't have an account? <a href="#" class="register-tab">Sign Up!</a></span>
-                </div>
-                <Form onSubmit={this.handleSubmit} id="login-form">
-                  <div class="input-with-icon-left">
-
-                    <Form.Item>
-                      {getFieldDecorator('email', {
-                        rules: [{required: true, message: 'Please enter your email address'}],
-                      })(
-                          <>
-                            <i class="icon-material-baseline-mail-outline"></i>
-                            <input type="email" class="input-text with-border" name="email"  placeholder="Email Address" />
-                          </>
-                      )}
-                    </Form.Item>
-                  </div>
-
-                  <div class="input-with-icon-left">
-                    <Form.Item>
-                      {getFieldDecorator('password', {
-                        rules: [{required: true, message: 'Please enter password'}],
-                      })(
-                            <>
-                              <i class="icon-material-outline-lock"></i>
-                              <input type="password" class="input-text with-border" name="password" placeholder="Password"/>   
-                            </>
-                      )}
-                    </Form.Item>
-                  </div>
-                  <a href="#" class="forgot-password">Forgot Password?</a>
-                  <button class="button full-width button-sliding-icon ripple-effect" type="submit" >Log In <i class="icon-material-outline-arrow-right-alt"></i></button>
-                </Form>
-              </div>
-            </div>
-          </div>  
-        </div>  */}
+  
         <div className="container">
           <div className="row justify-content-center margin-top-30">
               <div className="col-md-8 col-xs-12">

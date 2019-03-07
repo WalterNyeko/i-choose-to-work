@@ -1,4 +1,6 @@
 import React from 'react'
+import { routes } from '../../constants';
+import {Link} from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -80,35 +82,8 @@ const Footer = () => {
             <div class="footer-middle-section">
                 <div class="container">
                     <div class="row">
-
                         
-                        <div class="col-xl-2 col-lg-2 col-md-3">
-                            <div class="footer-links">
-                                <h3>For Candidates</h3>
-                                <ul>
-                                    <li><a href="#"><span>Browse Jobs</span></a></li>
-                                    <li><a href="#"><span>Add Resume</span></a></li>
-                                    <li><a href="#"><span>Job Alerts</span></a></li>
-                                    <li><a href="#"><span>My Bookmarks</span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                       
-                        <div class="col-xl-2 col-lg-2 col-md-3">
-                            <div class="footer-links">
-                                <h3>For Employers</h3>
-                                <ul>
-                                    <li><a href="#"><span>Browse Candidates</span></a></li>
-                                    <li><a href="#"><span>Post a Job</span></a></li>
-                                    <li><a href="#"><span>Post a Task</span></a></li>
-                                    <li><a href="#"><span>Plans & Pricing</span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        
-                        <div class="col-xl-2 col-lg-2 col-md-3">
+                        <div class="col-xl-4 col-lg-4 col-md-4">
                             <div class="footer-links">
                                 <h3>Helpful Links</h3>
                                 <ul>
@@ -120,18 +95,18 @@ const Footer = () => {
                         </div>
 
                         
-                        <div class="col-xl-2 col-lg-2 col-md-3">
+                        <div class="col-xl-4 col-lg-4 col-md-4">
                             <div class="footer-links">
                                 <h3>Account</h3>
                                 <ul>
-                                    <li><a href="#"><span>Log In</span></a></li>
-                                    <li><a href="#"><span>My Account</span></a></li>
+                                    <li><Link to={routes.LOGIN}><span>Log In</span></Link></li>
+                                    <li><Link to="/"><span>My Account</span></Link></li>
                                 </ul>
                             </div>
                         </div>
 
                         
-                        <div class="col-xl-4 col-lg-4 col-md-12">
+                        <div class="col-xl-4 col-lg-4 col-md-4">
                             <h3><i class="icon-feather-mail"></i> Sign Up For a Newsletter</h3>
                             <p>Weekly breaking news, analysis and cutting edge advices on job searching.</p>
                             <form action="#" method="get" class="newsletter">

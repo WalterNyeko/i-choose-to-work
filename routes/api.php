@@ -19,9 +19,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     $user = $request->user();
     if ($user->hasRole('provider')) {
         return response()->json(['user' => $user, 'role' => 'provider'], 200);
-    } else {
-        return reponse()->json([$user, 'role' => 'public'], 200);
-    }
+    } 
+
+    if (!$user->hasRole('provider')) {
+        return response()->json(['user' => $user, 'role' => 'public'], 200);
+    } 
+    
 });
 
 //auth routes

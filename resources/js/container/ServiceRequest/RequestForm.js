@@ -211,7 +211,7 @@ class RequestForm extends Component {
                                 </div>
                             </div>
                             {this.props.questions.length ?
-                            <Questions questions={this.props.questions}  onChangeQuestion={(e, o) => this.handleQuestions(e, o)}/>
+                            <Questions questions={this.props.questions} />
                             : null }
                             <div className="form-group row">
                                 <div className="col-md-8 offset-md-4">
