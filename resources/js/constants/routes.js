@@ -7,5 +7,6 @@ export const routes = {
     FORGOT_PASSWORD: '/forgot-password',
     DASHBOARD: '/dashboard',
     PROVIDER_SERVICE: '/provider-services',
-    SERVICE_PROVIDERS: '/service-providers'
+    SERVICE_PROVIDERS: '/service-providers',
+    BIDDING: '/bidding',
 }

@@ -150,12 +150,9 @@ class ServiceRequestController extends Controller
         $data = $request->all();
         $validator = \Validator::make($data, [
             'estimated_cost' => ['numeric'],
-            'provider_id' => ['required', 'exists:users,id'],
-            'service_req_id' => ['required', 'exists:service_requests,id']
+            'service_req_id' => ['required', 'exists:service_requests,id'],
         ],
         [
-            'provider_id.required' => 'Please login with a service provider account to apply for a job',
-            'provider_id.exists' => 'Invalid User id',
             'service_req_id.required' => 'Invalid Service request',
             'service_req_id.exists' => 'Invalid Service request',
 
@@ -166,8 +163,14 @@ class ServiceRequestController extends Controller
            return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $offer = ServiceDeliveryOffer::create($request->all());
-        $user = User::find($request->provider_id);
+        $offer = ServiceDeliveryOffer::create([
+            'estimated_cost' => $request->estimated_cost,
+            'service_req_id' => $request->service_req_id,
+            'provider_id' => $request->user()->id,
+            'delivery_date' => $request->delivery_date,
+            'description' => $request->description
+        ]);
+        $user = User::find($request->user()->id);
         \Notification::route('mail', $user->email)
             ->notify(new RequestNotification());
         // if($user->hasRole('provider'))

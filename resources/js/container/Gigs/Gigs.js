@@ -7,6 +7,7 @@ import RequestList from '../../components/RequestListView';
 import SearchFilter from '../../components/search';
 import LocationSearch from '../../components/LocationSearch';
 import { Select } from 'antd';
+import { routes } from '../../constants';
 
 const Option = Select.Option;
 
@@ -20,6 +21,8 @@ class Gigs extends Component {
         isCat: false,
     }
     this.getCatRequests = this.getCatRequests.bind(this);
+    this.goSingle = this.goSingle.bind(this);
+    this.bid = this.bid.bind(this);
   }
 
   componentDidMount() {
@@ -47,13 +50,23 @@ class Gigs extends Component {
     })
     console.log(this.state.requests)
   }
+
+  goSingle(id)
+  {
+    return this.props.history.push(`/view-request/${id}`);
+  }
+
+  bid(id)
+  {
+    return this.props.history.push(`${routes.BIDDING}/${id}`);
+  }
   
   
   render() {
     let requestList = null;
     if(this.state.requests.length && this.state.isCat === false)
     {
-      requestList = <RequestList isCat="false" requests={this.state.requests} />
+      requestList = <RequestList goTo={(id) => this.goSingle(id)} isCat="false" bid={(id) => this.bid(id)} requests={this.state.requests} />
     }
     if(this.state.requests.length && this.state.isCat === true)
     {
