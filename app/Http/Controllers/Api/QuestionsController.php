@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Service;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\ApiBaseController;
 
-class QuestionsController extends Controller
+class QuestionsController extends ApiBaseController
 {
     /**
      * @param id 

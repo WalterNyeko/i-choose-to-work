@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\ServiceRequest;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\ApiBaseController;
 
-class SearchServiceRequestController extends Controller
+class SearchServiceRequestController extends ApiBaseController
 {
     /**
      * Display a listing of the resource.

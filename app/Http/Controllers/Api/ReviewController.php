@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\ApiBaseController;
 
-class ReviewController extends Controller
+class ReviewController extends ApiBaseController
 {
     /**
      * Display a listing of the resource.

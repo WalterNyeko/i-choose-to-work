@@ -7,10 +7,10 @@ use App\Http\Resources\ServiceRequestCollection;
 use App\ServiceRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\ApiBaseController;
 use App\Http\Resources\ServiceRequest as ServiceRequestResource;
 
-class ServiceRequestController extends Controller
+class ServiceRequestController extends ApiBaseController
 {
     /**
      * Display a listing of the resource.
@@ -44,8 +44,8 @@ class ServiceRequestController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        //$serviceRequest = $user->serviceRequests()->create($request->all());
-        $serviceRequest = ServiceRequest::create($request->all());
+        $serviceRequest = $user->serviceRequests()->create($request->all());
+        // $serviceRequest = ServiceRequest::create($request->all());
         return new ServiceRequestResource($serviceRequest);
     }
 

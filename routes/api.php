@@ -138,7 +138,7 @@ Route::fallback(function () {
 
 
 
-Route::namespace('Api')->group(function () {
+Route::namespace('Api')->middleware('auth:api')->group(function () {
 
     /* Search Api Routes */
     Route::prefix('search')->group(function () {
