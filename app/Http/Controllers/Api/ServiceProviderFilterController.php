@@ -16,6 +16,6 @@ class ServiceProviderFilterController extends ApiBaseController
      */
     public function index(Request $request)
     {
-        return User::filter($request->all())->get();
+        return User::filter($request->all())->paginateFilter();
     }
 }

@@ -9,6 +9,7 @@ use App\Models\Education;
 use App\Models\BioProfile;
 use App\Models\Experience;
 use EloquentFilter\Filterable;
+use Illuminate\Support\Facades\App;
 use Laravel\Passport\HasApiTokens;
 use App\Models\ServiceDeliveryOffer;
 use Spatie\Permission\Traits\HasRoles;
@@ -83,7 +84,9 @@ class User extends Authenticatable implements MustVerifyEmail, ReviewRateable
 
     public function services()
     {
-        return $this->belongsToMany(Service::class, 'service_provider_map', 'user_id', 'service_id')->withPivot('billing_rate_per_hour', 'experience_in_months', 'description', 'isVerified', 'isAvailable', 'created_at', 'updated_at');
+        return $this->belongsToMany(Service::class, 'service_provider_map', 'user_id', 'service_id')
+            ->withPivot('billing_rate_per_hour', 'experience_in_months', 'description', 'isVerified', 'isAvailable', 'created_at', 'updated_at')
+            ->using('App\Models\UserService');
     }
 
     /**
@@ -102,6 +105,4 @@ class User extends Authenticatable implements MustVerifyEmail, ReviewRateable
     {
         return $this->hasMany(ServiceDeliveryOffer::class, 'provider_id');
     }
-
-
 }
