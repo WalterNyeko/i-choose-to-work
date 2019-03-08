@@ -190,6 +190,19 @@ class ServiceRequestController extends ApiBaseController
             return response()->json(['message' => 'Service request acceptance failed']);
         }
 
+    }
+
+    /**
+     * Get Service Requests For Logged In User
+     *
+     * @param Request $request
+     * @return ServiceRequestCollection
+     */
+    public function userServiceRequests(Request $request)
+    {
+        $currentUser = $request->user();
+        $serviceRequests = $currentUser->serviceRequests()->get();
+        return new ServiceRequestCollection($serviceRequests);
 
     }
 }

@@ -156,6 +156,7 @@ Route::namespace('Api')->middleware('auth:api')->group(function () {
     /* Service Requests Routes */
     Route::get('services/requests/{id}', 'ServiceRequestController@show');
     Route::post('services/requests', 'ServiceRequestController@store');
+    Route::get('services/user/requests', 'ServiceRequestController@userServiceRequests');
 
     /* Cancelled/Not Service Requests Routes */
     Route::get('services/requests/true/cancelled', 'ServiceRequestController@cancelledServiceRequests');
