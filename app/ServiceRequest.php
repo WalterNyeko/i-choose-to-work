@@ -50,6 +50,14 @@ class ServiceRequest extends Model
     }
 
     /**
+     * Get all of the posts for the country.
+     */
+    public function serviceCategories()
+    {
+        return $this->hasManyThrough('App\Models\ServiceCategory', 'App\Models\Service');
+    }
+
+    /**
      * Get the index name for the model.
      *
      * @return string

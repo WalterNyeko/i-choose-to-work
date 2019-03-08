@@ -161,9 +161,11 @@ Route::namespace('Api')->middleware('auth:api')->group(function () {
     Route::get('services/requests/true/cancelled', 'ServiceRequestController@cancelledServiceRequests');
     Route::get('services/requests/false/cancelled', 'ServiceRequestController@notCancelledServiceRequests');
     Route::post('services/requests/cancelled', 'ServiceRequestController@cancelRequest');
+    Route::post('services/requests/acceptance', 'ServiceRequestController@acceptRequest');
 
     /* Filters */
     Route::get('services/filters/providers', 'ServiceProviderFilterController@index');
+    Route::get('services/filters/requests', 'ServiceProviderFilterController@filterServiceRequest');
 
     /* User Profiles */
     Route::post('user/password/update', 'BioProfileController@updatePassword');

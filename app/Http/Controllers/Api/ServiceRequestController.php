@@ -163,4 +163,33 @@ class ServiceRequestController extends ApiBaseController
 
 
     }
+
+    /**
+     * Service Request Acceptance
+     *
+     * @param Request $request
+     * @return ServiceRequestResource|\Illuminate\Http\JsonResponse
+     */
+    public function acceptRequest(Request $request)
+    {
+
+        try {
+
+            $serviceRequest = '';
+            $serviceRequestId = ServiceRequest::whereId($request->id)->update(['acceptance' => 1]);
+            if ($serviceRequestId) {
+                /* Return the service request that has been cancelled */
+                $serviceRequest = ServiceRequest::find($request->id);
+            } else {
+                return response()->json(['message' => 'No service request specified']);
+            }
+
+            return new ServiceRequestResource($serviceRequest);
+
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Service request acceptance failed']);
+        }
+
+
+    }
 }
