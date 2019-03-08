@@ -164,6 +164,10 @@ Route::namespace('Api')->middleware('auth:api')->group(function () {
 
     /* Filters */
     Route::get('services/filters/providers', 'ServiceProviderFilterController@index');
+
+    /* User Profiles */
+    Route::post('user/password/update', 'BioProfileController@updatePassword');
+    Route::post('user/profile/update', 'BioProfileController@updateBioProfile');
 });
 
 
