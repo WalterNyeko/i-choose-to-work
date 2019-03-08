@@ -15,11 +15,14 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Trexology\ReviewRateable\Contracts\ReviewRateable;
+use Trexology\ReviewRateable\Traits\ReviewRateable as ReviewRateableTrait;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, ReviewRateable
 {
     use HasApiTokens, Notifiable, HasRoles;
     use Filterable;
+    use ReviewRateableTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -44,61 +47,61 @@ class User extends Authenticatable implements MustVerifyEmail
      * User to bio profile relationship
      */
 
-     public function bioProfile()
-     {
-         return $this->hasOne(BioProfile::class , 'user_id');
-     }
+    public function bioProfile()
+    {
+        return $this->hasOne(BioProfile::class, 'user_id');
+    }
 
-     /**
-      * user education profile relationship
-      */
+    /**
+     * user education profile relationship
+     */
 
-      public function education()
-      {
-          return $this->hasMany(Education::class, 'user_id');
-      }
+    public function education()
+    {
+        return $this->hasMany(Education::class, 'user_id');
+    }
 
-      /**
-       * user experience profile relationship
-       */
-      public function experience()
-      {
-          return $this->hasMany(Experience::class, 'user_id');
-      }
+    /**
+     * user experience profile relationship
+     */
+    public function experience()
+    {
+        return $this->hasMany(Experience::class, 'user_id');
+    }
 
-      /**
-       * user skills relationship
-       */
-      public function skills()
-      {
-          return $this->belongsToMany(Skills::class, 'profile__skills', 'user_id', 'skills_id')->withTimestamps();
-      }
+    /**
+     * user skills relationship
+     */
+    public function skills()
+    {
+        return $this->belongsToMany(Skills::class, 'profile__skills', 'user_id', 'skills_id')->withTimestamps();
+    }
 
-      /**
-       * services relationship
-       */
+    /**
+     * services relationship
+     */
 
-       public function services()
-     {
-         return $this->belongsToMany(Service::class, 'service_provider_map', 'user_id', 'service_id')->withPivot('billing_rate_per_hour', 'experience_in_months', 'description', 'isVerified', 'isAvailable', 'created_at', 'updated_at');
-     }
+    public function services()
+    {
+        return $this->belongsToMany(Service::class, 'service_provider_map', 'user_id', 'service_id')->withPivot('billing_rate_per_hour', 'experience_in_months', 'description', 'isVerified', 'isAvailable', 'created_at', 'updated_at');
+    }
 
-     /**
-      * service requests
-      */
+    /**
+     * service requests
+     */
 
-      public function serviceRequests()
-      {
-          return $this->hasMany(ServiceRequest::class, 'customer_id');
-      }
+    public function serviceRequests()
+    {
+        return $this->hasMany(ServiceRequest::class, 'customer_id');
+    }
 
-      /**
-       * user request offers
-       */
-      public function offers()
-      {
-          return $this->hasMany(ServiceDeliveryOffer::class, 'provider_id');
-      }
+    /**
+     * user request offers
+     */
+    public function offers()
+    {
+        return $this->hasMany(ServiceDeliveryOffer::class, 'provider_id');
+    }
 
-      
+
 }
