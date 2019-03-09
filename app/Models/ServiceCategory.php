@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ServiceCategory extends Model
 {
+    use \Staudenmeir\EloquentHasManyDeep\HasRelationships;
+
     protected $table = 'service_categories';
 
     protected $fillable = ['name'];
@@ -17,8 +19,34 @@ class ServiceCategory extends Model
      */
     public function services()
     {
-        return $this->belongsToMany(Service::class, 'services_to_categories', 'category_id', 'service_id');
+        return $this->belongsToMany(Service::class, 'services_to_categories', 'category_id', 'service_id')
+            ->using('App\Models\ServiceCategoryService');
     }
+
+    /**
+     * Get all the service request for a category
+     *
+     * @return \Staudenmeir\EloquentHasManyDeep\HasManyDeep
+     */
+    public function serviceRequests()
+    {
+        return $this->hasManyDeep(
+            'App\ServiceRequest',
+            [
+                'services_to_categories',
+                'App\Models\Service'
+            ],
+            [
+                'category_id'
+            ]
+        )->withPivot(
+            'services_to_categories',
+            ['category_id'],
+            'App\Models\ServiceCategoryService',
+            'pivot'
+        );
+    }
+
     /**
      * Get all of the requests for the category.
      */
@@ -26,13 +54,11 @@ class ServiceCategory extends Model
     {
         $requests = array();
 
-        foreach ($this->services as $service)
-        {
-            foreach ($service->requests as $request)
-            {
-                
-                    $requests[ $request->id] = $requests;
-                
+        foreach ($this->services as $service) {
+            foreach ($service->requests as $request) {
+
+                $requests[$request->id] = $requests;
+
             }
         }
 

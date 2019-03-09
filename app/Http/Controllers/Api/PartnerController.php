@@ -7,9 +7,9 @@ use App\Http\Resources\Partner as PartnerResource;
 use App\Models\Partner;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\ApiBaseController;
 
-class PartnerController extends Controller
+class PartnerController extends ApiBaseController
 {
     /**
      * Display a listing of the resource.

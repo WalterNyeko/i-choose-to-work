@@ -141,7 +141,7 @@ Route::fallback(function () {
 
 
 
-Route::namespace('Api')->group(function () {
+Route::namespace('Api')->middleware('auth:api')->group(function () {
 
     /* Search Api Routes */
     Route::prefix('search')->group(function () {
@@ -156,14 +156,27 @@ Route::namespace('Api')->group(function () {
     /* Service Requests Routes */
     Route::get('services/requests/{id}', 'ServiceRequestController@show');
     Route::post('services/requests', 'ServiceRequestController@store');
+    Route::get('services/user/requests', 'ServiceRequestController@userServiceRequests');
+    Route::get('services/{category}/requests', 'ServiceRequestController@categoryServiceRequests');
 
     /* Cancelled/Not Service Requests Routes */
     Route::get('services/requests/true/cancelled', 'ServiceRequestController@cancelledServiceRequests');
     Route::get('services/requests/false/cancelled', 'ServiceRequestController@notCancelledServiceRequests');
     Route::post('services/requests/cancelled', 'ServiceRequestController@cancelRequest');
+    Route::post('services/requests/acceptance', 'ServiceRequestController@acceptRequest');
 
     /* Filters */
     Route::get('services/filters/providers', 'ServiceProviderFilterController@index');
+    Route::get('services/filters/requests', 'ServiceProviderFilterController@filterServiceRequest');
+    Route::get('services/filters/location', 'ServiceProviderFilterController@filterServiceProvidersInParticularLocation');
+
+    /* User Profiles */
+    Route::post('user/password/update', 'BioProfileController@updatePassword');
+    Route::post('user/profile/update', 'BioProfileController@updateBioProfile');
+
+    /* Ratings */
+    Route::post('ratings', 'ReviewController@store');
+    Route::get('ratings/{id}', 'ReviewController@ratingPercentage');
 });
 
 

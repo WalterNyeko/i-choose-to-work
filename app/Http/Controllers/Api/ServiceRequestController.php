@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\ServiceRequestRequest;
 use App\Http\Resources\ServiceRequestCollection;
+use App\Models\ServiceCategory;
 use App\ServiceRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\ApiBaseController;
 use App\Http\Resources\ServiceRequest as ServiceRequestResource;
 
-class ServiceRequestController extends Controller
+class ServiceRequestController extends ApiBaseController
 {
     /**
      * Display a listing of the resource.
@@ -44,8 +45,8 @@ class ServiceRequestController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        //$serviceRequest = $user->serviceRequests()->create($request->all());
-        $serviceRequest = ServiceRequest::create($request->all());
+        $serviceRequest = $user->serviceRequests()->create($request->all());
+        // $serviceRequest = ServiceRequest::create($request->all());
         return new ServiceRequestResource($serviceRequest);
     }
 
@@ -162,5 +163,61 @@ class ServiceRequestController extends Controller
         }
 
 
+    }
+
+    /**
+     * Service Request Acceptance
+     *
+     * @param Request $request
+     * @return ServiceRequestResource|\Illuminate\Http\JsonResponse
+     */
+    public function acceptRequest(Request $request)
+    {
+
+        try {
+
+            $serviceRequest = '';
+            $serviceRequestId = ServiceRequest::whereId($request->id)->update(['acceptance' => 1]);
+            if ($serviceRequestId) {
+                /* Return the service request that has been cancelled */
+                $serviceRequest = ServiceRequest::find($request->id);
+            } else {
+                return response()->json(['message' => 'No service request specified']);
+            }
+
+            return new ServiceRequestResource($serviceRequest);
+
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Service request acceptance failed']);
+        }
+
+    }
+
+    /**
+     * Get Service Requests For Logged In User
+     *
+     * @param Request $request
+     * @return ServiceRequestCollection
+     */
+    public function userServiceRequests(Request $request)
+    {
+        $currentUser = $request->user();
+        $serviceRequests = $currentUser->serviceRequests;
+        return new ServiceRequestCollection($serviceRequests);
+
+    }
+
+    /**
+     * Get Service Requests for a Category
+     * @param Request $request
+     * @param $category
+     * @return ServiceRequestCollection
+     */
+    public function categoryServiceRequests(Request $request, $category)
+    {
+        $serviceCategory = ServiceCategory::findOrFail($category);
+        $serviceRequests = $serviceCategory->serviceRequests;
+        dd($serviceRequests);
+        return new ServiceRequestCollection($serviceRequests);
     }
 }
