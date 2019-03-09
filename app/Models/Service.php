@@ -25,21 +25,22 @@ class Service extends Model
      */
     public function categories()
     {
-        return $this->belongsToMany(ServiceCategory::class, 'services_to_categories', 'service_id', 'category_id');
+        return $this->belongsToMany(ServiceCategory::class, 'services_to_categories', 'service_id', 'category_id')
+            ->using('App\Models\ServiceCategoryService');
     }
 
     /**
      * services providers relationship
      */
 
-     public function providers()
-     {
-         return $this->belongsToMany(User::class, 'service_provider_map', 'service_id', 'user_id');
-     }
+    public function providers()
+    {
+        return $this->belongsToMany(User::class, 'service_provider_map', 'service_id', 'user_id');
+    }
 
-     /**
-      * request relations
-      */
+    /**
+     * request relations
+     */
     public function requests()
     {
         return $this->hasMany(ServiceRequest::class, 'service_id');

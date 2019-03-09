@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\ServiceRequestRequest;
 use App\Http\Resources\ServiceRequestCollection;
+use App\Models\ServiceCategory;
 use App\ServiceRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -201,8 +202,22 @@ class ServiceRequestController extends ApiBaseController
     public function userServiceRequests(Request $request)
     {
         $currentUser = $request->user();
-        $serviceRequests = $currentUser->serviceRequests()->get();
+        $serviceRequests = $currentUser->serviceRequests;
         return new ServiceRequestCollection($serviceRequests);
 
+    }
+
+    /**
+     * Get Service Requests for a Category
+     * @param Request $request
+     * @param $category
+     * @return ServiceRequestCollection
+     */
+    public function categoryServiceRequests(Request $request, $category)
+    {
+        $serviceCategory = ServiceCategory::findOrFail($category);
+        $serviceRequests = $serviceCategory->serviceRequests;
+        dd($serviceRequests);
+        return new ServiceRequestCollection($serviceRequests);
     }
 }
