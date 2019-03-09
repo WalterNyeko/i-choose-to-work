@@ -1,4 +1,6 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
+import { routes } from '../../constants';
 
 const PopularCategories = (props) => {
   return (
@@ -14,12 +16,12 @@ const PopularCategories = (props) => {
                     </div>
                     {props.categories.map((cat, i) => 
                             <div key={i} className="col-xl-3 col-md-6">
-                                <a href="#" className="photo-box small" data-background-image="images/carpenter.jpg">
+                                <Link to={`${routes.REQUEST}/${cat.id}`} className="photo-box small" data-background-image="images/carpenter.jpg">
                                     <div className="photo-box-content">
                                         <h3 style={{ textTransform: 'capitalize' }}>{cat.name}</h3>
                                         <span>Book</span>
                                     </div>
-                                </a>
+                                </Link>
                             </div>
                     )}
 

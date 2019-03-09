@@ -15,6 +15,7 @@ const ServiceSidebar = (props) => {
         /> */}
         <h4 className="mt-3 mb-3">Select Category</h4>
        <ListGroup flush className="mt-3">
+            <ListGroupItem className="text-capitalize"  onClick={() => props.clickedAll()} tag="a" >All</ListGroupItem>
             {props.categories.map((category, i) => <ListGroupItem className="text-capitalize" key={i} onClick={() => props.clicked(category.id)} tag="a" >{category.name}</ListGroupItem>)}
        </ListGroup>
     </div>

@@ -85,7 +85,7 @@ class ServiceProviders extends Component {
   render() {
     let providers = null;
     if (this.props.providers.length) {
-        providers = this.state.providers.map((provider, i) => <ServiceProviderList name={provider.name} id={provider.id} hire={() => this.hire(provider.id)} about={provider.bio_profile ? provider.bio_profile.description : 'Service provider' }/>)
+        providers = this.state.providers.map((provider, i) => <ServiceProviderList name={provider.name} id={provider.id} hire={() => this.hire(provider.id)} address={provider.bio_profile.address} about={provider.bio_profile ? provider.bio_profile.description : 'Service provider' }/>)
     }
     else 
     {

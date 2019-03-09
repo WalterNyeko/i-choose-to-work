@@ -17,6 +17,8 @@ import RequestForm from '../ServiceRequest/RequestForm';
 import ServiceProviders from '../ServiceRequest/ServiceProviders';
 import SingleRequest from '../../components/requests/SingleRequest';
 import Biding from '../Biding/Biding';
+import NotFound from '../NotFound';
+import Dashboard from '../Dashboard/Dashboard';
 
 
 class MainApp extends Component {
@@ -33,10 +35,10 @@ class MainApp extends Component {
 
   componentDidMount()
   {
-    //   if(this.props.isLogin )
-    //   {
-    //     this.props.getUser(this.props.token);
-    //   }
+    if(this.props.isLogin)
+    {
+      this.props.getUser()
+    }
   }
 
   
@@ -54,7 +56,16 @@ class MainApp extends Component {
                 )
             )} />
         );
-    
+    const role = localStorage.getItem('role')
+    const ProviderRoute = ({ component: Component, ...rest }) => (
+            <Route {...rest} render={props => (
+                role === 'provider' ? (
+                    <Component {...props} {...rest}  />
+                ) : (
+                    <NotFound/>
+                )
+            )} />
+        );
     
 
     return (
@@ -64,7 +75,7 @@ class MainApp extends Component {
             
                 <Route exact component={Home}  path="/"/>
                 <Route exact path={routes.LOGIN} component={Login} />
-                <Route exact path={routes.REQUEST} component={MakeRequest} />
+                <Route exact path={`${routes.REQUEST}/:id?`} component={MakeRequest} />
                 <Route exact path={routes.SERVICE_REQUESTS} component={Gigs} />
                 <Route exact path={routes.FORGOT_PASSWORD} component={Forgot} />
                 <Route exact path={routes.REGISTER} component={Registera} />
@@ -73,7 +84,8 @@ class MainApp extends Component {
                 <PrivateRoute exact path="/book/:id" component={RequestForm} />
                 <PrivateRoute exact path={`${routes.SERVICE_PROVIDERS}/:id`} component={ServiceProviders} />
                 <PrivateRoute exact path='/view-request/:id' component={SingleRequest} />
-                <PrivateRoute exact path={`${routes.BIDDING}/:id`} component={Biding} />
+                <ProviderRoute exact path={`${routes.BIDDING}/:id`} component={Biding} />
+                <PrivateRoute exact path={routes.DASHBOARD} component={Dashboard} />
         </>
       </Router>
     )
@@ -84,6 +96,7 @@ const mapStateToProps = state => ({
     isLogin: state.auth.isLogin,
     token: state.auth.token,
     user: state.auth.user,
+    role: state.auth.role
 })
 
 export default connect(mapStateToProps, {getUser})(MainApp);

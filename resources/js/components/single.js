@@ -13,7 +13,7 @@ const Single = (props) => {
                 <h3 class="task-listing-title text-capitalize" onClick={(id) => props.goTo(props.id)}>{props.service ? props.service : 'Service'}</h3>
                 <ul class="task-icons">
                     <li><i class="icon-material-outline-location-on"></i> {props.address ? props.address : 'Address'}</li>
-                    <li><i class="icon-material-outline-access-time"></i> 2 minutes ago</li>
+                    <li><i class="icon-material-outline-access-time"></i> {props.createdAt}</li>
                 </ul>
                 < p class = "task-listing-text" >{props.description}</p>
                 <div class="task-tags">

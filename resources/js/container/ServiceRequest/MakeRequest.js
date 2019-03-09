@@ -17,10 +17,25 @@ class MakeRequest extends Component {
     this.filterByCat = this.filterByCat.bind(this);
     this.searchServices = this.searchServices.bind(this);
     this.goToRequest = this.goToRequest.bind(this);
+    this.showAll = this.showAll.bind(this);
   }
 
   componentDidMount() {
     this.props.getCategories();
+    const {match: {params}, history} = this.props;
+    if(!params.id === '')
+    {
+      this.props.getServiceCategory(params.id)
+    }
+    else
+    {
+      this.props.getServices();
+    }
+    
+  }
+
+  showAll()
+  {
     this.props.getServices();
   }
 
@@ -58,7 +73,7 @@ class MakeRequest extends Component {
               <div className="col-xl-3 col-lg-4">
                 <div class="sidebar-container">
                   <SearchFilter onSearch={(value) => this.searchServices(value)}/>
-                  <ServiceSidebar categories={this.props.categories} clicked={(id) => this.filterByCat(id)} search={(value) => this.searchServices(value)}/>
+                  <ServiceSidebar clickedAll={this.showAll} categories={this.props.categories} clicked={(id) => this.filterByCat(id)} search={(value) => this.searchServices(value)}/>
                 </div>
               </div>
               <div className="col-md-9">

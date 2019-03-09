@@ -2,7 +2,7 @@ import { bidTypes } from '../types';
 
 const INITIAL_STATE = {
     loading: false,
-    messages: '',
+    message: '',
     errors: []
 };
 
@@ -22,7 +22,7 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 loading: false,
-                messagae: action.payload.msg
+                message: action.payload.msg
             }
         case bidTypes.REQUEST_FAIL:
             return {

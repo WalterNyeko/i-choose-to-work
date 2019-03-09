@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Alert, DatePicker } from "antd";
+import { Form, Alert, DatePicker, notification } from "antd";
 import LineBreak from '../lineBreak';
 
 import {connect} from 'react-redux'
@@ -16,6 +16,7 @@ class Biding extends Component {
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.openNotification = this.openNotification.bind(this);
   }
 
   handleSubmit(e){
@@ -29,9 +30,19 @@ class Biding extends Component {
                 delivery_date: values.delivery_date
             }
             this.props.bidPost(data)
+            this.openNotification()
         }
     });
   }
+
+  openNotification(){
+      const args = {
+          message: 'Notification Title',
+          description: 'I will never close automatically. I will be close automatically. I will never close automatically.',
+          duration: 0,
+      };
+      notification.success(args);
+  };
   
   render() {
     const { getFieldDecorator } = this.props.form
@@ -81,7 +92,9 @@ class Biding extends Component {
                                         </span>
                                     </div>
                                     <div class="col-md-4">
-                                        <button onClick={this.handleSubmit} class="button full-width button-sliding-icon ripple-effect" type="submit" >Bid <i class="icon-material-outline-arrow-right-alt"></i></button>
+                                        {this.props.loading ? 'Submiting....' :
+                                            <button onClick={this.handleSubmit} class="button full-width button-sliding-icon ripple-effect" type="submit" >Bid <i class="icon-material-outline-arrow-right-alt"></i></button>
+                                        }
                                     </div>
                                 </div>
                             </Form>

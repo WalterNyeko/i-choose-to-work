@@ -10,7 +10,7 @@ class RequestList extends Component {
             <>
                 <div class="tasks-list-container compact-list margin-top-35">
                        
-                            {this.props.isCat === 'false' ? this.props.requests.map((req, i) => <Single key={i} service={req.service.name} bid={(id) => this.props.bid(req.id)} id={req.id} goTo={(id) => this.props.goTo(req.id)} address={req.address} description={req.description} /> )
+                            {this.props.isCat === 'false' ? this.props.requests.map((req, i) => <Single key={i} service={req.service.name} bid={(id) => this.props.bid(req.id)} createdAt={req.created_at} id={req.id} goTo={(id) => this.props.goTo(req.id)} address={req.address} description={req.description} /> )
                                 : this.props.requests.map((req) => req.requests.map((res) => <h2>hello</h2>) )}
                         
                 </div>
