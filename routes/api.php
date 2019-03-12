@@ -135,13 +135,9 @@ Route::get('/categories-wth-request/{id}', function ($id) {
     return $cat->requests->get();
 });
 
-Route::fallback(function () {
-    return response()->json(['message' => 'Not Found.'], 404);
-})->name('api.fallback.404');
 
 
-
-Route::namespace('Api')->middleware('auth:api')->group(function () {
+Route::namespace('Api')->group(function () {
 
     /* Search Api Routes */
     Route::prefix('search')->group(function () {
@@ -179,5 +175,9 @@ Route::namespace('Api')->middleware('auth:api')->group(function () {
     Route::get('ratings/{id}', 'ReviewController@ratingPercentage');
 });
 
+
+Route::fallback(function () {
+    return response()->json(['message' => 'Not Found.'], 404);
+})->name('api.fallback.404');
 
 

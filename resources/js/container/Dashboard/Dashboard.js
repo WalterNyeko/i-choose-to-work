@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
-import AccountLayout from '../../components/Dashboards/AccountLayout';
+import DashboardLayout from '../../components/Dashboards/DashboardLayout';
 
 export default class Dashboard extends Component {
   render() {
     return (
       <>
-        <AccountLayout />
+        <DashboardLayout>
+          <h1>heheh</h1>
+        </DashboardLayout>
       </>
     )
   }

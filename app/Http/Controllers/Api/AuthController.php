@@ -60,7 +60,7 @@ class AuthController extends Controller
             
 
             $data1 = [
-                'email' => $request->email,
+                'email' => $data['email'],
                 'password' => $data['password'],
             ];
 

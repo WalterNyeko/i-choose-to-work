@@ -35,7 +35,6 @@ class Login extends Component {
               password: values.password
             }
             this.props.login(data)
-            window.location.replace = "/";
         }
     });
   }

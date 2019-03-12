@@ -19,6 +19,8 @@ import SingleRequest from '../../components/requests/SingleRequest';
 import Biding from '../Biding/Biding';
 import NotFound from '../NotFound';
 import Dashboard from '../Dashboard/Dashboard';
+import ServiceSearch from '../../components/search/ServiceSearch';
+import ProviderProfile from '../../components/serviceProviders/ProviderProfile';
 
 
 class MainApp extends Component {
@@ -86,7 +88,9 @@ class MainApp extends Component {
                 <PrivateRoute exact path='/view-request/:id' component={SingleRequest} />
                 <ProviderRoute exact path={`${routes.BIDDING}/:id`} component={Biding} />
                 <PrivateRoute exact path={routes.DASHBOARD} component={Dashboard} />
-        </>
+                <PrivateRoute exact path='/profile/:id' component={ProviderProfile} />
+                <Route exact path="/search-services/:searchKey" component={ServiceSearch} />
+        </> 
       </Router>
     )
   }

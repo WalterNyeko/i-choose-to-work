@@ -4,7 +4,7 @@ const AccountFooter = () => {
   return (
     <div>
       
-    {/*<!-- Footer -->*/}
+    
                         <div class="dashboard-footer-spacer" />
                         <div class="small-footer margin-top-15">
                             <div class="small-footer-copyrights">
@@ -51,7 +51,7 @@ const AccountFooter = () => {
                             </ul>
                             <div class="clearfix" />
                         </div>
-                        {/* <!-- Footer / End -->*/}
+                       
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import avataicon from "../../assets/avatar3.png";
+import {Link} from 'react-router-dom'
 
 class ServiceProviderList extends Component {
     render() {
@@ -36,7 +37,7 @@ class ServiceProviderList extends Component {
 								<li>Job Success <strong>95%</strong></li>
 							</ul>
 						</div>
-						<a href="#" class="button button-sliding-icon ripple-effect">View Profile <i class="icon-material-outline-arrow-right-alt"></i></a>
+						<Link to={`/profile/${this.props.id}`} class="button button-sliding-icon ripple-effect">View Profile <i class="icon-material-outline-arrow-right-alt"></i></Link>
 					</div>
 				</div>
             </>

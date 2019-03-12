@@ -25,8 +25,7 @@ class Service extends Model
      */
     public function categories()
     {
-        return $this->belongsToMany(ServiceCategory::class, 'services_to_categories', 'service_id', 'category_id')
-            ->using('App\Models\ServiceCategoryService');
+        return $this->belongsToMany(ServiceCategory::class, 'services_to_categories', 'service_id', 'category_id');
     }
 
     /**
