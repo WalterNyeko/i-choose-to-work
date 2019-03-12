@@ -32,7 +32,7 @@ export const getServices = () => dispatch => {
              dispatch(successServices(res.data))
          })
          .catch((err) => {
-             const errors = err.response.data;
+             const errors = err;
              dispatch(failServices(errors))
          })
 }
@@ -95,5 +95,17 @@ export const getSingleService = (id) => dispatch => {
         })
         .catch((err) => {
             dispatch(failService(err))
+        })
+}
+
+export const searchServices = (key) => dispatch => {
+    dispatch(requestServices());
+    axios.get(`api/search/services/?q=${key}`)
+        .then((res) => {
+            dispatch(successServices(res.data))
+        })
+        .catch((err) => {
+            const errors = err;
+            dispatch(failServices(errors))
         })
 }

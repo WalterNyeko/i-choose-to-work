@@ -31,6 +31,10 @@
     border-left: 6px solid #D50000
 }
 
+.header-widget{
+    border: none;
+}
+
 a,
 .header-widget .log-in-button:hover i,
 .notification-text span.color,

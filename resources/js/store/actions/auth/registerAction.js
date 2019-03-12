@@ -29,7 +29,9 @@ export const register = (data) => dispatch => {
     dispatch(requestRegister());
     axios.post(Api.REGISTER, data)
         .then((res) => {
+            const token = res.data.access_token;
             dispatch(registerSuccess(res.data.access_token));
+            localStorage.setItem('token', token);
         })
         .catch((err) => {
             dispatch(registerFail(err.response.data));

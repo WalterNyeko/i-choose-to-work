@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class ServiceCategoryService extends Model
 {
-    protected $table = 'services_to_categories';
+    // protected $table = 'services_to_categories';
 }

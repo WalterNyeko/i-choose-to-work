@@ -50,3 +50,4 @@ Route::get('service-requests', function(){
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
+

@@ -8,7 +8,7 @@ import { routes } from '../../constants';
 import Login from '../../components/login/Login';
 import MakeRequest from '../ServiceRequest/MakeRequest';
 import Gigs from '../Gigs/Gigs';
-import Forgot from '../../components/Forgot/Forgot';
+// import Forgot from '../../components/Forgot/Forgot';
 import {getUser} from '../../store/actions/auth/loginAction'
 import Registera from '../Registera/Registera';
 import RegisterProvider from '../Registera/RegisterProvider';
@@ -19,6 +19,8 @@ import SingleRequest from '../../components/requests/SingleRequest';
 import Biding from '../Biding/Biding';
 import NotFound from '../NotFound';
 import Dashboard from '../Dashboard/Dashboard';
+import ServiceSearch from '../../components/search/ServiceSearch';
+import ProviderProfile from '../../components/serviceProviders/ProviderProfile';
 
 
 class MainApp extends Component {
@@ -77,7 +79,7 @@ class MainApp extends Component {
                 <Route exact path={routes.LOGIN} component={Login} />
                 <Route exact path={`${routes.REQUEST}/:id?`} component={MakeRequest} />
                 <Route exact path={routes.SERVICE_REQUESTS} component={Gigs} />
-                <Route exact path={routes.FORGOT_PASSWORD} component={Forgot} />
+                {/* <Route exact path={routes.FORGOT_PASSWORD} component={Forgot} /> */}
                 <Route exact path={routes.REGISTER} component={Registera} />
                 <Route exact path={routes.BECOME_PROVIDER} component={RegisterProvider} />
                 <PrivateRoute exact path={routes.PROVIDER_SERVICE} component={ServiceForm} />
@@ -86,7 +88,9 @@ class MainApp extends Component {
                 <PrivateRoute exact path='/view-request/:id' component={SingleRequest} />
                 <ProviderRoute exact path={`${routes.BIDDING}/:id`} component={Biding} />
                 <PrivateRoute exact path={routes.DASHBOARD} component={Dashboard} />
-        </>
+                <PrivateRoute exact path='/profile/:id' component={ProviderProfile} />
+                <Route exact path="/search-services/:searchKey" component={ServiceSearch} />
+        </> 
       </Router>
     )
   }
