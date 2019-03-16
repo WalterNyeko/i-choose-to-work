@@ -28,7 +28,6 @@ class UserMenu extends Component {
     return (
       <>
         <div class="header-widget">
-
                 <div class="header-notifications user-menu">
                     <div class="header-notifications-trigger">
                         <a href="#"><div class="user-avatar status-online"><img src="user.png" alt=""/></div></a>
@@ -49,9 +48,6 @@ class UserMenu extends Component {
                     </ul>
                     </div>
                 </div>
-
-
-                
             </div>
             <div class="header-widget">
             <div class="header-notifications user-menu">
