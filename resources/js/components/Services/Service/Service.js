@@ -8,7 +8,7 @@ const Service = (props) => {
     <div>
       <Link to={`/book/${props.id}`} class="blog-compact-item-container">
         <div class="blog-compact-item">
-          <img src="images/blog-04a.jpg" alt=""/>
+          <img src={props.image ? props.image : 'images/blog-04a.jpg'} alt=""/>
           <span class="blog-item-tag text-capitalize">{props.name}</span>
           <div class="blog-compact-item-content">
             

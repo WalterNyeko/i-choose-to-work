@@ -11,7 +11,7 @@ const SearchFilter = (props) => {
         <div class="input-with-icon">
             <Search
             placeholder="Search"
-            onChange={e => props.onSearch(e.target.value)}
+            onSearch={value => props.onSearch(value)}
             style={{ width: '100%' }}
             />
         </div>

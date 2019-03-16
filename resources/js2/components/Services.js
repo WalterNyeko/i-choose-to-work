@@ -138,7 +138,7 @@ export default class ServiceComponent extends Component {
   render() {
     const cats = this.state.categories.map((cat) => <ListGroupo name={cat.name} onclick={() => this.handleServiceClick(cat.id)}/>  )
     const services = this.state.services.map((service) => <div key={service.id} className="col-md-4">
-                                                             <Service title={service.name} link={`request/${service.id}`}/>
+                                                             <Service title={service.name} image={service.image} link={`request/${service.id}`}/>
                                                          </div>  )
     return (
       <Fragment>

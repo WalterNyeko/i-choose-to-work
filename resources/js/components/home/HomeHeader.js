@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {searchServices, getServices} from '../../store/actions/services/servicesAction'
 import { AutoComplete } from 'antd';
 import {withRouter} from 'react-router-dom'
+import { routes } from '../../constants';
 
 
 class HomeHeader extends Component {
@@ -19,7 +20,7 @@ class HomeHeader extends Component {
   render() {
     return (
       <>
-        <div className="intro-banner" data-background-image="images/carpenter.jpg">
+        <div className="intro-banner" data-background-image={require('../../assets/carpenter.jpg')}>
             <div className="container">
                 <div className="row">
                     <div className="col-md-12">
@@ -39,7 +40,7 @@ class HomeHeader extends Component {
 
                             <div className="intro-search-field">
                                 <label for ="intro-keywords" className="field-title ripple-effect">What you need done?</label>
-                                <input id="intro-keywords"  type="text" placeholder="e.g. plumbing"/>
+                                <input id="intro-keywords"  type="text" placeholder="e.g. plumbing" />
                                 {/* <AutoComplete
                                     style={{ width: '100%' }}
                                     dataSource={this.props.dataSource}
