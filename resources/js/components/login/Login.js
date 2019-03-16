@@ -42,7 +42,7 @@ class Login extends Component {
   render() {
     let authRedirect = null;
     if (this.props.isLoginedin === true) {
-        authRedirect = <Redirect to="/"/>
+        authRedirect = <Redirect to={routes.DASHBOARD}/>
     }
 
     if (this.props.isLoginedin && this.props.location.state !== undefined) {

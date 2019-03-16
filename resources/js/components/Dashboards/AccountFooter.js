@@ -3,9 +3,11 @@ import React from 'react'
 const AccountFooter = () => {
   return (
     <div>
-        <div class="dashboard-footer-spacer" />
-                        <div class="small-footer margin-top-15">
-                            <div class="small-footer-copyrights">
+      
+    
+                        <div className="dashboard-footer-spacer" />
+                        <div className="small-footer margin-top-15">
+                            <div className="small-footer-copyrights">
                                 © 2019 <strong>Ichuzz2work</strong>. All Rights
                                 Reserved.
                             </div>

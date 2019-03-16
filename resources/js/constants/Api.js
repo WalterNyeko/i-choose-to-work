@@ -12,5 +12,10 @@ export const Api = {
     OFFER: '/api/bid',
     ALL_REQUESTS: '/api/all-requests',
     CATEGORY_REQUESTS: '/api/cat-requests',
-    BID: '/api/bid'
+    BID: '/api/bid',
+    UPDATE_PROFILE: '/api/user/profile/update?=',
+    UPDATE_PASSWORD: '/api/user/password/update',
+    MANAGE_TASKS: '/api/services/user/requests',
+    MANAGE_BIDDERS: '/api/my-offers',
+    MANAGE_ACTIVE_BIDS: '/api/my-offers',
 }

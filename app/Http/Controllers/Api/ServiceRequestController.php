@@ -217,7 +217,7 @@ class ServiceRequestController extends ApiBaseController
     {
         $serviceCategory = ServiceCategory::findOrFail($category);
         $serviceRequests = $serviceCategory->serviceRequests;
-        dd($serviceRequests);
+        // dd($serviceRequests);
         return new ServiceRequestCollection($serviceRequests);
     }
 }
