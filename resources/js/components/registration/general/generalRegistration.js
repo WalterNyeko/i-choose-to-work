@@ -121,8 +121,8 @@ class GeneralRegistration extends Component {
       <div className="container">
            {authRedirect}
           <div className="row justify-content-center margin-top-30">
-              <div className="col-md-8">
-                  <div className="card">
+              <div className="col-md-8 mt-4">
+                  <div className="card mt-4">
                       
 
                       <div className="card-body">
@@ -131,14 +131,14 @@ class GeneralRegistration extends Component {
 
                             <div className="row">
                                 <div className="col-xl-6">
-                                    <div class="submit-field">
+                                    <div className="submit-field">
                                         <h5>Name</h5>
                                         
                                             <Form.Item>
                                                 {getFieldDecorator('name', {
                                                     rules: [{required:true, message: 'Please enter your name'}],
                                                 })(
-                                                    <input id="name" type="text" class="with-border" name="name"   autoFocus/>
+                                                    <input id="name" type="text" className="with-border" name="name"   autoFocus/>
                                                     
                                                 )}
                                             </Form.Item>
@@ -147,7 +147,7 @@ class GeneralRegistration extends Component {
                                 </div>
                                 
                                 <div className="col-xl-6">
-                                    <div class="submit-field">
+                                    <div className="submit-field">
                                         <h5>Email</h5>
 
                                         
@@ -157,7 +157,7 @@ class GeneralRegistration extends Component {
                                                             {type: 'email', message: 'The input is not valid E-mail!'},
                                                         ]
                                                 })(
-                                                    <input id="email" type="email" class="with-border" name="email" />
+                                                    <input id="email" type="email" className="with-border" name="email" />
                                                 )}
                                             </Form.Item>
                                              
@@ -166,7 +166,7 @@ class GeneralRegistration extends Component {
                                 </div>
                             </div>
 
-                            <div class="submit-field">
+                            <div className="submit-field">
                                 <h5>Phone Number</h5>
 
                                 
@@ -177,7 +177,7 @@ class GeneralRegistration extends Component {
                                                     {min: 12, message: 'Please provide a valid phone number (start with 256)'}  
                                         ]
                                         })(
-                                            <input id="phone" type="phone" class="with-border" name="phone" />
+                                            <input id="phone" type="phone" className="with-border" name="phone" />
                                         )}
                                     </Form.Item>
                                 
@@ -188,7 +188,7 @@ class GeneralRegistration extends Component {
                             
                            <div className="row">
                                 <div className="col-xl-6">
-                                    <div class="submit-field">
+                                    <div className="submit-field">
                                         <h5>Password</h5>
 
                                         
@@ -200,14 +200,14 @@ class GeneralRegistration extends Component {
                                                         {validator: this.validateToNextPassword,}
                                                     ]
                                                 })(                                        
-                                                <input id="password" type="password" class="with-border" name="password"  />
+                                                <input id="password" type="password" className="with-border" name="password"  />
                                                 )}
                                             </Form.Item>
                                     
                                     </div>
                                 </div>
                                 <div className="col-xl-6">
-                                    <div class="submit-field">
+                                    <div className="submit-field">
                                         <h5>Confrm Password</h5>
 
                                         
@@ -218,7 +218,7 @@ class GeneralRegistration extends Component {
                                                     {validator: this.compareToFirstPassword,}
                                                 ]
                                             }) (
-                                                <input id="password-confirm" type="password" class="with-border" name="confirmed" />
+                                                <input id="password-confirm" type="password" className="with-border" name="confirmed" />
                                             )}
                                         </Form.Item>
                                         
@@ -228,14 +228,14 @@ class GeneralRegistration extends Component {
                    
                             <hr/>
 
-                            <div class="form-group row mb-0 justify-content-center">
-                                <div class="col-md-8"> 
-                                    <span class="text-muted">
+                            <div className="form-group row mb-0 justify-content-center">
+                                <div className="col-md-8"> 
+                                    <span className="text-muted">
                                         By registering, you are accepting the <a href="#">terms and conditons</a> of Ichuzz2work
                                     </span>
                                 </div>
-                                <div class="col-md-4">
-                                    <button class="button full-width button-sliding-icon ripple-effect" type="submit" >Register <i class="icon-material-outline-arrow-right-alt"></i></button>
+                                <div className="col-md-4">
+                                    <button className="btn btn-block full-width button-sliding-icon ripple-effect btn btn-success" type="submit" >Register <i className="icon-material-outline-arrow-right-alt"></i></button>
                                 </div>
                             </div>
                         </Form>

@@ -12,7 +12,7 @@ const Service = (props) => {
           <span class="blog-item-tag text-capitalize">{props.name}</span>
           <div class="blog-compact-item-content">
             
-            <button class="btn btn-outline-danger btn-block">Book Now</button> <br/>
+            <button className="btn btn-outline-danger btn-block">Book Now</button> <br/>
             <p>{props.description ? props.description : 'Get work done'}</p>
           </div>
         </div>

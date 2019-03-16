@@ -5,20 +5,20 @@ const AccountFooter = () => {
     <div>
       
     
-                        <div class="dashboard-footer-spacer" />
-                        <div class="small-footer margin-top-15">
-                            <div class="small-footer-copyrights">
+                        <div className="dashboard-footer-spacer" />
+                        <div className="small-footer margin-top-15">
+                            <div className="small-footer-copyrights">
                                 © 2019 <strong>Ichuzz2work</strong>. All Rights
                                 Reserved.
                             </div>
-                            <ul class="footer-social-links">
+                            <ul className="footer-social-links">
                                 <li>
                                     <a
                                         href="#"
                                         title="Facebook"
                                         data-tippy-placement="top"
                                     >
-                                        <i class="icon-brand-facebook-f" />
+                                        <i className="icon-brand-facebook-f" />
                                     </a>
                                 </li>
                                 <li>
@@ -27,7 +27,7 @@ const AccountFooter = () => {
                                         title="Twitter"
                                         data-tippy-placement="top"
                                     >
-                                        <i class="icon-brand-twitter" />
+                                        <i className="icon-brand-twitter" />
                                     </a>
                                 </li>
                                 <li>
@@ -36,7 +36,7 @@ const AccountFooter = () => {
                                         title="Google Plus"
                                         data-tippy-placement="top"
                                     >
-                                        <i class="icon-brand-google-plus-g" />
+                                        <i className="icon-brand-google-plus-g" />
                                     </a>
                                 </li>
                                 <li>
@@ -45,11 +45,11 @@ const AccountFooter = () => {
                                         title="LinkedIn"
                                         data-tippy-placement="top"
                                     >
-                                        <i class="icon-brand-linkedin-in" />
+                                        <i className="icon-brand-linkedin-in" />
                                     </a>
                                 </li>
                             </ul>
-                            <div class="clearfix" />
+                            <div className="clearfix" />
                         </div>
                        
     </div>

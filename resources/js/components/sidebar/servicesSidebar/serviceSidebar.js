@@ -8,11 +8,6 @@ const Search = Input.Search;
 const ServiceSidebar = (props) => {
   return (
     <div>
-       {/* <Search
-        placeholder="input search text"
-        onSearch={(value) => props.search(value)}
-        enterButton
-        /> */}
         <h4 className="mt-3 mb-3">Select Category</h4>
        <ListGroup flush className="mt-3">
             <ListGroupItem className="text-capitalize"  onClick={() => props.clickedAll()} tag="a" >All</ListGroupItem>

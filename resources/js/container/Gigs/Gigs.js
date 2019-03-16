@@ -75,18 +75,18 @@ class Gigs extends Component {
     
     return (
       <>
-        <div class="margin-top-30"></div>
+        <div className="margin-top-30"></div>
         <div className="container">
         <div className="row">
           <div className="col-xl-3 col-lg-4">
-            <div class="sidebar-container">
+            <div className="sidebar-container">
         
               <LocationSearch/>
 
               <SearchFilter/>
 
              
-              <div class="sidebar-widget">
+              <div className="sidebar-widget">
                 <h3>Category</h3>
                 <Select
                   showSearch
@@ -107,7 +107,7 @@ class Gigs extends Component {
             </div>
           </div>
           <div className="col-xl-9 col-lg-8 content-left-offset">
-            <h3 class="page-title">Search Results</h3>
+            <h3 className="page-title">Search Results</h3>
             
             
               {requestList}

@@ -6,9 +6,9 @@ const Search = Input.Search;
 
 const SearchFilter = (props) => {
   return (
-    <div class="sidebar-widget">
+    <div className="sidebar-widget">
         <h3>Search</h3>
-        <div class="input-with-icon">
+        <div className="input-with-icon">
             <Search
             placeholder="Search"
             onSearch={value => props.onSearch(value)}
