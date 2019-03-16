@@ -8,7 +8,7 @@ import { routes } from '../../constants';
 import Login from '../../components/login/Login';
 import MakeRequest from '../ServiceRequest/MakeRequest';
 import Gigs from '../Gigs/Gigs';
-import Forgot from '../../components/Forgot/Forgot';
+// import Forgot from '../../components/Forgot/Forgot';
 import {getUser} from '../../store/actions/auth/loginAction'
 import Registera from '../Registera/Registera';
 import RegisterProvider from '../Registera/RegisterProvider';
@@ -79,7 +79,7 @@ class MainApp extends Component {
                 <Route exact path={routes.LOGIN} component={Login} />
                 <Route exact path={`${routes.REQUEST}/:id?`} component={MakeRequest} />
                 <Route exact path={routes.SERVICE_REQUESTS} component={Gigs} />
-                <Route exact path={routes.FORGOT_PASSWORD} component={Forgot} />
+                {/* <Route exact path={routes.FORGOT_PASSWORD} component={Forgot} /> */}
                 <Route exact path={routes.REGISTER} component={Registera} />
                 <Route exact path={routes.BECOME_PROVIDER} component={RegisterProvider} />
                 <PrivateRoute exact path={routes.PROVIDER_SERVICE} component={ServiceForm} />

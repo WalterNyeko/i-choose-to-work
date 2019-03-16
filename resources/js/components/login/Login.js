@@ -91,7 +91,7 @@ class Login extends Component {
                                     rules: [{required: true, message: 'Please enter your email address'}],
                                   })(
                                         <input name="name" type="email"  
-                                            class="with-border"
+                                            className="with-border"
                                             placeholder="email"/>
                                   )}
                                 </Form.Item>
@@ -105,7 +105,7 @@ class Login extends Component {
                                     rules: [{required: true, message: 'Please enter password'}],
                                   })(
                                         <input name="password" type="password" 
-                                            class="with-border" 
+                                            className="with-border" 
                                             placeholder="password"/>
                                   )}
                                 </Form.Item>
@@ -114,7 +114,7 @@ class Login extends Component {
                             <div className="form-group row mb-0">
                                 
                                 <div className="col-md-6">
-                                    <button class="button full-width button-sliding-icon ripple-effect" type="submit" >Log In <i class="icon-material-outline-arrow-right-alt"></i></button>
+                                    <button className="btn btn-block btn-success full-width button-sliding-icon ripple-effect" type="submit" >Log In <i className="icon-material-outline-arrow-right-alt"></i></button>
                                 </div>
                                 <div className="col-md-6">
                                     <Link  className="btn btn-link" to={routes.FORGOT_PASSWORD}>

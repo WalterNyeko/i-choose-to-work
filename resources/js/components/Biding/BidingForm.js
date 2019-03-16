@@ -85,15 +85,15 @@ class Biding extends Component {
                                      </Form.Item>
                                 </div>
                                 <hr/>
-                                <div class="form-group row mb-0 justify-content-center">
-                                    <div class="col-md-8"> 
-                                        <span class="text-muted">
+                                <div className="form-group row mb-0 justify-content-center">
+                                    <div className="col-md-8"> 
+                                        <span className="text-muted">
                                            Make your best bid
                                         </span>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div className="col-md-4">
                                         {this.props.loading ? 'Submiting....' :
-                                            <button onClick={this.handleSubmit} class="button full-width button-sliding-icon ripple-effect" type="submit" >Bid <i class="icon-material-outline-arrow-right-alt"></i></button>
+                                            <button onClick={this.handleSubmit} className="button full-width button-sliding-icon ripple-effect" type="submit" >Bid <i className="icon-material-outline-arrow-right-alt"></i></button>
                                         }
                                     </div>
                                 </div>

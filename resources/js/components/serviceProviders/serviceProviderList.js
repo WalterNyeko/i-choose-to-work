@@ -6,38 +6,42 @@ class ServiceProviderList extends Component {
     render() {
         return (
             <>
-                <div class="freelancer">
+                <div className="freelancer">
 
-					<div class="freelancer-overview">
-						<div class="freelancer-overview-inner">
+					<div className="freelancer-overview">
+						<div className="freelancer-overview-inner">
 							
-							<span class="bookmark-icon"></span>
+							<span className="bookmark-icon"></span>
 							
-							<div class="freelancer-avatar">
-								<div class="verified-badge"></div>
+							<div className="freelancer-avatar">
+								<div className="verified-badge"></div>
 								<a href="#"><img src="images/user-avatar-big-01.jpg" alt=""/></a>
 							</div>
 
 							
-							<div class="freelancer-name">
-								<h4><a href="#">{this.props.name} <img class="flag" src="images/flags/gb.svg" alt="" title="United Kingdom" data-tippy-placement="top"/></a></h4>
+							<div className="freelancer-name">
+								<h4><a href="#">{this.props.name} <img className="flag" src="images/flags/gb.svg" alt="" title="United Kingdom" data-tippy-placement="top"/></a></h4>
 								<span>Service Provider</span>
-								<div class="freelancer-rating">
-									<div class="star-rating" data-rating="4.1"></div>
+								<div className="freelancer-rating">
+									<div className="star-rating" data-rating="4.1"></div>
 								</div>
 							</div>
 						</div>
 					</div>
 					
-					<div class="freelancer-details">
-						<div class="freelancer-details-list">
+					<div className="freelancer-details">
+						<div className="freelancer-details-list">
 							<ul>
-								<li>Location <strong><i class="icon-material-outline-location-on"></i> {this.props.address}</strong></li>
+								<li>Location <strong><i className="icon-material-outline-location-on"></i> {this.props.address}</strong></li>
 								{/* <li>Rate <strong>$60 / hr</strong></li> */}
 								<li>Job Success <strong>95%</strong></li>
 							</ul>
 						</div>
+<<<<<<< HEAD
+						<Link to={`/profile/${this.props.id}`} className="button button-sliding-icon ripple-effect">View Profile <i className="icon-material-outline-arrow-right-alt"></i></Link>
+=======
 						<Link to={`/profile/${this.props.id}`} class="button button-sliding-icon ripple-effect">View Profile <i class="icon-material-outline-arrow-right-alt"></i></Link>
+>>>>>>> e5e9e2d46eb73ddaef82cf2d5d3c768bdeb01ad5
 					</div>
 				</div>
             </>

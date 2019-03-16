@@ -51,18 +51,18 @@ class MainNav extends Component {
   render() {
 
     const links = mainLinks.map((route, index) => <li  key={index} >
-                                                        <a href={route.path} activeClassName="current" >{route.label}</a>
+                                                        <a href={route.path} className="current" >{route.label}</a>
                                                   </li>);
     return (
         <>
-            <header id="header-container" class="fullwidth">
+            <header id="header-container" className="fullwidth">
 
                 
                 <div id="header">
-                    <div class="container">
+                    <div className="container">
                         
                         
-                        <div class="left-side">
+                        <div className="left-side">
                             
                            
                             <div id="logo">
@@ -78,20 +78,20 @@ class MainNav extends Component {
                                     </li>
                                 </ul>
                             </nav>
-                            <div class="clearfix"></div>
+                            <div className="clearfix"></div>
                            
                             
                         </div>
                         
                         
-                        <div class="right-side">
+                        <div className="right-side">
                             {this.props.isLogin === false ?
                             <>
-                                <div class="header-widget">
-                                    <NavLink to={routes.LOGIN} class="log-in-button"><i class="icon-feather-log-in"></i> <span>Log In / Register</span></NavLink>
+                                <div className="header-widget">
+                                    <NavLink to={routes.LOGIN} className="log-in-button"><i className="icon-feather-log-in"></i> <span>Log In / Register</span></NavLink>
                                 </div>
-                                <div class="header-widget">
-                                    <NavLink to={routes.BECOME_PROVIDER} class="log-in-button"><i class="icon-material-outline-monetization-on"></i> <span>Become Service Provider</span></NavLink>
+                                <div className="header-widget">
+                                    <NavLink to={routes.BECOME_PROVIDER} className="log-in-button"><i className="icon-material-outline-monetization-on"></i> <span>Become Service Provider</span></NavLink>
                                 </div>
                             </>
                             :
@@ -99,10 +99,10 @@ class MainNav extends Component {
                             }
 
                             
-                            <span class="mmenu-trigger">
-                                <button class="hamburger hamburger--collapse" type="button">
-                                    <span class="hamburger-box">
-                                        <span class="hamburger-inner"></span>
+                            <span className="mmenu-trigger">
+                                <button className="hamburger hamburger--collapse" type="button">
+                                    <span className="hamburger-box">
+                                        <span className="hamburger-inner"></span>
                                     </span>
                                 </button>
                             </span>
@@ -114,7 +114,7 @@ class MainNav extends Component {
                
 
             </header>
-            <div class="clearfix"></div>
+            <div className="clearfix"></div>
         </>   
     )
   }

@@ -228,14 +228,14 @@ class ProviderServices extends Component {
                                     </Form.Item>
                                 </div>
                             </div> */}
-                            <div class="form-group row mb-0 justify-content-center">
-                                <div class="col-md-6"> 
-                                    <button type="button" onClick={this.handleSubmitAndClear} class="btn btn-primary">
+                            <div className="form-group row mb-0 justify-content-center">
+                                <div className="col-md-6"> 
+                                    <button type="button" onClick={this.handleSubmitAndClear} className="btn btn-primary">
                                         Save and Add Another Service
                                     </button>
                                 </div>
-                                <div class="col-md-4">
-                                    <button type="button" onClick={this.handleSubmit} class="btn btn-primary">
+                                <div className="col-md-4">
+                                    <button type="button" onClick={this.handleSubmit} className="btn btn-primary">
                                        Save and Continue
                                     </button>
                                 </div>
