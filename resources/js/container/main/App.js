@@ -8,7 +8,7 @@ import { routes } from '../../constants';
 import Login from '../../components/login/Login';
 import MakeRequest from '../ServiceRequest/MakeRequest';
 import Gigs from '../Gigs/Gigs';
-import Forgot from '../../components/Forgot/Forgot';
+// import Forgot from '../../components/Forgot/Forgot';
 import {getUser} from '../../store/actions/auth/loginAction'
 import Registera from '../Registera/Registera';
 import RegisterProvider from '../Registera/RegisterProvider';
@@ -21,6 +21,13 @@ import NotFound from '../NotFound';
 import Dashboard from '../Dashboard/Dashboard';
 import ServiceSearch from '../../components/search/ServiceSearch';
 import ProviderProfile from '../../components/serviceProviders/ProviderProfile';
+import DashboardLandingPage from '../../components/Dashboards/containers/DashboardLandingPage';
+import DashboardBookmarks from '../../components/Dashboards/containers/DashboardBookmarks';
+import DashboardReviews from '../../components/Dashboards/containers/DashboardReviews';
+import DashboardManageTasks from '../../components/Dashboards/containers/DashboardManageTasks';
+import DashboardManageBidders from '../../components/Dashboards/containers/DashboardManageBidders';
+import DashboardActiveBids from '../../components/Dashboards/containers/DashboardActiveBids';
+import DashboardSettings from '../../components/Dashboards/containers/DashboardSettings';
 
 
 class MainApp extends Component {
@@ -79,7 +86,7 @@ class MainApp extends Component {
                 <Route exact path={routes.LOGIN} component={Login} />
                 <Route exact path={`${routes.REQUEST}/:id?`} component={MakeRequest} />
                 <Route exact path={routes.SERVICE_REQUESTS} component={Gigs} />
-                <Route exact path={routes.FORGOT_PASSWORD} component={Forgot} />
+                {/* <Route exact path={routes.FORGOT_PASSWORD} component={Forgot} /> */}
                 <Route exact path={routes.REGISTER} component={Registera} />
                 <Route exact path={routes.BECOME_PROVIDER} component={RegisterProvider} />
                 <PrivateRoute exact path={routes.PROVIDER_SERVICE} component={ServiceForm} />
@@ -87,9 +94,17 @@ class MainApp extends Component {
                 <PrivateRoute exact path={`${routes.SERVICE_PROVIDERS}/:id`} component={ServiceProviders} />
                 <PrivateRoute exact path='/view-request/:id' component={SingleRequest} />
                 <ProviderRoute exact path={`${routes.BIDDING}/:id`} component={Biding} />
-                <PrivateRoute exact path={routes.DASHBOARD} component={Dashboard} />
+                {/* <PrivateRoute exact path={routes.DASHBOARD} component={Dashboard} /> */}
                 <PrivateRoute exact path='/profile/:id' component={ProviderProfile} />
                 <Route exact path="/search-services/:searchKey" component={ServiceSearch} />
+                
+                <Route exact path="/dashboard" component={DashboardLandingPage} />
+                <Route path="/dashboard/dashboardbookmarks" component={DashboardBookmarks} />
+                <Route path="/dashboard/dashboardreviews" component={DashboardReviews} />
+                <Route path="/dashboard/dashboardmanagetasks" component={DashboardManageTasks} />
+                <Route path="/dashboard/dashboardmanagebidders" component={DashboardManageBidders} />
+                <Route path="/dashboard/dashboardactivebids" component={DashboardActiveBids} />
+                <Route path="/dashboard/dashboardsettings" component={DashboardSettings} />
         </> 
       </Router>
     )
