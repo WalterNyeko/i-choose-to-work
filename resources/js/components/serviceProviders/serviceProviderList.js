@@ -37,11 +37,7 @@ class ServiceProviderList extends Component {
 								<li>Job Success <strong>95%</strong></li>
 							</ul>
 						</div>
-<<<<<<< HEAD
-						<Link to={`/profile/${this.props.id}`} className="button button-sliding-icon ripple-effect">View Profile <i className="icon-material-outline-arrow-right-alt"></i></Link>
-=======
 						<Link to={`/profile/${this.props.id}`} class="button button-sliding-icon ripple-effect">View Profile <i class="icon-material-outline-arrow-right-alt"></i></Link>
->>>>>>> e5e9e2d46eb73ddaef82cf2d5d3c768bdeb01ad5
 					</div>
 				</div>
             </>

@@ -28,30 +28,12 @@ class UserMenu extends Component {
     return (
       <>
         <div class="header-widget">
-
                 <div class="header-notifications user-menu">
                     <div class="header-notifications-trigger">
-                        <a href="#"><div class="user-avatar status-online"><img src="user.png" alt=""/></div></a>
+                        <a href={routes.DASHBOARD}><div class="user-avatar status-online"><img src="user.png" alt=""/></div></a>
                     </div>
-                    <div class="header-notifications-dropdown">
-                        <div class="user-status">
-                            <div class="user-details">
-                                <div class="user-avatar status-online"><img src="user.png" alt=""/></div>
-                                <div class="user-name">
-                                    {this.props.user.name} <span>{this.props.role}</span>
-                                </div>
-                            </div>
-                    </div>
-                    <ul class="user-menu-small-nav">
-                        <li><Link to={routes.DASHBOARD}><i class="icon-material-outline-dashboard"></i> Dashboard</Link></li>
-                        <li><Link to={routes.DASHBOARD}><i class="icon-material-outline-settings"></i> Settings</Link></li>
-                        <li><a  onClick={this.logout} ><i class="icon-material-outline-power-settings-new"></i> Logout</a></li>
-                    </ul>
-                    </div>
+                    
                 </div>
-
-
-                
             </div>
             <div class="header-widget">
             <div class="header-notifications user-menu">
