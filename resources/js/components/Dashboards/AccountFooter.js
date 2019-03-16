@@ -5,9 +5,15 @@ const AccountFooter = () => {
     <div>
       
     
+<<<<<<< HEAD
                         <div className="dashboard-footer-spacer" />
                         <div className="small-footer margin-top-15">
                             <div className="small-footer-copyrights">
+=======
+                        <div class="dashboard-footer-spacer" />
+                        <div class="small-footer margin-top-15">
+                            <div class="small-footer-copyrights">
+>>>>>>> e5e9e2d46eb73ddaef82cf2d5d3c768bdeb01ad5
                                 © 2019 <strong>Ichuzz2work</strong>. All Rights
                                 Reserved.
                             </div>
