@@ -8,6 +8,7 @@ import CallToAction from '../../components/home/CallToAction';
 import Partners from '../../components/home/Partners';
 import Footer from '../../components/home/footer';
 import {searchServices, getServices} from '../../store/actions/services/servicesAction'
+import { routes } from '../../constants';
 
 
 class Home extends Component {
@@ -44,12 +45,13 @@ class Home extends Component {
           searchkey: value
       })
   }
+
   
   render() {
     const dataSourc = this.state.services;
     return (
       <>
-        <HomeHeader dataSource={dataSourc} onChange={this.onChange}/>
+        <HomeHeader dataSource={dataSourc} onChange={this.onChange} onSubmit={() => this.props.history.push(routes.REQUEST)}/>
         <PopularCategories categories={this.props.categories}/>
         <CallToAction/>
         <HowItWorks/>

@@ -27,18 +27,18 @@ class UserMenu extends Component {
   render() {
     return (
       <>
-        <div class="header-widget">
-                <div class="header-notifications user-menu">
-                    <div class="header-notifications-trigger">
-                        <a href={routes.DASHBOARD}><div class="user-avatar status-online"><img src="user.png" alt=""/></div></a>
+        <div className="header-widget">
+                <div className="header-notifications user-menu">
+                    <div className="header-notifications-trigger">
+                        <a href={`#${routes.DASHBOARD}`}><div className="user-avatar status-online"><img src="user.png" alt=""/></div></a>
                     </div>
                     
                 </div>
             </div>
-            <div class="header-widget">
-            <div class="header-notifications user-menu">
-                    <div class="header-notifications-trigger">
-                        <a href="#"><div onClick={this.logout} class="icon-material-outline-power-settings-new"></div></a>
+            <div className="header-widget">
+            <div className="header-notifications user-menu">
+                    <div className="header-notifications-trigger">
+                        <a href="#"><div onClick={this.logout} className="icon-material-outline-power-settings-new"></div></a>
                     </div>
                 </div>
             </div>

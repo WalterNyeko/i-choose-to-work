@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import ServiceSidebar from '../../components/sidebar/servicesSidebar/serviceSidebar';
 import {getCategories} from '../../store/actions/categories/categoriesAction'
-import {getServices, getServiceCategory} from '../../store/actions/services/servicesAction'
+import {getServices, getServiceCategory, searchServices} from '../../store/actions/services/servicesAction'
 import AllServices from '../../components/services/AllServices/allServices';
 import Search from '../../components/search';
 import SearchFilter from '../../components/search';
@@ -55,7 +55,7 @@ class MakeRequest extends Component {
 
   searchServices(value)
   {
-    console.log(value);
+    this.props.searchServices(value);
   }
   
   goToRequest(id)
@@ -93,4 +93,4 @@ const mapStateToProps = state => ({
   errors: state.categories.errors,
   services: state.services.services
 })
-export default connect(mapStateToProps, {getCategories, getServices, getServiceCategory})(MakeRequest)
+export default connect(mapStateToProps, {getCategories, getServices, getServiceCategory, searchServices})(MakeRequest)

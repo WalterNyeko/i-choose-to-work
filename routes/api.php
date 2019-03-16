@@ -151,8 +151,8 @@ Route::namespace('Api')->group(function () {
 
     /* Service Requests Routes */
     Route::get('services/requests/{id}', 'ServiceRequestController@show');
-    Route::post('services/requests', 'ServiceRequestController@store');
-    Route::get('services/user/requests', 'ServiceRequestController@userServiceRequests');
+    Route::post('services/requests', 'ServiceRequestController@store')->middleware('auth:api');
+    Route::get('services/user/requests','ServiceRequestController@userServiceRequests')->middleware('auth:api');
     Route::get('services/{category}/requests', 'ServiceRequestController@categoryServiceRequests');
 
     /* Cancelled/Not Service Requests Routes */
@@ -167,11 +167,11 @@ Route::namespace('Api')->group(function () {
     Route::get('services/filters/location', 'ServiceProviderFilterController@filterServiceProvidersInParticularLocation');
 
     /* User Profiles */
-    Route::post('user/password/update', 'BioProfileController@updatePassword');
-    Route::post('user/profile/update', 'BioProfileController@updateBioProfile');
+    Route::post('user/password/update', 'BioProfileController@updatePassword')->middleware('auth:api');
+    Route::post('user/profile/update','BioProfileController@updateBioProfile')->middleware('auth:api');
 
     /* Ratings */
-    Route::post('ratings', 'ReviewController@store');
+    Route::post('ratings','ReviewController@store')->middleware('auth:api');
     Route::get('ratings/{id}', 'ReviewController@ratingPercentage');
 });
 
