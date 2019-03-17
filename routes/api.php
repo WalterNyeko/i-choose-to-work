@@ -176,6 +176,8 @@ Route::namespace('Api')->group(function () {
     // Ratings
     Route::post('ratings','ReviewController@store')->middleware('auth:api');
     Route::get('ratings/{id}', 'ReviewController@ratingPercentage');
+    Route::get('ratings/average/{id}', 'ReviewController@averageRating');
+    Route::get('ratings/count/{id}', 'ReviewController@countRating');
 
     // Service Delivery Offers
     Route::get('delivery/recent/offers', 'ServiceDeliveryOfferController@recentOffers');
