@@ -6,7 +6,7 @@ import {getReqests, getCateRequests, searchServiceLocation, searchKey} from '../
 import RequestList from '../../components/RequestListView';
 import SearchFilter from '../../components/search';
 import LocationSearch from '../../components/LocationSearch';
-import { Select } from 'antd';
+import { Select, Spin } from 'antd';
 import { routes } from '../../constants';
 
 const Option = Select.Option;
@@ -122,8 +122,8 @@ class Gigs extends Component {
           <div className="col-xl-9 col-lg-8 content-left-offset">
             <h3 className="page-title">Search Results</h3>
             
-            
-              {requestList}
+              {this.props.loadingRequests && <Spin size="large"/>}
+              {this.state.requests.length ? requestList : <><h2>No search results</h2></>}
             
           </div>
         </div>
@@ -135,7 +135,8 @@ class Gigs extends Component {
 
 const mapStateToProps = state => ({
   categories: state.categories.cats,
-  requests: state.makeRequest.requests
+  requests: state.makeRequest.requests,
+  loadingRequests: state.makeRequest.loading
 })
 
 export default connect(mapStateToProps, {getCategories, getReqests, getCateRequests, searchServiceLocation, searchKey})(Gigs)
