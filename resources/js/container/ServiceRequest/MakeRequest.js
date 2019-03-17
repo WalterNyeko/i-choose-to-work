@@ -78,7 +78,11 @@ class MakeRequest extends Component {
               </div>
               <div className="col-md-9">
                 <div className="row">
+                  {this.state.services.length ? 
                   <AllServices services={this.state.services} goTo={(id) => this.goToRequest(id)}/>
+                  :
+                  <h2>No search results</h2>
+                  }
                 </div>
               </div>
             </div>
