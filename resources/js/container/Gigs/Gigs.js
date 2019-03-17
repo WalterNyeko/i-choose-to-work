@@ -40,6 +40,7 @@ class Gigs extends Component {
       })
     }
   }
+  
 
   getCatRequests(id)
   {
@@ -60,7 +61,7 @@ class Gigs extends Component {
 
   searchByKey(key)
   {
-    this.props.searchKey(key);
+     this.props.searchKey(key);
   }
 
   goSingle(id)
