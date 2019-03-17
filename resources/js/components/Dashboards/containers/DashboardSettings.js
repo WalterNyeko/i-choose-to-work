@@ -129,7 +129,6 @@ const DashboardSettings = ({
                               Service Provider
                             </label>
                           </div>
-
                           <div>
                             <input
                               type="radio"
@@ -145,8 +144,6 @@ const DashboardSettings = ({
                               <Link to="/dashboard/dashboardmanagebidders">
                               <span className="text-info">Make Bid{" "}</span>
                               </Link>
-
-                              
                             </label>
                           </div>
                         </div>
