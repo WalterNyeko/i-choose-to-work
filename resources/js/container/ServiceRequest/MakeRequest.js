@@ -80,12 +80,12 @@ class MakeRequest extends Component {
               </div>
               <div className="col-md-9">
                 <div className="row">
+                  {this.props.loadingServices && <><Spin size="large" /> <br/></>}
                   {this.state.services.length ? 
                   <AllServices services={this.state.services} goTo={(id) => this.goToRequest(id)}/>
                   :
                   <h2>No search results</h2>
                   }
-                  {this.props.loadingServices && <Spin size="large" />}
                 </div>
               </div>
             </div>
