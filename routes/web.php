@@ -15,24 +15,24 @@ use Illuminate\Http\Request;
 
 Route::get('/', 'WelcomeController@welcome');
 
-Route::get('/users/{id?}', 'WelcomeController@laravel')->where('id', '[0-9]+')->middleware('auth');
+// Route::get('/users/{id?}', 'WelcomeController@laravel')->where('id', '[0-9]+')->middleware('auth');
 
 
-Route::resource('jobs', 'jobs\JobController');
+// Route::resource('jobs', 'jobs\JobController');
 
 /**
  * service request view with services
  */
 
-Route::get('request', 'ServiceRequestController@index')->name('service.index');
+// Route::get('request', 'ServiceRequestController@index')->name('service.index');
 
 /**
  * service request form
  */
-Route::get('request/{id}', 'ServiceRequestController@create')->middleware('auth');
+// Route::get('request/{id}', 'ServiceRequestController@create')->middleware('auth');
 
 
-Auth::routes(['verify' => true]);
+// Auth::routes(['verify' => true]);
 
 /**
  * service providers by service
@@ -42,12 +42,12 @@ Route::get('providers/{id}', 'ServiceRequestController@providers')->middleware('
 /**
  * service biding
  */
-Route::get('bid/{id}', 'ServiceRequestController@bid')->middleware(['role:provider']);
+// Route::get('bid/{id}', 'ServiceRequestController@bid')->middleware(['role:provider']);
 
 
-Route::get('service-requests', function(){
-    return view('services.requests');
-});
+// Route::get('service-requests', function(){
+//     return view('services.requests');
+// });
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
