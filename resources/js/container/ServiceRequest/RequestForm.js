@@ -40,6 +40,10 @@ class RequestForm extends Component {
   componentDidMount() {
       const { match: { params } } = this.props;
       this.props.fetchQuestions(params.id);
+  }
+
+  componentWillMount() {
+      const { match: { params } } = this.props;
       this.props.getSingleService(params.id);
   }
 
