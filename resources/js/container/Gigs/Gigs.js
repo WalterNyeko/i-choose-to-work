@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import ServiceSidebar from '../../components/sidebar/servicesSidebar/serviceSidebar';
 import {getCategories} from '../../store/actions/categories/categoriesAction'
-import {getReqests, getCateRequests} from '../../store/actions/requestsActions/reqActions'
+import {getReqests, getCateRequests, searchServiceLocation} from '../../store/actions/requestsActions/reqActions'
 import RequestList from '../../components/RequestListView';
 import SearchFilter from '../../components/search';
 import LocationSearch from '../../components/LocationSearch';
@@ -23,6 +23,7 @@ class Gigs extends Component {
     this.getCatRequests = this.getCatRequests.bind(this);
     this.goSingle = this.goSingle.bind(this);
     this.bid = this.bid.bind(this);
+    this.searchByLocation = this.searchByLocation.bind(this);
   }
 
   componentDidMount() {
@@ -49,6 +50,11 @@ class Gigs extends Component {
       requests: this.props.requests
     })
     console.log(this.state.requests)
+  }
+
+  searchByLocation(location)
+  {
+      this.props.searchServiceLocation(location);
   }
 
   goSingle(id)
@@ -81,7 +87,7 @@ class Gigs extends Component {
           <div className="col-xl-3 col-lg-4">
             <div className="sidebar-container">
         
-              <LocationSearch/>
+              <LocationSearch searchLocation={(location) => this.searchByLocation(location) }/>
 
               <SearchFilter/>
 
@@ -125,4 +131,4 @@ const mapStateToProps = state => ({
   requests: state.makeRequest.requests
 })
 
-export default connect(mapStateToProps, {getCategories, getReqests, getCateRequests})(Gigs)
+export default connect(mapStateToProps, {getCategories, getReqests, getCateRequests, searchServiceLocation})(Gigs)

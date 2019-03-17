@@ -50,7 +50,7 @@ export default class LocationSearch extends Component {
               long: addressObject.geometry.viewport.ga.l,
           });
       }
-      console.log(this.state.address)
+      this.props.searchLocation(this.state.address)
   }
   
   render() {
