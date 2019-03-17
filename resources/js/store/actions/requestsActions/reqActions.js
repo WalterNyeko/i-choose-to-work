@@ -120,3 +120,15 @@ export const searchServiceLocation = (key) => dispatch => {
             dispatch(failServices(errors))
         })
 }
+
+export const searchKey = (key) => dispatch => {
+    dispatch(startRequest());
+    axios.get(`api/search/services/requests/?q=${key}`)
+        .then((res) => {
+            dispatch(successFetch(res.data.data))
+        })
+        .catch((err) => {
+            const errors = err;
+            dispatch(failServices(errors))
+        })
+}
