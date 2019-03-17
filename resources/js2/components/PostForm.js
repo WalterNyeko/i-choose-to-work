@@ -24,7 +24,6 @@ class PostForm extends Component {
   handleSubmit(e)
   {
     e.preventDefault();
-    console.log(this.state);
     const post = {
         title: this.state.title,
         body: this.state.body

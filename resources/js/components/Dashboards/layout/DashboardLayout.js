@@ -7,17 +7,17 @@ class DashboardLayout extends Component {
   render() {
     return (
       <>
-        <div class="dashboard-container">
+        <div className="dashboard-container">
             <DashboardSidebar/>
-            <div class="dashboard-content-container" data-simplebar>
-		        <div class="dashboard-content-inner" >
+            <div className="dashboard-content-container" data-simplebar>
+		        <div className="dashboard-content-inner" >
                     {/* <!-- Dashboard Headline --> */}
-                    <div class="dashboard-headline">
+                    <div className="dashboard-headline">
                         <h3>{this.props.title ? this.props.title : 'Account'}</h3>
                         
 
                         {/* <!-- Breadcrumbs --> */}
-                        <nav id="breadcrumbs" class="dark">
+                        <nav id="breadcrumbs" className="dark">
                             <ul>
                                 <li><a href="#">Home</a></li>
                                 <li><a href="#">Dashboard</a></li>
@@ -27,11 +27,11 @@ class DashboardLayout extends Component {
                     </div>
 
                     {/* <!-- Row --> */}
-                    <div class="row">
+                    <div className="row">
 
                         {/* <!-- Dashboard Box --> */}
-                        <div class="col-xl-12">
-                            <div class="dashboard-box margin-top-0">
+                        <div className="col-xl-12">
+                            <div className="dashboard-box margin-top-0">
                                 {this.props.children}
                             </div>
                         </div>

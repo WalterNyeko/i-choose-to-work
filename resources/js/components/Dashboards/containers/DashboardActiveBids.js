@@ -1,7 +1,7 @@
 import React from "react";
 import DashboardLayout from "../layout/DashboardLayout";
 
-const DashboardActiveBids = () => {
+const DashboardActiveBids = ({ handleInputChange, state, user}) => {
   return (
     <div>
       <DashboardLayout>

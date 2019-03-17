@@ -24,10 +24,10 @@ import ProviderProfile from '../../components/serviceProviders/ProviderProfile';
 import DashboardLandingPage from '../../components/Dashboards/containers/DashboardLandingPage';
 import DashboardBookmarks from '../../components/Dashboards/containers/DashboardBookmarks';
 import DashboardReviews from '../../components/Dashboards/containers/DashboardReviews';
-import DashboardManageTasks from '../../components/Dashboards/containers/DashboardManageTasks';
-import DashboardManageBidders from '../../components/Dashboards/containers/DashboardManageBidders';
-import DashboardActiveBids from '../../components/Dashboards/containers/DashboardActiveBids';
-import DashboardSettings from '../../components/Dashboards/containers/DashboardSettings';
+import DashboardManageTasks from '../../components/Dashboards/components/DashboardManageTasks';
+import DashboardManageBidders from '../../components/Dashboards/components/DashboardManageBidders';
+import DashboardActiveBids from '../../components/Dashboards/components/DashboardActiveBids';
+import DashboardSettings from '../../container/Dashboard/DashboardSettings';
 
 
 class MainApp extends Component {

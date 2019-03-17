@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import DashboardSidebar from './DashboardSidebar';
+import DashboardSidebar from './layout/DashboardSidebar';
 import AccountFooter from './AccountFooter';
 import {connect} from 'react-redux'
 
