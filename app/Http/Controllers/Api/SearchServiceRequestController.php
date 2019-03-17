@@ -31,4 +31,28 @@ class SearchServiceRequestController extends ApiBaseController
         return $error;
     }
 
+    /**
+     * Get Service Requests By Location
+     *
+     * @param Request $request
+     * @return array|\Illuminate\Database\Eloquent\Collection
+     */
+    public function searchByLocation(Request $request)
+    {
+        //Error message to be shown when no keywords defined
+        $error = ['error' => 'No results found, please try with different keywords.'];
+
+        //Check if the user enter some keyword
+        if ($request->has('q')) {
+            //Using the laravel scout syntax to search the services table
+            $serviceRequests = ServiceRequest::where('address', 'LIKE', '%'.$request->get('q').'%')->paginate(10);
+
+            //Return services if they exist else return the error
+            return $serviceRequests->count() ? $serviceRequests : $error;
+
+        }
+
+        return $error;
+    }
+
 }
