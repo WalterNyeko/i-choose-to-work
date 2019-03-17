@@ -45,7 +45,7 @@ class SearchServiceRequestController extends ApiBaseController
         //Check if the user enter some keyword
         if ($request->has('q')) {
             //Using the laravel scout syntax to search the services table
-            $serviceRequests = ServiceRequest::where('address', 'LIKE', '%'.$request->get('q').'%')->paginate(10);
+            $serviceRequests = ServiceRequest::where('address', 'LIKE', '%'.$request->get('q').'%')->get(10);
 
             //Return services if they exist else return the error
             return $serviceRequests->count() ? $serviceRequests : $error;
