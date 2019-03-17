@@ -25,6 +25,7 @@ class ServiceRequest extends JsonResource
             'payment_method' => $this->payment_method,
             'questions' => $this->questions,
             'cancelled' => $this->cancelled,
+            'acceptance' => $this->acceptance,
             'expected_start_date' => $this->expected_start_date,
             'created_at' => $this->created_at,
         ];
