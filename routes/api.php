@@ -143,6 +143,7 @@ Route::namespace('Api')->group(function () {
     Route::prefix('search')->group(function () {
         Route::get('services', 'SearchServiceController@search');
         Route::get('services/requests/', 'SearchServiceRequestController@search');
+        Route::get('services/requests/location', 'SearchServiceRequestController@searchByLocation');
     });
 
     /* Partner Routes */
