@@ -144,6 +144,7 @@ Route::namespace('Api')->group(function () {
         Route::get('services', 'SearchServiceController@search');
         Route::get('services/requests/', 'SearchServiceRequestController@search');
         Route::get('services/requests/location', 'SearchServiceRequestController@searchByLocation');
+        Route::get('services/requests/any', 'SearchServiceRequestController@searchByAnything');
     });
 
     /* Partner Routes */
