@@ -108,3 +108,15 @@ export const getSingleRequest = (id) => dispatch => {
             dispatch(fetchErrors(errors))
         })
 }
+
+export const searchServiceLocation = (key) => dispatch => {
+    dispatch(startRequest());
+    axios.get(`api/search/services/requests/location/?q=${key}`)
+        .then((res) => {
+            dispatch(successFetch(res.data.data))
+        })
+        .catch((err) => {
+            const errors = err;
+            dispatch(failServices(errors))
+        })
+}

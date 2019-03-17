@@ -134,7 +134,7 @@ class RequestForm extends Component {
               long: addressObject.geometry.viewport.ga.l,
           });
       }
-      //console.log(this.state.long)
+      console.log(this.state.address)
   }
 
   handleSubmit(e)

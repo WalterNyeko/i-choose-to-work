@@ -10,7 +10,9 @@ export default class LocationSearch extends Component {
        
     }
     this.handleScriptLoad = this.handleScriptLoad.bind(this);
+    this.handlePlaceSelect = this.handlePlaceSelect.bind(this);
   }
+
 
   handleScriptLoad() {
       // Declare Options For Autocomplete
@@ -48,7 +50,7 @@ export default class LocationSearch extends Component {
               long: addressObject.geometry.viewport.ga.l,
           });
       }
-      //console.log(this.state.long)
+      console.log(this.state.address)
   }
   
   render() {
@@ -59,7 +61,7 @@ export default class LocationSearch extends Component {
         <div className="sidebar-widget">
             <h3>Location</h3>
             <div className="input-with-icon">
-                <div id="autocomplete-container">
+                <div>
                 <input id="autocomplete" type="text" placeholder="Location"/>
                 </div>
                 <i className="icon-material-outline-location-on"></i>

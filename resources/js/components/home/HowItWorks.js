@@ -14,7 +14,7 @@ const HowItWorks = () => {
                         </div>
                     </div>
                     
-                    <div className="col-xl-4 col-md-4">
+                    <div className="col-xl-3 col-md-3">
                        
                         <div className="icon-box with-line">
                             
@@ -25,11 +25,11 @@ const HowItWorks = () => {
                                 </div>
                             </div>
                             <h3>Create an Account</h3>
-                            <p>Bring to the table win-win survival strategies to ensure proactive domination going forward.</p>
+                            <p>Its just 123. to get you noticed by employers and those that require your services </p>
                         </div>
                     </div>
 
-                    <div className="col-xl-4 col-md-4">
+                    <div className="col-xl-3 col-md-3">
                        
                         <div className="icon-box with-line">
                            
@@ -40,11 +40,26 @@ const HowItWorks = () => {
                                 </div>
                             </div>
                             <h3>Post a Task</h3>
-                            <p>Efficiently unleash cross-media information without. Quickly maximize return on investment.</p>
+                            <p>Tell us what you need done, when and where it works for you. we have thousands of experts to give you the best services. Just post it here.</p>
                         </div>
                     </div>
 
-                    <div className="col-xl-4 col-md-4">
+                    <div className="col-xl-3 col-md-3">
+                        
+                        <div className="icon-box with-line">
+                            
+                            <div className="icon-box-circle">
+                                <div className="icon-box-circle-inner">
+                                    <i className=" icon-line-awesome-trophy"></i>
+                                    <div className="icon-box-check"><i className="icon-material-outline-check"></i></div>
+                                </div>
+                            </div>
+                            <h3>Choose an Expert</h3>
+                            <p>Tell us what you need done, when and where it works for you. we have thousands of experts to give you the best services. Just post it here.</p>
+                        </div>
+                    </div>
+
+                    <div className="col-xl-3 col-md-3">
                         
                         <div className="icon-box">
                             
@@ -54,8 +69,8 @@ const HowItWorks = () => {
                                     <div className="icon-box-check"><i className="icon-material-outline-check"></i></div>
                                 </div>
                             </div>
-                            <h3>Choose an Expert</h3>
-                            <p>Nanotechnology immersion along the information highway will close the loop on focusing solely.</p>
+                            <h3>Payment</h3>
+                            <p>Pay after the Service has been done or delivered</p>
                         </div>
                     </div>
 

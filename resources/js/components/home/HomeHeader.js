@@ -26,9 +26,8 @@ class HomeHeader extends Component {
                     <div className="col-md-12">
                         <div className="banner-headline">
                             <h3>
-                                <strong>Hire experts or be hired for any job, any time.</strong>
-                                <br/>
-                                <span>Thousands of people use <strong className="color">Ichuzz2work</strong> to get things done.</span>
+                                <strong>Provide a Service, Hire experts or Get hired for any job or Provide exceptional services . Make your skills <strong className="color">EARN MONEY</strong></strong>
+                                
                             </h3>
                         </div>
                     </div>
