@@ -129,7 +129,6 @@ const DashboardSettings = ({
                               Service Provider
                             </label>
                           </div>
-
                           <div>
                             <input
                               type="radio"
@@ -142,7 +141,9 @@ const DashboardSettings = ({
                               className="ripple-effect-dark"
                             >
                               <i className="icon-material-outline-business-center" />
-                              Make Bid
+                              <Link to="/dashboard/dashboardmanagebidders">
+                              <span className="text-info">Make Bid{" "}</span>
+                              </Link>
                             </label>
                           </div>
                         </div>
