@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Resources\ServiceRequestCollection;
 use App\ServiceRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\ApiBaseController;
@@ -24,7 +25,7 @@ class SearchServiceRequestController extends ApiBaseController
             $serviceRequests = ServiceRequest::search($request->get('q'))->get();
 
             //Return services if they exist else return the error
-            return $serviceRequests->count() ? $serviceRequests : $error;
+            return $serviceRequests->count() ? new ServiceRequestCollection($serviceRequests) : $error;
 
         }
 
@@ -45,10 +46,10 @@ class SearchServiceRequestController extends ApiBaseController
         //Check if the user enter some keyword
         if ($request->has('q')) {
             //Using the laravel scout syntax to search the services table
-            $serviceRequests = ServiceRequest::where('address', 'LIKE', '%'.$request->get('q').'%')->get(10);
+            $serviceRequests = ServiceRequest::where('address', 'LIKE', '%'.$request->get('q').'%')->get();
 
             //Return services if they exist else return the error
-            return $serviceRequests->count() ? $serviceRequests : $error;
+            return $serviceRequests->count() ? new ServiceRequestCollection($serviceRequests) : $error;
 
         }
 
