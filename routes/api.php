@@ -139,41 +139,49 @@ Route::get('/categories-wth-request/{id}', function ($id) {
 
 Route::namespace('Api')->group(function () {
 
-    /* Search Api Routes */
+    // Search Api
     Route::prefix('search')->group(function () {
         Route::get('services', 'SearchServiceController@search');
         Route::get('services/requests/', 'SearchServiceRequestController@search');
         Route::get('services/requests/location', 'SearchServiceRequestController@searchByLocation');
+        Route::get('services/requests/any', 'SearchServiceRequestController@searchByAnything');
     });
 
-    /* Partner Routes */
+    // Partner
     Route::get('partners', 'PartnerController@index');
     Route::get('partners/{id}', 'PartnerController@show');
 
-    /* Service Requests Routes */
+    // Service Requests
     Route::get('services/requests/{id}', 'ServiceRequestController@show');
     Route::post('services/requests', 'ServiceRequestController@store')->middleware('auth:api');
     Route::get('services/user/requests','ServiceRequestController@userServiceRequests')->middleware('auth:api');
+    Route::get('services/recent/requests', 'ServiceRequestController@recentServiceRequests');
     Route::get('services/{category}/requests', 'ServiceRequestController@categoryServiceRequests');
 
-    /* Cancelled/Not Service Requests Routes */
+    // Cancelled/Not Service Requests
     Route::get('services/requests/true/cancelled', 'ServiceRequestController@cancelledServiceRequests');
     Route::get('services/requests/false/cancelled', 'ServiceRequestController@notCancelledServiceRequests');
     Route::post('services/requests/cancelled', 'ServiceRequestController@cancelRequest');
     Route::post('services/requests/acceptance', 'ServiceRequestController@acceptRequest');
 
-    /* Filters */
+    // Filters
     Route::get('services/filters/providers', 'ServiceProviderFilterController@index');
     Route::get('services/filters/requests', 'ServiceProviderFilterController@filterServiceRequest');
     Route::get('services/filters/location', 'ServiceProviderFilterController@filterServiceProvidersInParticularLocation');
 
-    /* User Profiles */
+    // User Profiles
     Route::post('user/password/update', 'BioProfileController@updatePassword')->middleware('auth:api');
     Route::post('user/profile/update','BioProfileController@updateBioProfile')->middleware('auth:api');
 
-    /* Ratings */
+    // Ratings
     Route::post('ratings','ReviewController@store')->middleware('auth:api');
     Route::get('ratings/{id}', 'ReviewController@ratingPercentage');
+    Route::get('ratings/average/{id}', 'ReviewController@averageRating');
+    Route::get('ratings/count/{id}', 'ReviewController@countRating');
+
+    // Service Delivery Offers
+    Route::get('delivery/recent/offers', 'ServiceDeliveryOfferController@recentOffers');
+
 });
 
 

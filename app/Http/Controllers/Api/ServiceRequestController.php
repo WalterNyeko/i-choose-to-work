@@ -220,4 +220,16 @@ class ServiceRequestController extends ApiBaseController
         // dd($serviceRequests);
         return new ServiceRequestCollection($serviceRequests);
     }
+
+    /**
+     * Get 5 latest service requests.
+     *
+     * @return ServiceRequestCollection
+     */
+    public function recentServiceRequests()
+    {
+        $serviceRequests = ServiceRequest::latest()->take(5)->get();
+        return new ServiceRequestCollection($serviceRequests);
+
+    }
 }

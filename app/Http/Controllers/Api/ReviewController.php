@@ -34,8 +34,8 @@ class ReviewController extends ApiBaseController
             $user = User::find($userId);
 
             $rating = $user->rating([
-                'title' => $request->title,
-                'body' => $request->body,
+                'title' => '',
+                'body' => '',
                 'rating' => $request->rating,
             ], $currentUser);
 
@@ -55,12 +55,46 @@ class ReviewController extends ApiBaseController
     public function ratingPercentage($id)
     {
         try {
-            $user = User::find($id);
+            $user = User::findOrFail($id);
             $ratingPercentage = $user->ratingPercent();
         } catch (\Exception $e) {
             return response()->json(['message' => 'User rating not available']);
         }
         return response(['rating' => $ratingPercentage]);
+    }
+
+    /**
+     * Get rate count for a user
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\JsonResponse|\Illuminate\Http\Response
+     */
+    public function countRating($id)
+    {
+        try {
+            $user = User::findOrFail($id);
+            $rateCount = $user->countRating();
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'User rating not available']);
+        }
+        return response(['rateCount' => $rateCount]);
+    }
+
+    /**
+     * Get average rating for a user
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\JsonResponse|\Illuminate\Http\Response
+     */
+    public function averageRating($id)
+    {
+        try {
+            $user = User::findOrFail($id);
+            $averageRate = $user->averageRating();
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'User rating not available']);
+        }
+        return response(['averageRate' => $averageRate]);
     }
 
     /**
@@ -74,8 +108,6 @@ class ReviewController extends ApiBaseController
         $validator = \Validator::make($data,
             [
                 'user_id' => ['required'],
-                'title' => ['required', 'max:255'],
-                'body' => ['required'],
                 'rating' => ['required'],
             ], []);
 
