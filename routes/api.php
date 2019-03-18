@@ -161,8 +161,8 @@ Route::namespace('Api')->group(function () {
     // Cancelled/Not Service Requests
     Route::get('services/requests/true/cancelled', 'ServiceRequestController@cancelledServiceRequests');
     Route::get('services/requests/false/cancelled', 'ServiceRequestController@notCancelledServiceRequests');
-    Route::post('services/requests/cancelled', 'ServiceRequestController@cancelRequest')->middleware('auth:api', 'check-permissions');
-    Route::post('services/requests/acceptance', 'ServiceRequestController@acceptRequest')->middleware('auth:api', 'check-permissions');
+    Route::post('services/requests/cancelled', 'ServiceRequestController@cancelRequest')
+        ->middleware('auth:api', 'check-permissions');
 
     // Filters
     Route::get('services/filters/providers', 'ServiceProviderFilterController@index');
@@ -181,6 +181,8 @@ Route::namespace('Api')->group(function () {
 
     // Service Delivery Offers
     Route::get('delivery/recent/offers', 'ServiceDeliveryOfferController@recentOffers');
+    Route::post('delivery/offers/acceptance', 'ServiceDeliveryOfferController@acceptDeliveryOffer')
+        ->middleware('auth:api', 'check-permissions');
 
 });
 

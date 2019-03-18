@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\ServiceDeliveryOffer;
 use App\ServiceRequest;
 
 /**
@@ -34,7 +35,7 @@ function check_user_permissions($request, $actionName = NULL, $id = NULL)
         'delete' => ['destroy', 'restore', 'forceDestroy'],
         'read' => ['index', 'view'],
         'cancel' => ['cancelRequest'],
-        'acceptance' => ['acceptRequest']
+        'acceptance' => ['acceptDeliveryOffer'],
     ];
 
     foreach ($crudPermissionMap as $permission => $methods) {
@@ -86,6 +87,28 @@ function check_user_permissions($request, $actionName = NULL, $id = NULL)
 
 
             }
+
+            if (from_camel_case($controller) == 'service_delivery_offer' && in_array(
+                    $method,
+                    ['edit', 'update', 'destroy', 'restore', 'forceDestroy', 'view', 'index', 'acceptDeliveryOffer']
+                )) {
+                if ($request->is('api/delivery/offers/acceptance')) {
+                    $id = !is_null($id) ? $id : $request->id;
+
+                    // If the current user has no permission to access other people's service requests permission
+                    // Make sure he/she only modifies his/her service requests
+                    if (($id)) {
+                        $serviceDeliveryOffer = ServiceDeliveryOffer::find($id);
+                        if ($serviceDeliveryOffer->provider_id !== $currentUser->id) {
+                            return false;
+                        }
+                    }
+                }
+
+
+            }
+
+
 
             break;
 

@@ -21,7 +21,7 @@ class CheckPermissionsMiddleware
 
         if ($currentUser->hasRole('banned')) {
             if ($request->json()) {
-                return response('Unauthorized.', 403);
+                return response(['message', 'Unauthorized.'], 403);
             } else {
                 return abort(403, 'You have been banned from accessing the system');
             }
@@ -32,7 +32,7 @@ class CheckPermissionsMiddleware
             }
             if (!check_user_permissions($request)) {
                 if ($request->json()) {
-                    return response('Unauthorized.', 403);
+                    return response(['message', 'Unauthorized.'], 403);
                 } else {
                     return abort(403, 'Forbidden Acess to this Resource');
                 }
