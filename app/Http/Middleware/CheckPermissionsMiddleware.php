@@ -20,13 +20,22 @@ class CheckPermissionsMiddleware
         $currentUser = $request->user();
 
         if ($currentUser->hasRole('banned')) {
-            abort(403, 'You have been banned from accessing the system');
+            if ($request->json()) {
+                return response('Unauthorized.', 403);
+            } else {
+                return abort(403, 'You have been banned from accessing the system');
+            }
+
         }else {
             if ($currentUser->hasRole('admin') ) {
                 // You can perform all logic here for the admin
             }
             if (!check_user_permissions($request)) {
-                abort(403, 'Forbidden Acess to this Resource');
+                if ($request->json()) {
+                    return response('Unauthorized.', 403);
+                } else {
+                    return abort(403, 'Forbidden Acess to this Resource');
+                }
             }
         }
 

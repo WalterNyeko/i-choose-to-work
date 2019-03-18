@@ -1,5 +1,7 @@
 <?php
 
+use App\ServiceRequest;
+
 /**
  * Check whether a user has permission to perform a certain action
  *
@@ -8,7 +10,8 @@
  * @param null $id
  * @return bool
  */
-function check_user_permissions($request, $actionName = NULL, $id = NULL) {
+function check_user_permissions($request, $actionName = NULL, $id = NULL)
+{
     /* Get currently logged in user */
     $currentUser = $request->user();
 
@@ -31,10 +34,11 @@ function check_user_permissions($request, $actionName = NULL, $id = NULL) {
         'delete' => ['destroy', 'restore', 'forceDestroy'],
         'read' => ['index', 'view'],
         'cancel' => ['cancelRequest'],
+        'acceptance' => ['acceptRequest']
     ];
 
     foreach ($crudPermissionMap as $permission => $methods) {
-        if (in_array($method, $methods)){
+        if (in_array($method, $methods)) {
 
             /**
              * If you have a specific restriction you want to make on a user not accessing
@@ -44,7 +48,7 @@ function check_user_permissions($request, $actionName = NULL, $id = NULL) {
              * 403 abort error message
              * Turn the down if into an if else
              */
-            if (from_camel_case($controller) == 'service_request' && in_array($method, ['edit', 'update', 'destroy', 'restore', 'forceDestroy', 'view', 'index'])) {
+            /*if (from_camel_case($controller) == 'service_request' && in_array($method, ['edit', 'update', 'destroy', 'restore', 'forceDestroy', 'view', 'index'])) {
 
                 $id = !is_null($id) ? $id : $request->route('');
 
@@ -57,10 +61,30 @@ function check_user_permissions($request, $actionName = NULL, $id = NULL) {
                     }
                 }
 
-            }
+            }*/
             // If user has no permission donot allow next request
-            else if (! $currentUser->can(from_camel_case($controller).".{$permission}")) {
+            /*else if (! $currentUser->can(from_camel_case($controller).".{$permission}")) {
                 return false;
+            }*/
+
+            if (from_camel_case($controller) == 'service_request' && in_array(
+                    $method,
+                    ['edit', 'update', 'destroy', 'restore', 'forceDestroy', 'view', 'index', 'acceptRequest', 'cancelRequest']
+                )) {
+                if ($request->is('api/services/requests/cancelled')) {
+                    $id = !is_null($id) ? $id : $request->id;
+
+                    // If the current user has no permission to access other people's service requests permission
+                    // Make sure he/she only modifies his/her service requests
+                    if (($id)) {
+                        $serviceRequest = ServiceRequest::find($id);
+                        if ($serviceRequest->customer_id !== $currentUser->id) {
+                            return false;
+                        }
+                    }
+                }
+
+
             }
 
             break;
@@ -77,7 +101,8 @@ function check_user_permissions($request, $actionName = NULL, $id = NULL) {
  * @param $input
  * @return string
  */
-function from_camel_case($input) {
+function from_camel_case($input)
+{
     preg_match_all('!([A-Z][A-Z0-9]*(?=$|[A-Z][a-z0-9])|[A-Za-z][a-z0-9]+)!', $input, $matches);
     $ret = $matches[0];
     foreach ($ret as &$match) {
