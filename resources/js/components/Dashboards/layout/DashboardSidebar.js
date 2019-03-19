@@ -31,7 +31,6 @@ const DashboardSidebar = (props) => {
 					<ul data-submenu-title="Organize and Manage">
 					
 						<li><Link to="/dashboard/dashboardmanagetasks">Manage Tasks <span className="nav-tag">2</span></Link></li>
-						<li><Link to="/dashboard/dashboardmanagebidders">Manage Bidders</Link></li>
 						<li><Link to="/dashboard/dashboardactivebids">My Active Bids <span className="nav-tag">4</span></Link></li>
 								
 					</ul>

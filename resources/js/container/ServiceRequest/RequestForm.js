@@ -51,9 +51,8 @@ class RequestForm extends Component {
       if(nextProps.service)
       {
         this.setState({
-            service: JSON.parse(sessionStorage.getItem('service'))
+            service: nextProps.service
         })  
-        console.log(this.state.service)
       }
   }
   
@@ -165,7 +164,7 @@ class RequestForm extends Component {
   
   
   render() {
-    const service = this.state.service
+    // const service = this.state.service
     return (
       <div className="container">
         <div class="margin-top-30"></div>
@@ -175,7 +174,7 @@ class RequestForm extends Component {
             <div className="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        Request <span className="text-capitalize text-danger">{service.name}</span> expert
+                        Request  expert
                     </div>
                     <div className="card-body">
                         <form onSubmit={this.handleSubmit}>

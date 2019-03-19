@@ -4,7 +4,7 @@ const INITIAL_STATE = {
     loading: false,
     services: [],
     errors: [],
-    service: sessionStorage.getItem('service') ? JSON.parse(sessionStorage.getItem('service')) : []
+    service: sessionStorage.getItem('service') ? JSON.parse(sessionStorage.getItem('service')) : 'Service'
 };
 
 /**
@@ -47,7 +47,7 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 loading: false,
-                errors: actions.payload.errors
+                errors: action.payload.errors
             }
         default: return state;
     }
