@@ -20,7 +20,7 @@ class ServiceProviderList extends Component {
 
 							
 							<div className="freelancer-name">
-								<h4><a href="#">{this.props.name} <img className="flag" src="images/flags/gb.svg" alt="" title="United Kingdom" data-tippy-placement="top"/></a></h4>
+								<h4 className="text-capitalize"><Link to={`/profile/${this.props.id}`}>{this.props.name} <img className="flag" src="images/flags/gb.svg" alt="" title="United Kingdom" data-tippy-placement="top"/></Link></h4>
 								<span>Service Provider</span>
 								<div className="freelancer-rating">
 									<div className="star-rating" data-rating={this.props.rating}></div>
@@ -34,7 +34,7 @@ class ServiceProviderList extends Component {
 							<ul>
 								<li>Location <strong><i className="icon-material-outline-location-on"></i> {this.props.address}</strong></li>
 								{/* <li>Rate <strong>$60 / hr</strong></li> */}
-								<li>Job Success <strong>95%</strong></li>
+								<li>View Profile  <strong>To hire</strong></li>
 							</ul>
 						</div>
 						<Link to={`/profile/${this.props.id}`} className="button button-sliding-icon ripple-effect">View Profile <i className="icon-material-outline-arrow-right-alt"></i></Link>

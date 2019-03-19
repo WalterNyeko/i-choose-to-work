@@ -11,7 +11,7 @@ const ProfileHeader = (props) => {
                             <div className="left-side">
                                 <div className="header-image freelancer-avatar"><img src={props.pic ? props.pic : 'user.png'} alt=""/></div>
                                 <div className="header-details">
-                                    <h3>{props.name ? props.name : 'Name'} </h3>
+                                    <h3 className="text-capitalize">{props.name ? props.name : 'Name'} </h3>
                                     <ul>
                                         {/* <li><div className="star-rating" data-rating="5.0"></div></li> */}
                                         <li><i className="icon-material-outline-location-on"></i> { props.address ? props.address : 'No Address' }</li>
