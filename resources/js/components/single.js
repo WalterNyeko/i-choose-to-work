@@ -17,7 +17,7 @@ const Single = (props) => {
                 </ul>
                 < p class = "task-listing-text" >{props.description}</p>
                 <div className="task-tags">
-                    <span>{props.category}</span>
+                   Delivery date: <span>{props.date}</span>
                 </div>
             </div>
 
