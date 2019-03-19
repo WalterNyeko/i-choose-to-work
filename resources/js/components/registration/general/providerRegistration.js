@@ -7,13 +7,14 @@ import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import {register} from '../../../store/actions/auth/registerAction'
 import { routes } from '../../../constants';
+import LocationSearch from '../../LocationSearch';
 
 class GeneralRegistration extends Component {
   constructor(props) {
     super(props)
   
     this.state = {
-       
+       address: ''
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleConfirmBlur = this.handleConfirmBlur.bind(this);
@@ -31,6 +32,7 @@ class GeneralRegistration extends Component {
               password: values.password,
               name: values.name,
               phone: values.phone,
+              address: this.state.address,
             //   password_confirmation: values.confirmed,
               role: 'provider'
             }
@@ -118,24 +120,36 @@ class GeneralRegistration extends Component {
                                     </div>
                                 </div>
                             </div>
+                            <div className="row">
+                                <div className="col-xl-12">
+                                    <div className="submit-field">
+                                        <h5>Phone Number</h5>
 
-                            <div className="submit-field">
-                                <h5>Phone Number</h5>
-
-                                
-                                    <Form.Item>
-                                        {getFieldDecorator('phone', {
-                                            rules: [{required:true, message: 'Please enter a phone number'}, 
-                                                {max: 12, message: 'Please enter a valid phone number (start with 256)'},
-                                                {min: 12, message: 'Please provide a valid phone number (start with 256)'}
-                                        ]
-                                        })(
-                                            <input id="phone" type="phone" className="with-border" name="phone" />
-                                        )}
-                                    </Form.Item>
+                                        
+                                            <Form.Item help="Phone number starting with 256">
+                                                {getFieldDecorator('phone', {
+                                                    rules: [{required:true, message: 'Please enter a phone number'}, 
+                                                        {max: 12, message: 'Please enter a valid phone number (start with 256)'},
+                                                        {min: 12, message: 'Please provide a valid phone number (start with 256)'}
+                                                ]
+                                                })(
+                                                    <input id="phone" type="phone" className="with-border" name="phone" />
+                                                )}
+                                            </Form.Item>
+                                        
+                                    </div>
+                                </div>
                                 
                             </div>
-
+                            <Form.Item>
+                                {getFieldDecorator('address', {
+                                })(
+                                    <LocationSearch searchLocation={(value) => this.setState({
+                                        address: value
+                                    })}/>
+                                )}
+                            </Form.Item>
+                            
                             <div className="row">
                                 <div className="col-xl-6">
                                     <div className="submit-field">

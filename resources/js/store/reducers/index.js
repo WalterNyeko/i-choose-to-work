@@ -8,6 +8,7 @@ import reqReducer from './reqReducer'
 import providersReducer from './providersReducer'
 import offerReducer from './offerReducer'
 import bidReducer from './bidReducer'
+import profileReducer from './profileReducer'
 
 export default combineReducers({
     auth: authReducer,
@@ -18,5 +19,6 @@ export default combineReducers({
     makeRequest: reqReducer,
     providers: providersReducer,
     offer: offerReducer,
-    bid: bidReducer
+    bid: bidReducer,
+    profile: profileReducer
 });

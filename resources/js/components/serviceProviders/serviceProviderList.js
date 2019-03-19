@@ -15,7 +15,7 @@ class ServiceProviderList extends Component {
 							
 							<div className="freelancer-avatar">
 								<div className="verified-badge"></div>
-								<a href="#"><img src="images/user-avatar-big-01.jpg" alt=""/></a>
+								<a href="#"><img src="user.png" alt=""/></a>
 							</div>
 
 							
@@ -23,7 +23,7 @@ class ServiceProviderList extends Component {
 								<h4><a href="#">{this.props.name} <img className="flag" src="images/flags/gb.svg" alt="" title="United Kingdom" data-tippy-placement="top"/></a></h4>
 								<span>Service Provider</span>
 								<div className="freelancer-rating">
-									<div className="star-rating" data-rating="4.1"></div>
+									<div className="star-rating" data-rating={this.props.rating}></div>
 								</div>
 							</div>
 						</div>
