@@ -171,19 +171,49 @@ class ServiceRequestController extends Controller
             'description' => $request->description
         ]);
         $user = User::find($request->user()->id);
+
+        //sms notifications will also come here
         \Notification::route('mail', $user->email)
             ->notify(new RequestNotification());
-        // if($user->hasRole('provider'))
-        // {
-            
-        // }
-        // else 
-        // {
-        //     $role = [
-        //         'role' => 'Please sign up as a Service Provider'
-        //     ];
-        //     return response()->json(['errors' => $role ], 422);
-        // }
+        
+
+        return $offer;
+    }
+
+    /**
+     * make offer to a service provider
+     * @param Request
+     * @return Object 
+     */
+    public function makeOffer(Request $request)
+    {   
+        $data = $request->all();
+        $validator = \Validator::make($data, [
+            'estimated_cost' => ['nullable', 'numeric'],
+            'service_req_id' => ['required', 'exists:service_requests,id'],
+            'provider' => ['required']
+
+        ],
+        [
+            'service_req_id.required' => 'Invalid Service request',
+            'service_req_id.exists' => 'Invalid Service request',
+
+        ]
+        );
+
+        if ($validator->fails()) {
+           return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        $offer = ServiceDeliveryOffer::create([
+            'service_req_id' => $request->service_req_id,
+            'provider_id' => $request->provider,
+        ]);
+        $user = User::find($request->provider);
+        //also sms notifications will come here
+        \Notification::route('mail', $user->email)
+            ->notify(new RequestNotification());
+        
 
         return $offer;
     }

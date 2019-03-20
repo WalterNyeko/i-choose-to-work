@@ -65,6 +65,7 @@ Route::apiResource('services', 'ServiceController');
 
 Route::get('servicess/{id}', 'ServiceController@index2');
 
+
 Route::post('request', 'ServiceRequestController@store')->middleware('auth:api');
 
 
@@ -80,6 +81,9 @@ Route::get('cat-requests/{id}', 'ServiceRequestController@serviceCategory');
 
 //bid on a project
 Route::post('bid', 'ServiceRequestController@offer')->middleware('auth:api');
+
+//make offer by user to a service provider
+Route::post('make-offer', 'ServiceRequestController@makeOffer')->middleware('auth:api');
 
 /**
  * get user requests

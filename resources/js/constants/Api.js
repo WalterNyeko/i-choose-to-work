@@ -18,4 +18,5 @@ export const Api = {
     MANAGE_TASKS: '/api/services/user/requests',
     MANAGE_BIDDERS: '/api/my-offers',
     MANAGE_ACTIVE_BIDS: '/api/my-offers',
+    MAKE_OFFER_TO_SERVICE_PROVIDER: '/api/make-offer',
 }
