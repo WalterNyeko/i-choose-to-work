@@ -132,3 +132,14 @@ export const searchKey = (key) => dispatch => {
             dispatch(failServices(errors))
         })
 }
+
+export const getRequestService = (id) => dispatch => {
+    dispatch(startRequest());
+    axios.get(`/api/all-requests/${id}`)
+        .then((res) => {
+            dispatch(successFetch(res.data))
+        })
+        .catch((err) => {
+            dispatch(fetchErrors(err))
+        })
+}

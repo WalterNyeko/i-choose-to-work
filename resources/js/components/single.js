@@ -15,7 +15,7 @@ const Single = (props) => {
                     <li><i className="icon-material-outline-location-on"></i> {props.address ? props.address : 'Address'}</li>
                     <li><i className="icon-material-outline-access-time"></i> {props.createdAt}</li>
                 </ul>
-                < p class = "task-listing-text" >{props.description}</p>
+                < p className = "task-listing-text" >{props.description}</p>
                 <div className="task-tags">
                    Delivery date: <span>{props.date}</span>
                 </div>
