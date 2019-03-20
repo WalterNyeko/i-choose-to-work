@@ -6,13 +6,15 @@ import 'antd/dist/antd.min.css'
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import {register} from '../../../store/actions/auth/registerAction'
+import LocationSearch from '../../LocationSearch';
 
 class GeneralRegistration extends Component {
   constructor(props) {
     super(props)
   
     this.state = {
-        errors: []
+        errors: [],
+        address: ''
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleConfirmBlur = this.handleConfirmBlur.bind(this);
@@ -43,6 +45,7 @@ class GeneralRegistration extends Component {
               password: values.password,
               name: values.name,
               phone: values.phone,
+              address: this.state.address,
             //   password_confirmation: values.confirmed,
               role: 'public'
             }
@@ -183,6 +186,14 @@ class GeneralRegistration extends Component {
                                 
                             </div>
 
+                            <Form.Item>
+                                {getFieldDecorator('address', {
+                                })(
+                                    <LocationSearch searchLocation={(value) => this.setState({
+                                        address: value
+                                    })}/>
+                                )}
+                            </Form.Item>
                             
 
                             
