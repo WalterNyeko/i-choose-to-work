@@ -159,7 +159,7 @@ const DashboardReviews = (props) => {
                   </div>
                 </div>
               </div>
-              <LeaveReviewModal 
+              <EditReviewModal 
                   buttonText="Edit Review"
                   modalTitle="Rate The Service"
                   submitText="Save Changes"
@@ -199,7 +199,7 @@ const DashboardReviews = (props) => {
                   </div>
                 </div>
               </div>
-              <LeaveReviewModal 
+              <EditReviewModal 
                   buttonText="Edit Review"
                   modalTitle="Rate The Service"
                   submitText="Save Changes"
@@ -322,7 +322,7 @@ const DashboardReviews = (props) => {
                   </div>
                 </div>
               </div>
-              <LeaveReviewModal 
+              <EditReviewModal 
                   buttonText="Edit Review"
                   modalTitle="Rate The Service"
                   submitText="Save Changes"
@@ -362,10 +362,10 @@ const DashboardReviews = (props) => {
                   </div>
                 </div>
               </div>
-              <LeaveReviewModal 
+              <EditReviewModal 
                   buttonText="Edit Review"
                   modalTitle="Rate The Service"
-                  submitText="Save Changes"
+                  submitText="Save Changes 1"
                   handleCancelModal={props.handleCancelModal}
                   showModal={props.showModal}
                   handleSubmit={props.handleEditReview}
@@ -379,15 +379,15 @@ const DashboardReviews = (props) => {
                     props.body
                   )}
                 />
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div>
-      <div>
-      </div>
-      <div>
-      <div>
+              </li>
+            </ul>
+          </div>
+          </div>
+          <div>
+          <div>
+          </div>
+          <div>
+          <div>
         </div>
         </div>
         </div>

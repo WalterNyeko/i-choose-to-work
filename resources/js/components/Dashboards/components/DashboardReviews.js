@@ -26,7 +26,7 @@ class DashboardReviews extends Component {
     }
 
     retrieveEmployersServices(){
-      const url = Api.MANAGE_TASKS;
+      const url = Api.EMPLOYERS_REQUESTS;
       const requestHeader = {
           headers: {
               "content-type": "application/json",
@@ -37,7 +37,7 @@ class DashboardReviews extends Component {
     }
 
     retrieveFreelancersServices(){
-      const url = Api.MANAGE_TASKS;
+      const url = Api.MY_REQUESTS;
       const requestHeader = {
           headers: {
               "content-type": "application/json",
