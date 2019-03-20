@@ -2,73 +2,154 @@ import React from "react";
 import DashboardLayout from "../layout/DashboardLayout";
 import EditReviewModal from './EditReviewModal';
 import LeaveReviewModal from './LeaveReviewModal';
+import StarRatingComponent from 'react-star-rating-component';
+import '../../../assets/styles/modal.css';
+import { Tabs } from 'antd';
+const TabPane = Tabs.TabPane;
+
+
+
+function renderModalContent(title,handleInputChange, rating, onStarClick, body) {
+  return (
+    <div>
+      {/* <!-- Form -->*/}
+      <form method="post" id="leave-review-form">
+              <div class="feedback-yes-no">
+                  <strong>
+                      What is the title of the work done?
+                  </strong>
+                  <div class="mt-4">
+                      <input
+                          id="title"
+                          name="title"
+                          type="text"
+                          value={title}
+                          placeholder="Title of work"
+                          onChange={handleInputChange}
+                          required
+                      />
+                  </div>
+
+                  
+              </div>
+
+              <div class="feedback-yes-no">
+                  <strong>Your Rating</strong>
+                  <div class="leave-rating">
+                  <StarRatingComponent 
+                      name="Your Review" 
+                      starCount={5}
+                      value={rating}
+                      onStarClick={onStarClick}
+                  />
+                  </div>
+                  <div class="clearfix" />
+              </div>
+              <textarea
+                  class="with-border"
+                  placeholder="This was my review text"
+                  name="body"
+                  id="message2"
+                  cols="7"
+                  value={body}
+                  onChange={handleInputChange}
+                  required
+              >
+              {body}
+              </textarea>
+          </form>
+    </div>
+  )
+}
 
 const DashboardReviews = (props) => {
   return (
     <div>
       <DashboardLayout>
-        <div>
+      <Tabs type="card">
+      <TabPane tab="Rate Employers" key="1">
+      <div>
           {/**Reviews content start */}
 
         {/*<!-- Headline -->*/}
-        <div class="headline">
+        <div className="headline">
           <h3>
-            <i class="icon-material-outline-business" /> Rate Employers
+            <i className="icon-material-outline-business" /> Rate Employers Services
           </h3>
         </div>
 
-        <div class="content">
-          <ul class="dashboard-box-list">
+        <div className="content">
+          <ul className="dashboard-box-list">
             <li>
-              <div class="boxed-list-item">
+              <div className="boxed-list-item">
                 {/*<!-- Content -->*/}
-                <div class="item-content">
+                <div className="item-content">
                   <h4>Simple Chrome Extension</h4>
-                  <span class="company-not-rated margin-bottom-5">
+                  <span className="company-not-rated margin-bottom-5">
                     Not Rated
                   </span>
                 </div>
               </div>
-              
-              <a
-                href="#small-dialog-2"
-                class="popup-with-zoom-anim button ripple-effect margin-top-5 margin-bottom-10"
-              >
-                <i class="icon-material-outline-thumb-up" />
-                <span className="text-white">Leave a Review{" "}</span>
-              </a>
+                <LeaveReviewModal 
+                  buttonText="Leave a Review"
+                  modalTitle="Rate The Service"
+                  submitText="Submit Review"
+                  handleCancelModal={props.handleCancelModal}
+                  showModal={props.showModal}
+                  handleSubmit={props.handleSubmit}
+                  visible={props.visible}
+                  loading={props.loading}
+                  modalBody={renderModalContent(
+                    props.title,
+                    props.handleInputChange,
+                    props.rating,
+                    props.onStarClick,
+                    props.body
+                  )}
+                />
             </li>
             <li>
-              <div class="boxed-list-item">
+              <div className="boxed-list-item">
                 {/*  <!-- Content -->*/}
-                <div class="item-content">
+                <div className="item-content">
                   <h4>Adsense Expert</h4>
-                  <span class="company-not-rated margin-bottom-5">
+                  <span className="company-not-rated margin-bottom-5">
                     Not Rated
                   </span>
                 </div>
               </div>
-
-              <a
-                href="#small-dialog-2"
-                class="popup-with-zoom-anim button ripple-effect margin-top-5 margin-bottom-10"
-              >
-                <i class="icon-material-outline-thumb-up" /> Leave a Review
-              </a>
+                    
+              <LeaveReviewModal 
+                  buttonText="Leave a Review"
+                  modalTitle="Rate The Service"
+                  submitText="Submit Review"
+                  handleCancelModal={props.handleCancelModal}
+                  showModal={props.showModal}
+                  handleSubmit={props.handleSubmit}
+                  visible={props.visible}
+                  loading={props.loading}
+                  modalBody={renderModalContent(
+                    props.title,
+                    props.handleInputChange,
+                    props.rating,
+                    props.onStarClick,
+                    props.body
+                  )}
+                />
             </li>
             <li>
-              <div class="boxed-list-item">
+              <div className="boxed-list-item">
                 {/* <!-- Content -->*/}
-                <div class="item-content">
+                <div className="item-content">
                   <h4>Fix Python Selenium Code</h4>
-                  <div class="item-details margin-top-10">
-                    <div class="star-rating" data-rating="5.0" />
-                    <div class="detail-item">
-                      <i class="icon-material-outline-date-range" />
+                  <div className="item-details margin-top-10">
+                    <div className="star-rating" data-rating="5.0" />
+                    <div className="detail-item">
+                      <i className="icon-material-outline-date-range" />
                       May 2018
                     </div>
                   </div>
-                  <div class="item-description">
+                  <div className="item-description">
                     <p>
                       Great clarity in specification and communication. I got
                       payment really fast. Really recommend this employer for
@@ -78,26 +159,37 @@ const DashboardReviews = (props) => {
                   </div>
                 </div>
               </div>
-              <a
-                href="#small-dialog-1"
-                class="popup-with-zoom-anim button gray ripple-effect margin-top-5 margin-bottom-10"
-              >
-                <i class="icon-feather-edit" /> Edit Review
-              </a>
+              <LeaveReviewModal 
+                  buttonText="Edit Review"
+                  modalTitle="Rate The Service"
+                  submitText="Save Changes"
+                  handleCancelModal={props.handleCancelModal}
+                  showModal={props.showModal}
+                  handleSubmit={props.handleEditReview}
+                  visible={props.visible}
+                  loading={props.loading}
+                  modalBody={renderModalContent(
+                    props.title,
+                    props.handleInputChange,
+                    props.rating,
+                    props.onStarClick,
+                    props.body
+                  )}
+                />
             </li>
             <li>
-              <div class="boxed-list-item">
+              <div className="boxed-list-item">
                 {/*<!-- Content -->*/}
-                <div class="item-content">
+                <div className="item-content">
                   <h4>PHP Core Website Fixes</h4>
-                  <div class="item-details margin-top-10">
-                    <div class="star-rating" data-rating="5.0" />
-                    <div class="detail-item">
-                      <i class="icon-material-outline-date-range" />
+                  <div className="item-details margin-top-10">
+                    <div className="star-rating" data-rating="5.0" />
+                    <div className="detail-item">
+                      <i className="icon-material-outline-date-range" />
                       May 2018
                     </div>
                   </div>
-                  <div class="item-description">
+                  <div className="item-description">
                     <p>
                       Great clarity in specification and communication. I got
                       payment really fast. Really recommend this employer for
@@ -107,138 +199,202 @@ const DashboardReviews = (props) => {
                   </div>
                 </div>
               </div>
-              <a
-                href="#small-dialog-1"
-                class="popup-with-zoom-anim button gray ripple-effect margin-top-5 margin-bottom-10"
-              >
-                <i class="icon-feather-edit" /> Edit Review
-              </a>
+              <LeaveReviewModal 
+                  buttonText="Edit Review"
+                  modalTitle="Rate The Service"
+                  submitText="Save Changes"
+                  handleCancelModal={props.handleCancelModal}
+                  showModal={props.showModal}
+                  handleSubmit={props.handleEditReview}
+                  visible={props.visible}
+                  loading={props.loading}
+                  modalBody={renderModalContent(
+                    props.title,
+                    props.handleInputChange,
+                    props.rating,
+                    props.onStarClick,
+                    props.body
+                  )}
+                />
             </li>
           </ul>
         </div>
       </div>
-      
-
       <div>
-        <div>
-          {/* <!-- Pagination -->*/}
-          <div class="clearfix" />
-          <div class="pagination-container margin-top-40 margin-bottom-0">
-            <nav class="pagination">
-              <ul>
-                <li>
-                  <a href="#" class="ripple-effect current-page">
-                    1
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="ripple-effect">
-                    2
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="ripple-effect">
-                    3
-                  </a>
-                </li>
-                <li class="pagination-arrow">
-                  <a href="#" class="ripple-effect">
-                    <i class="icon-material-outline-keyboard-arrow-right" />
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-          <div class="clearfix" />
-          {/* <!-- Pagination / End -->*/}
+      <div>
+      </div>
+      <div>
+      <div>
+        </div>
+        </div>
+        </div>
+      
+      </TabPane>
+      <TabPane tab="Rate Freelancers" key="2">
+      <div>
+          {/**Reviews content start */}
+
+        {/*<!-- Headline -->*/}
+        <div className="headline">
+          <h3>
+            <i className="icon-material-outline-business" /> Rate Freelancer Services
+          </h3>
         </div>
 
-        {/*<!-- Dashboard Box -->*/}
-        <div class="col-xl-6">
-          <div class="dashboard-box margin-top-0">
-            {/* <!-- Headline -->*/}
-            <div class="headline">
-              <h3>
-                <i class="icon-material-outline-face" /> Rate Freelancers
-              </h3>
-            </div>
-
-            <div class="content">
-              <ul class="dashboard-box-list">
-                <li>
-                  <div class="boxed-list-item">
-                    {/*<!-- Content -->*/}
-                    <div class="item-content">
-                      <h4>Simple Chrome Extension</h4>
-                      <span class="company-not-rated margin-bottom-5">
-                        Not Rated
-                      </span>
+        <div className="content">
+          <ul className="dashboard-box-list">
+            <li>
+              <div className="boxed-list-item">
+                {/*<!-- Content -->*/}
+                <div className="item-content">
+                  <h4>The fact that freelancers can tolerate the hustle, we need to rate them</h4>
+                  <span className="company-not-rated margin-bottom-5">
+                    Not Rated
+                  </span>
+                </div>
+              </div>
+                <LeaveReviewModal 
+                  buttonText="Leave a Review"
+                  modalTitle="Rate The Service"
+                  submitText="Submit Review"
+                  handleCancelModal={props.handleCancelModal}
+                  showModal={props.showModal}
+                  handleSubmit={props.handleSubmit}
+                  visible={props.visible}
+                  loading={props.loading}
+                  modalBody={renderModalContent(
+                    props.title,
+                    props.handleInputChange,
+                    props.rating,
+                    props.onStarClick,
+                    props.body
+                  )}
+                />
+            </li>
+            <li>
+              <div className="boxed-list-item">
+                {/*  <!-- Content -->*/}
+                <div className="item-content">
+                  <h4>Any freelancer here should be rated</h4>
+                  <span className="company-not-rated margin-bottom-5">
+                    Not Rated
+                  </span>
+                </div>
+              </div>
+                    
+              <LeaveReviewModal 
+                  buttonText="Leave a Review"
+                  modalTitle="Rate The Service"
+                  submitText="Submit Review"
+                  handleCancelModal={props.handleCancelModal}
+                  showModal={props.showModal}
+                  handleSubmit={props.handleSubmit}
+                  visible={props.visible}
+                  loading={props.loading}
+                  modalBody={renderModalContent(
+                    props.title,
+                    props.handleInputChange,
+                    props.rating,
+                    props.onStarClick,
+                    props.body
+                  )}
+                />
+            </li>
+            <li>
+              <div className="boxed-list-item">
+                {/* <!-- Content -->*/}
+                <div className="item-content">
+                  <h4>Fix Python Selenium Code</h4>
+                  <div className="item-details margin-top-10">
+                    <div className="star-rating" data-rating="5.0" />
+                    <div className="detail-item">
+                      <i className="icon-material-outline-date-range" />
+                      May 2018
                     </div>
                   </div>
-
-                  <a
-                    href="#small-dialog-2"
-                    class="popup-with-zoom-anim button ripple-effect margin-top-5 margin-bottom-10"
-                  >
-                    <i class="icon-material-outline-thumb-up" /> Leave a Review
-                  </a>
-                </li>
-
-                <li>
-                  <div class="boxed-list-item">
-                    {/* <!-- Content -->*/}
-                    <div class="item-content">
-                      <h4>Help Fix Laravel PHP issue</h4>
-                      <div class="item-details margin-top-10">
-                        <div class="star-rating" data-rating="5.0" />
-                        <div class="detail-item">
-                          <i class="icon-material-outline-date-range" />
-                          August 2018
-                        </div>
-                      </div>
-                      <div class="item-description">
-                        <p>
-                          Excellent programmer - helped me fixing small issue.
-                        </p>
-                      </div>
+                  <div className="item-description">
+                    <p>
+                      Great clarity in specification and communication. I got
+                      payment really fast. Really recommend this employer for
+                      his professionalism. I will work for him again with
+                      pleasure.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <LeaveReviewModal 
+                  buttonText="Edit Review"
+                  modalTitle="Rate The Service"
+                  submitText="Save Changes"
+                  handleCancelModal={props.handleCancelModal}
+                  showModal={props.showModal}
+                  handleSubmit={props.handleEditReview}
+                  visible={props.visible}
+                  loading={props.loading}
+                  modalBody={renderModalContent(
+                    props.title,
+                    props.handleInputChange,
+                    props.rating,
+                    props.onStarClick,
+                    props.body
+                  )}
+                />
+            </li>
+            <li>
+              <div className="boxed-list-item">
+                {/*<!-- Content -->*/}
+                <div className="item-content">
+                  <h4>PHP Core Website Fixes</h4>
+                  <div className="item-details margin-top-10">
+                    <div className="star-rating" data-rating="5.0" />
+                    <div className="detail-item">
+                      <i className="icon-material-outline-date-range" />
+                      May 2018
                     </div>
                   </div>
-                  <a
-                    href="#small-dialog-1"
-                    class="popup-with-zoom-anim button gray ripple-effect margin-top-5 margin-bottom-10"
-                  >
-                    <i class="icon-feather-edit" /> Edit Review
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
+                  <div className="item-description">
+                    <p>
+                      Great clarity in specification and communication. I got
+                      payment really fast. Really recommend this employer for
+                      his professionalism. I will work for him again with
+                      pleasure.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <LeaveReviewModal 
+                  buttonText="Edit Review"
+                  modalTitle="Rate The Service"
+                  submitText="Save Changes"
+                  handleCancelModal={props.handleCancelModal}
+                  showModal={props.showModal}
+                  handleSubmit={props.handleEditReview}
+                  visible={props.visible}
+                  loading={props.loading}
+                  modalBody={renderModalContent(
+                    props.title,
+                    props.handleInputChange,
+                    props.rating,
+                    props.onStarClick,
+                    props.body
+                  )}
+                />
+            </li>
+          </ul>
         </div>
-          {/**Reviews content ends */}
-
-        <div>
-        <div>
-
-       < EditReviewModal 
-        title={props.title}
-        body={props.body}
-        rating={props.rating}
-        handleInputChange={props.handleInputChange}
-        handleEditReview={props.handleEditReview}
-        onStarClick={props.onStarClick}/>
-
-       < LeaveReviewModal 
-        title={props.title}
-        body={props.body}
-        rating={props.rating}
-        handleInputChange={props.handleInputChange}
-        handleSubmit={props.handleSubmit}
-        onStarClick={props.onStarClick}/>
-
+      </div>
+      <div>
+      <div>
+      </div>
+      <div>
+      <div>
         </div>
         </div>
         </div>
-      </DashboardLayout>
+      
+      </TabPane>
+    </Tabs>
+        </DashboardLayout>
       
     </div>
   );

@@ -19,4 +19,5 @@ export const Api = {
     MANAGE_BIDDERS: '/api/my-offers',
     MANAGE_ACTIVE_BIDS: '/api/my-offers',
     MAKE_OFFER_TO_SERVICE_PROVIDER: '/api/make-offer',
+    UNCANCELLED_SERVICES: '/api/services/requests/false/cancelled'
 }
