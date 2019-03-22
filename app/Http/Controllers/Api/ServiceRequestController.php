@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\ServiceRequestRequest;
 use App\Http\Resources\ServiceRequestCollection;
+use App\Models\Service;
 use App\Models\ServiceCategory;
 use App\ServiceRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -166,34 +167,6 @@ class ServiceRequestController extends ApiBaseController
     }
 
     /**
-     * Service Request Acceptance
-     *
-     * @param Request $request
-     * @return ServiceRequestResource|\Illuminate\Http\JsonResponse
-     */
-    public function acceptRequest(Request $request)
-    {
-
-        try {
-
-            $serviceRequest = '';
-            $serviceRequestId = ServiceRequest::whereId($request->id)->update(['acceptance' => 1]);
-            if ($serviceRequestId) {
-                /* Return the service request that has been cancelled */
-                $serviceRequest = ServiceRequest::find($request->id);
-            } else {
-                return response()->json(['message' => 'No service request specified']);
-            }
-
-            return new ServiceRequestResource($serviceRequest);
-
-        } catch (\Exception $e) {
-            return response()->json(['message' => 'Service request acceptance failed']);
-        }
-
-    }
-
-    /**
      * Get Service Requests For Logged In User
      *
      * @param Request $request
@@ -217,6 +190,20 @@ class ServiceRequestController extends ApiBaseController
     {
         $serviceCategory = ServiceCategory::findOrFail($category);
         $serviceRequests = $serviceCategory->serviceRequests;
+        // dd($serviceRequests);
+        return new ServiceRequestCollection($serviceRequests);
+    }
+
+    /**
+     * Get Service Requests for a service
+     * @param Request $request
+     * @param $category
+     * @return ServiceRequestCollection
+     */
+    public function serviceServiceRequests(Request $request, $service)
+    {
+        $service = Service::findOrFail($service);
+        $serviceRequests = $service->requests;
         // dd($serviceRequests);
         return new ServiceRequestCollection($serviceRequests);
     }

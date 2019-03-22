@@ -165,12 +165,13 @@ Route::namespace('Api')->group(function () {
     Route::get('services/user/requests','ServiceRequestController@userServiceRequests')->middleware('auth:api');
     Route::get('services/recent/requests', 'ServiceRequestController@recentServiceRequests');
     Route::get('services/{category}/requests', 'ServiceRequestController@categoryServiceRequests');
+    Route::get('services/requests/service/{service}', 'ServiceRequestController@serviceServiceRequests');
 
     // Cancelled/Not Service Requests
     Route::get('services/requests/true/cancelled', 'ServiceRequestController@cancelledServiceRequests');
     Route::get('services/requests/false/cancelled', 'ServiceRequestController@notCancelledServiceRequests');
-    Route::post('services/requests/cancelled', 'ServiceRequestController@cancelRequest');
-    Route::post('services/requests/acceptance', 'ServiceRequestController@acceptRequest');
+    Route::post('services/requests/cancelled', 'ServiceRequestController@cancelRequest')
+        ->middleware('auth:api', 'check-permissions');
 
     // Filters
     Route::get('services/filters/providers', 'ServiceProviderFilterController@index');
@@ -189,6 +190,8 @@ Route::namespace('Api')->group(function () {
 
     // Service Delivery Offers
     Route::get('delivery/recent/offers', 'ServiceDeliveryOfferController@recentOffers');
+    Route::post('delivery/offers/acceptance', 'ServiceDeliveryOfferController@acceptDeliveryOffer')
+        ->middleware('auth:api', 'check-permissions');
 
 });
 
