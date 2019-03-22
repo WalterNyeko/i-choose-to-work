@@ -4,6 +4,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Models\ServiceCategory;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,6 +27,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     } 
     
 });
+
+//test sms 
+Route::post('send', 'ServiceRequestController@sendSmso');
 
 //auth routes
 Route::group(['prefix' => 'auth'], function () {

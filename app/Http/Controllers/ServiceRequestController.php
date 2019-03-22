@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Utils\SendSms;
 use App\Models\Service;
 use App\ServiceRequest;
 use Illuminate\Http\Request;
@@ -13,12 +14,18 @@ use App\Notifications\RequestNotification;
 
 class ServiceRequestController extends Controller
 {
+    use SendSms;
     /**
      * return the page for categories and service for the user to select 
      */
     public function index()
     {
         return view('services.index');
+    }
+
+    public function sendSmso(Request $req)
+    {
+        $this->send('+25678676031', 'test message');
     }
 
     /**

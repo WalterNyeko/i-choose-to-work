@@ -126,7 +126,7 @@ class ProviderServices extends Component {
     const prefixSelector = getFieldDecorator('prefix', {
       initialValue: 'years',
     })(
-      <Select style={{ width: 85 }} onChange={(value) => console.log(value)}>
+      <Select style={{ width: 85 }} onClick={(value) => console.log(value)}>
         <Option value="years">Years</Option>
         <Option value="months">Months</Option>
         <Option value="weeeks">Weeks</Option>
