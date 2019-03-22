@@ -220,6 +220,8 @@ class ServiceRequestController extends Controller
         //also sms notifications will come here
         \Notification::route('mail', $user->email)
             ->notify(new RequestNotification());
+
+        $this->send($user->bioProfile->phone_number, 'You have a service request offer');
         
 
         return $offer;
