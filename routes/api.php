@@ -4,6 +4,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Models\ServiceCategory;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,6 +27,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     } 
     
 });
+
+//test sms 
+Route::post('send', 'ServiceRequestController@sendSmso');
 
 //auth routes
 Route::group(['prefix' => 'auth'], function () {
@@ -65,6 +69,7 @@ Route::apiResource('services', 'ServiceController');
 
 Route::get('servicess/{id}', 'ServiceController@index2');
 
+
 Route::post('request', 'ServiceRequestController@store')->middleware('auth:api');
 
 
@@ -80,6 +85,9 @@ Route::get('cat-requests/{id}', 'ServiceRequestController@serviceCategory');
 
 //bid on a project
 Route::post('bid', 'ServiceRequestController@offer')->middleware('auth:api');
+
+//make offer by user to a service provider
+Route::post('make-offer', 'ServiceRequestController@makeOffer')->middleware('auth:api');
 
 /**
  * get user requests
@@ -97,7 +105,7 @@ Route::group(['prefix' => 'profile'], function () {
      * entire profile
      */
     Route::get('/{id}', function ($id) {
-        $user = User::with(['education', 'skills', 'bioProfile', 'experience', 'services', 'serviceRequests'])->find($id);
+        $user = User::with(['bioProfile', 'services', 'serviceRequests'])->find($id);
         return response()->json($user);
     });
     /**
@@ -139,40 +147,52 @@ Route::get('/categories-wth-request/{id}', function ($id) {
 
 Route::namespace('Api')->group(function () {
 
-    /* Search Api Routes */
+    // Search Api
     Route::prefix('search')->group(function () {
         Route::get('services', 'SearchServiceController@search');
         Route::get('services/requests/', 'SearchServiceRequestController@search');
+        Route::get('services/requests/location', 'SearchServiceRequestController@searchByLocation');
+        Route::get('services/requests/any', 'SearchServiceRequestController@searchByAnything');
     });
 
-    /* Partner Routes */
+    // Partner
     Route::get('partners', 'PartnerController@index');
     Route::get('partners/{id}', 'PartnerController@show');
 
-    /* Service Requests Routes */
+    // Service Requests
     Route::get('services/requests/{id}', 'ServiceRequestController@show');
     Route::post('services/requests', 'ServiceRequestController@store')->middleware('auth:api');
     Route::get('services/user/requests','ServiceRequestController@userServiceRequests')->middleware('auth:api');
+    Route::get('services/recent/requests', 'ServiceRequestController@recentServiceRequests');
     Route::get('services/{category}/requests', 'ServiceRequestController@categoryServiceRequests');
+    Route::get('services/requests/service/{service}', 'ServiceRequestController@serviceServiceRequests');
 
-    /* Cancelled/Not Service Requests Routes */
+    // Cancelled/Not Service Requests
     Route::get('services/requests/true/cancelled', 'ServiceRequestController@cancelledServiceRequests');
     Route::get('services/requests/false/cancelled', 'ServiceRequestController@notCancelledServiceRequests');
-    Route::post('services/requests/cancelled', 'ServiceRequestController@cancelRequest');
-    Route::post('services/requests/acceptance', 'ServiceRequestController@acceptRequest');
+    Route::post('services/requests/cancelled', 'ServiceRequestController@cancelRequest')
+        ->middleware('auth:api', 'check-permissions');
 
-    /* Filters */
+    // Filters
     Route::get('services/filters/providers', 'ServiceProviderFilterController@index');
     Route::get('services/filters/requests', 'ServiceProviderFilterController@filterServiceRequest');
     Route::get('services/filters/location', 'ServiceProviderFilterController@filterServiceProvidersInParticularLocation');
 
-    /* User Profiles */
+    // User Profiles
     Route::post('user/password/update', 'BioProfileController@updatePassword')->middleware('auth:api');
     Route::post('user/profile/update','BioProfileController@updateBioProfile')->middleware('auth:api');
 
-    /* Ratings */
+    // Ratings
     Route::post('ratings','ReviewController@store')->middleware('auth:api');
     Route::get('ratings/{id}', 'ReviewController@ratingPercentage');
+    Route::get('ratings/average/{id}', 'ReviewController@averageRating');
+    Route::get('ratings/count/{id}', 'ReviewController@countRating');
+
+    // Service Delivery Offers
+    Route::get('delivery/recent/offers', 'ServiceDeliveryOfferController@recentOffers');
+    Route::post('delivery/offers/acceptance', 'ServiceDeliveryOfferController@acceptDeliveryOffer')
+        ->middleware('auth:api', 'check-permissions');
+
 });
 
 

@@ -6,6 +6,8 @@ import {getServices, getServiceCategory, searchServices} from '../../store/actio
 import AllServices from '../../components/services/AllServices/allServices';
 import Search from '../../components/search';
 import SearchFilter from '../../components/search';
+import {Spin} from 'antd'
+import 'antd/dist/antd.min';
 
 class MakeRequest extends Component {
   constructor(props) {
@@ -78,7 +80,12 @@ class MakeRequest extends Component {
               </div>
               <div className="col-md-9">
                 <div className="row">
+                  {this.props.loadingServices && <><Spin size="large" /> <br/></>}
+                  {this.state.services.length ? 
                   <AllServices services={this.state.services} goTo={(id) => this.goToRequest(id)}/>
+                  :
+                  <h2>No search results</h2>
+                  }
                 </div>
               </div>
             </div>
@@ -91,6 +98,7 @@ const mapStateToProps = state => ({
   loading: state.categories.loading,
   categories: state.categories.cats,
   errors: state.categories.errors,
-  services: state.services.services
+  services: state.services.services,
+  loadingServices: state.services.loading
 })
 export default connect(mapStateToProps, {getCategories, getServices, getServiceCategory, searchServices})(MakeRequest)

@@ -23,7 +23,11 @@ import ServiceSearch from '../../components/search/ServiceSearch';
 import ProviderProfile from '../../components/serviceProviders/ProviderProfile';
 import DashboardLandingPage from '../../components/Dashboards/containers/DashboardLandingPage';
 import DashboardBookmarks from '../../components/Dashboards/containers/DashboardBookmarks';
+<<<<<<< HEAD
 import DashboardReviews from '../../components/Dashboards/components/DashboardReviews';
+=======
+import DashboardReviews from '../../components/Dashboards/containers/DashboardReviews';
+>>>>>>> master
 import DashboardManageTasks from '../../components/Dashboards/components/DashboardManageTasks';
 import DashboardManageBidders from '../../components/Dashboards/components/DashboardManageBidders';
 import DashboardActiveBids from '../../components/Dashboards/components/DashboardActiveBids';

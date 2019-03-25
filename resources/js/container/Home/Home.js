@@ -35,7 +35,6 @@ class Home extends Component {
           nextProps.services.map((serv) => this.setState(prev => ({
               services: [...prev.services, serv.name]
           })))
-          console.log(this.state.services)
       }
   }
 

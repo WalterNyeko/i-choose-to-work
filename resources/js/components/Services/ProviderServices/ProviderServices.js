@@ -22,6 +22,7 @@ class ProviderServices extends Component {
   
     this.state = {
        isAvailable: true,
+       experience_type: ''
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -106,6 +107,7 @@ class ProviderServices extends Component {
                   billing_rate_per_hour: values.billing === undefined ? 0 : values.billing,
                   experience_in_months: values.experience,
                   isAvailable: this.state.isAvailable,
+                  experience_type: this.state.experience_type
               }
               this.props.saveService(data);
               const { form: { resetFields } } = this.props;
@@ -124,7 +126,7 @@ class ProviderServices extends Component {
     const prefixSelector = getFieldDecorator('prefix', {
       initialValue: 'years',
     })(
-      <Select style={{ width: 85 }}>
+      <Select style={{ width: 85 }} onClick={(value) => console.log(value)}>
         <Option value="years">Years</Option>
         <Option value="months">Months</Option>
         <Option value="weeeks">Weeks</Option>

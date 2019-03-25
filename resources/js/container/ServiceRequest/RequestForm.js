@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import { DatePicker, notification, Spin, Select } from 'antd';
-import 'antd/dist/antd.min';
+import { DatePicker, notification, Spin, Select, Form } from 'antd';
+import 'antd/dist/antd.css';
 import {fetchQuestions} from '../../store/actions/questions/questionsAction'
 import Questions from '../../components/question/questions';
 import moment from 'moment';
@@ -19,7 +19,7 @@ const {
 
 const Option = Select.Option;
 
-class RequestForm extends Component {
+class RequestFormo extends Component {
   constructor(props) {
     super(props)
   
@@ -40,6 +40,10 @@ class RequestForm extends Component {
   componentDidMount() {
       const { match: { params } } = this.props;
       this.props.fetchQuestions(params.id);
+  }
+
+  componentWillMount() {
+      const { match: { params } } = this.props;
       this.props.getSingleService(params.id);
   }
 
@@ -47,9 +51,8 @@ class RequestForm extends Component {
       if(nextProps.service)
       {
         this.setState({
-            service: JSON.parse(sessionStorage.getItem('service'))
+            service: nextProps.service
         })  
-        console.log(this.state.service)
       }
   }
   
@@ -77,6 +80,7 @@ class RequestForm extends Component {
       this.setState({
           date: dateString
       })
+      console.log(this.state.date)
   }
 
   onChange(e)
@@ -130,7 +134,7 @@ class RequestForm extends Component {
               long: addressObject.geometry.viewport.ga.l,
           });
       }
-      //console.log(this.state.long)
+      console.log(this.state.address)
   }
 
   handleSubmit(e)
@@ -139,29 +143,33 @@ class RequestForm extends Component {
 
       const { match: { params }, history } = this.props;
 
-    const data = {
-        service_id: params.id,
-        address: this.state.address,
-        description: this.state.description,
-        expected_start_date: this.state.date,
-        payment_method: 'cash'
-    }
-    console.log(data);
-    this.props.postRequest(data);
-    if(!this.props.postErrors.length)
-    {
-        this.openNotification();
-        this.props.history.push(`${routes.SERVICE_PROVIDERS}/${params.id}`)
-    }
-    if(this.props.postErrors.length > 0)
-    {
-        alert('something went wrong')
-    }
+
+        this.props.form.validateFields((err, values) => {
+            if (!err) {
+                const data = {
+                    service_id: params.id,
+                    address: this.state.address,
+                    description: values.description,
+                    expected_start_date: this.state.date,
+                    payment_method: 'cash'
+                }
+                this.props.postRequest(data);
+                this.openNotification();
+                this.props.history.push(`${routes.SERVICE_PROVIDERS}/${params.id}`)
+                // console.log(data);
+            }
+        });
+    
+    // if(this.props.postErrors.length > 0)
+    // {
+    //     alert('something went wrong')
+    // }
   }
   
   
   render() {
-    const service = this.state.service
+    // const service = this.state.service
+    const {getFieldDecorator} = this.props.form;
     return (
       <div className="container">
         <div class="margin-top-30"></div>
@@ -171,43 +179,67 @@ class RequestForm extends Component {
             <div className="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        Request <span className="text-capitalize text-danger">{service.name}</span> expert
+                        Request  expert
                     </div>
                     <div className="card-body">
                         <form onSubmit={this.handleSubmit}>
                             <div className="form-group row">
                                 <label className="col-md-4 col-form-label text-md-right">Date</label>
-                                <div className="col-md-6">
-                                    <DatePicker style={{ width: '100%' }} onChange={this.onChangeDate} />
-                                </div>
+                                
+                                    <div className="col-md-6">
+                                        <Form.Item help="When do you need the service">
+                                            {getFieldDecorator('date', {
+                                                rules: [{ required: true, message: 'Please enter date you need the service!' }],
+                                            })(
+                                                <DatePicker style={{ width: '100%' }} onChange={this.onChangeDate} />
+                                            )}
+                                        </Form.Item>
+                                    </div>
                             </div>
                             <div className="form-group row">
                                 <label className="col-md-4 col-form-label text-md-right">Address</label>
                                 <div className="col-md-6">
-                                    <input type="text" id="autocomplete" required className="form-control" onChange={this.handlePlaceSelect} />
+                                    <Form.Item help="Please provide the location">
+                                        <input type="text" id="autocomplete"  className="form-control" onChange={this.handlePlaceSelect} />
+                                    </Form.Item>
                                 </div>
                             </div>
                             <div className="form-group row">
                                 <label className="col-md-4 col-form-label text-md-right">Payment method</label>
                                 <div className="col-md-6">
-                                    <Select
-                                        showSearch
-                                        style={{ width: '100%' }}
-                                        placeholder="Select a payment method"
-                                        optionFilterProp="children"
-                                        // onChange={handleChange}
-                                        // onFocus={handleFocus}
-                                        // onBlur={handleBlur}
-                                        filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
-                                    >
-                                        <Option value="cash">Cash</Option>
-                                    </Select>
+                                    <Form.Item help="How to pay service provider">
+                                        {getFieldDecorator('payment', {
+                                            rules: [{required: true, message: "Please select payment method"}],
+                                        })(
+                                            <Select
+                                                showSearch
+                                                style={{ width: '100%' }}
+                                                placeholder="Select a payment method"
+                                                optionFilterProp="children"
+                                                // onChange={handleChange}
+                                                // onFocus={handleFocus}
+                                                // onBlur={handleBlur}
+                                                filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+                                            >
+                                                <Option value="cash">Cash</Option>
+                                            </Select>
+                                        )}
+                                    </Form.Item>
                                 </div>
                             </div>
                             <div className="form-group row">
                                 <label className="col-md-4 col-form-label text-md-right">Description</label>
                                 <div className="col-md-6">
-                                    <textarea required className="form-control" name="description" onChange={this.onChange} placeholder="Give a description of the service you want to be provided"></textarea>
+                                   <Form.Item help="Please give extra description of what you want">
+                                        {getFieldDecorator('description', {
+                                            rules: [{required: true, message: 'Please provide more description'},
+                                                    {min: 20, message: 'Describe what you need in more than 20 words'}
+                                        ]
+                                        } )(
+                                            <textarea  className="form-control" name="description"  ></textarea>
+                                        )}
+                                   </Form.Item>
+                                    
                                 </div>
                             </div>
                             {this.props.questions.length ?
@@ -238,5 +270,7 @@ const mapStateToProps = state => ({
     postErrors: state.makeRequest.errors,
     service: state.services.service
 })
+
+const RequestForm = Form.create({name: 'request_form'})(RequestFormo)
 
 export default connect(mapStateToProps, {fetchQuestions, postRequest, getSingleService})(RequestForm)

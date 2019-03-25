@@ -1,6 +1,10 @@
 import React from 'react'
 import DashboardLayout from '../layout/DashboardLayout';
+<<<<<<< HEAD
 import { Link } from 'react-router-dom';
+=======
+import {Link} from 'react-router-dom';
+>>>>>>> master
 
 const DashboardManageTasks = ({handleInputChange, state, user}) => {
   return (
@@ -27,8 +31,7 @@ const DashboardManageTasks = ({handleInputChange, state, user}) => {
                                                 <div className="job-listing-description">
                                                     <h3 className="job-listing-title">
                                                         <a href="#">
-                                                            Design a Landing
-                                                            Page
+                                                            Task 1
                                                         </a>
                                                         <span className="dashboard-status-button yellow">
                                                             Expiring
@@ -54,21 +57,21 @@ const DashboardManageTasks = ({handleInputChange, state, user}) => {
                                                 <strong>3</strong>
                                                 <span>Bids</span>
                                             </li>
-                                            <li>
-                                                <strong>$22</strong>
-                                                <span>Avg. Bid</span>
-                                            </li>
-                                            <li>
-                                                <strong>$15 - $30</strong>
-                                                <span>Hourly Rate</span>
-                                            </li>
+                                            
                                         </ul>
 
                                         {/* <!-- Buttons -->*/}
+<<<<<<< HEAD
                                         <div className="buttons-to-right always-visible">
                                             <a
                                                 href="/dashboard/dashboardmanagebidders"
                                                 className="button ripple-effect"
+=======
+                                        <div class="buttons-to-right always-visible">
+                                            <Link
+                                                to="/dashboard/dashboardmanagebidders"
+                                                class="button ripple-effect"
+>>>>>>> master
                                             >
                                                 
 						                        <Link to="/dashboard/dashboardmanagebidders">
@@ -78,7 +81,7 @@ const DashboardManageTasks = ({handleInputChange, state, user}) => {
                                                 <span className="button-info">
                                                     3
                                                 </span>
-                                            </a>
+                                            </Link>
                                             <a
                                                 href="#"
                                                 className="button gray ripple-effect ico"
@@ -107,8 +110,7 @@ const DashboardManageTasks = ({handleInputChange, state, user}) => {
                                                 <div className="job-listing-description">
                                                     <h3 className="job-listing-title">
                                                         <a href="#">
-                                                            Food Delivery Mobile
-                                                            Application
+                                                           Task 2
                                                         </a>
                                                     </h3>
 
@@ -132,21 +134,28 @@ const DashboardManageTasks = ({handleInputChange, state, user}) => {
                                                 <strong>3</strong>
                                                 <span>Bids</span>
                                             </li>
-                                            <li>
+                                            {/* <li>
                                                 <strong>$3,200</strong>
                                                 <span>Avg. Bid</span>
                                             </li>
                                             <li>
                                                 <strong>$2,500 - $4,500</strong>
                                                 <span>Fixed Price</span>
-                                            </li>
+                                            </li> */}
                                         </ul>
 
                                         {/*<!-- Buttons -->*/}
+<<<<<<< HEAD
                                         <div className="buttons-to-right always-visible">
                                             <a
                                                 href="/"
                                                 className="button ripple-effect"
+=======
+                                        <div class="buttons-to-right always-visible">
+                                            <Link
+                                                to="/dashboard/dashboardmanagebidders"
+                                                class="button ripple-effect"
+>>>>>>> master
                                             >
                                                 <Link to="/dashboard/dashboardmanagebidders">
                                                     <span className="text-white">Manage Bidders{" "}</span>
@@ -154,7 +163,7 @@ const DashboardManageTasks = ({handleInputChange, state, user}) => {
                                                 <span className="button-info">
                                                     3
                                                 </span>
-                                            </a>
+                                            </Link>
                                             <a
                                                 href="#"
                                                 className="button gray ripple-effect ico"

@@ -13,6 +13,7 @@ import LocationSearch from '../../components/LocationSearch';
 import SearchFilter from '../../components/search';
 
 
+
 class ServiceProviders extends Component {
   constructor(props) {
     super(props)
@@ -24,6 +25,7 @@ class ServiceProviders extends Component {
     this.openNotification = this.openNotification.bind(this);
     this.hire = this.hire.bind(this);
     this.openSuccess = this.openSuccess.bind(this);
+    this.getUsersRating = this.getUsersRating.bind(this);
   }
 
   openNotification(){
@@ -43,6 +45,17 @@ class ServiceProviders extends Component {
       this.props.getProviders(params.id);
       this.openNotification();
       this.searchProvider = this.searchProvider.bind(this);
+  }
+
+  getUsersRating()
+  {
+    axios.get(`api/ratings/average/90`)
+      .then((res) => {
+        console.log(res.averageRate)
+      })
+      .catch((err) => {
+        return 0
+      })
   }
 
   componentWillReceiveProps(nextProps) {
@@ -85,7 +98,7 @@ class ServiceProviders extends Component {
   render() {
     let providers = null;
     if (this.props.providers.length) {
-        providers = this.state.providers.map((provider, i) => <ServiceProviderList name={provider.name} id={provider.id} hire={() => this.hire(provider.id)} address={provider.bio_profile.address} about={provider.bio_profile ? provider.bio_profile.description : 'Service provider' }/>)
+        providers = this.state.providers.map((provider, i) => <ServiceProviderList name={provider.name} rating={this.getUsersRating()} id={provider.id} hire={() => this.hire(provider.id)} address={provider.bio_profile.address} about={provider.bio_profile ? provider.bio_profile.description : 'Service provider' }/>)
     }
     else 
     {

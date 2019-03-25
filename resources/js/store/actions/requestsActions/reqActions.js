@@ -59,6 +59,8 @@ export const getSingleSucess = (request, customer, service) => {
         }
     }
 }
+
+//post a service request
 export const postRequest = (data) => dispatch => {
     dispatch(startRequest());
     const token = localStorage.getItem('token');
@@ -76,6 +78,7 @@ export const postRequest = (data) => dispatch => {
     })
 }
 
+//get all requests
 export const getReqests = () => dispatch => {
     dispatch(fetchStart())
     axios.get(Api.ALL_REQUESTS)
@@ -87,6 +90,7 @@ export const getReqests = () => dispatch => {
         })
 }
 
+//get requests by service categories
 export const getCateRequests = (id) => dispatch => {
     dispatch(fetchStart())
     axios.get(`${Api.CATEGORY_REQUESTS}/${id}`)
@@ -98,6 +102,7 @@ export const getCateRequests = (id) => dispatch => {
         })
 }
 
+//get a single request
 export const getSingleRequest = (id) => dispatch => {
     dispatch(startRequest())
     axios.get(`api/services/requests/${id}`)
@@ -106,5 +111,43 @@ export const getSingleRequest = (id) => dispatch => {
         })
         .catch((errors) => {
             dispatch(fetchErrors(errors))
+        })
+}
+
+//search requests by location
+export const searchServiceLocation = (key) => dispatch => {
+    dispatch(startRequest());
+    axios.get(`api/search/services/requests/location/?q=${key}`)
+        .then((res) => {
+            dispatch(successFetch(res.data.data))
+        })
+        .catch((err) => {
+            const errors = err;
+            dispatch(failServices(errors))
+        })
+}
+
+//search requests by keyword
+export const searchKey = (key) => dispatch => {
+    dispatch(startRequest());
+    axios.get(`api/search/services/requests/?q=${key}`)
+        .then((res) => {
+            dispatch(successFetch(res.data.data))
+        })
+        .catch((err) => {
+            const errors = err;
+            dispatch(failServices(errors))
+        })
+}
+
+//get requests by service
+export const getRequestService = (id) => dispatch => {
+    dispatch(startRequest());
+    axios.get(`/api/all-requests/${id}`)
+        .then((res) => {
+            dispatch(successFetch(res.data))
+        })
+        .catch((err) => {
+            dispatch(fetchErrors(err))
         })
 }

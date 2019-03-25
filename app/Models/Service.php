@@ -70,4 +70,26 @@ class Service extends Model
     {
         return 'services_index';
     }
+
+    /**
+     * Get the service image
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getImageAttribute($value)
+    {
+        return env('APP_URL').'/'.$value;
+    }
+
+    /**
+     * Get the service description.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getDescriptionAttribute($value)
+    {
+        return strip_tags($value);
+    }
 }

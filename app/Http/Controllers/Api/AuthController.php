@@ -45,7 +45,8 @@ class AuthController extends Controller
             //
             $user->bioProfile()->create([
                 'profile_pic' => 'user.png',
-                'phone_number' => $request->phone
+                'phone_number' => $request->phone,
+                'address' => $request->address
             ]);
 
             if($data['role'] === 'public')

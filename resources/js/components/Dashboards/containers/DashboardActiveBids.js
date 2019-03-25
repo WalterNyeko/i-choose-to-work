@@ -23,7 +23,7 @@ const DashboardActiveBids = ({ handleInputChange, state, user}) => {
                   {/*<!-- Details -->*/}
                   <div class="job-listing-description">
                     <h3 class="job-listing-title">
-                      <a href="#">WordPress Guru Needed</a>
+                      <a href="#">Pet care</a>
                     </h3>
                   </div>
                 </div>
@@ -32,11 +32,11 @@ const DashboardActiveBids = ({ handleInputChange, state, user}) => {
               {/*<!-- Task Details -->*/}
               <ul class="dashboard-task-info">
                 <li>
-                  <strong>$40</strong>
-                  <span>Hourly Rate</span>
+                  <strong>UGX4000</strong>
+                  <span>Rate</span>
                 </li>
                 <li>
-                  <strong>2 Days</strong>
+                  <strong>9/04/2019</strong>
                   <span>Delivery Time</span>
                 </li>
               </ul>
@@ -107,98 +107,7 @@ const DashboardActiveBids = ({ handleInputChange, state, user}) => {
                 </a>
               </div>
             </li>
-            <li>
-              {/*<!-- Job Listing -->*/}
-              <div class="job-listing width-adjustment">
-                {/*<!-- Job Listing Details -->*/}
-                <div class="job-listing-details">
-                  {/*<!-- Details -->*/}
-                  <div class="job-listing-description">
-                    <h3 class="job-listing-title">
-                      <a href="#">Android and iOS React Appe</a>
-                    </h3>
-                  </div>
-                </div>
-              </div>
-
-              {/*<!-- Task Details -->*/}
-              <ul class="dashboard-task-info">
-                <li>
-                  <strong>$3,000</strong>
-                  <span>Fixed Price</span>
-                </li>
-                <li>
-                  <strong>21 Days</strong>
-                  <span>Delivery Time</span>
-                </li>
-              </ul>
-
-              {/*<!-- Buttons -->*/}
-              <div class="buttons-to-right always-visible">
-                <a
-                  href="#small-dialog"
-                  class="popup-with-zoom-anim button dark ripple-effect ico"
-                  title="Edit Bid"
-                  data-tippy-placement="top"
-                >
-                  <i class="icon-feather-edit" />
-                </a>
-                <a
-                  href="#"
-                  class="button red ripple-effect ico"
-                  title="Cancel Bid"
-                  data-tippy-placement="top"
-                >
-                  <i class="icon-feather-trash-2" />
-                </a>
-              </div>
-            </li>
-            <li>
-              {/*<!-- Job Listing -->*/}
-              <div class="job-listing width-adjustment">
-                {/*<!-- Job Listing Details -->*/}
-                <div class="job-listing-details">
-                  {/*<!-- Details -->*/}
-                  <div class="job-listing-description">
-                    <h3 class="job-listing-title">
-                      <a href="#">Write Simple Python Script</a>
-                    </h3>
-                  </div>
-                </div>
-              </div>
-
-              {/*<!-- Task Details -->*/}
-              <ul class="dashboard-task-info">
-                <li>
-                  <strong>$30</strong>
-                  <span>Hourly Rate</span>
-                </li>
-                <li>
-                  <strong>1 Day</strong>
-                  <span>Delivery Time</span>
-                </li>
-              </ul>
-
-              {/*<!-- Buttons -->*/}
-              <div class="buttons-to-right always-visible">
-                <a
-                  href="#small-dialog"
-                  class="popup-with-zoom-anim button dark ripple-effect ico"
-                  title="Edit Bid"
-                  data-tippy-placement="top"
-                >
-                  <i class="icon-feather-edit" />
-                </a>
-                <a
-                  href="#"
-                  class="button red ripple-effect ico"
-                  title="Cancel Bid"
-                  data-tippy-placement="top"
-                >
-                  <i class="icon-feather-trash-2" />
-                </a>
-              </div>
-            </li>
+          
           </ul>
         </div>
             {/**Active content ends */}

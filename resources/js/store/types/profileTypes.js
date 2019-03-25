@@ -1,0 +1,5 @@
+export const profileTypes = {
+    REQUEST_PROFILE: "REQUEST_PROFILE",
+    SUCCESS_PROFILE: "SUCCESS_PROFILE",
+    FAIL_PROFILE: "FAIL_PROFILE",
+}

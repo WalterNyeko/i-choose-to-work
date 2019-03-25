@@ -110,16 +110,16 @@
         //     });
         // });
 
-        // function close_user_dropdown() {
-        //     $('.header-notifications').removeClass("active");
-        // }
-        // var mouse_is_inside = false;
-        // $(".header-notifications").on("mouseenter", function () {
-        //     mouse_is_inside = true;
-        // });
-        // $(".header-notifications").on("mouseleave", function () {
-        //     mouse_is_inside = false;
-        // });
+        function close_user_dropdown() {
+            $('.header-notifications').removeClass("active");
+        }
+        var mouse_is_inside = false;
+        $(".header-notifications").on("mouseenter", function () {
+            mouse_is_inside = true;
+        });
+        $(".header-notifications").on("mouseleave", function () {
+            mouse_is_inside = false;
+        });
         $("body").mouseup(function () {
             if (!mouse_is_inside) close_user_dropdown();
         });

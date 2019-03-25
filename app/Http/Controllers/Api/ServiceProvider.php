@@ -51,7 +51,14 @@ class ServiceProvider extends Controller
         {
             $user = $request->user();
 
-            $user->services()->attach($request->serviceId, $inputs);
+            if($user->hasRole('provider'))
+            {
+                $user->services()->attach($request->serviceId, $inputs);
+            }
+            else {
+                $user->assignRole(['provider']);
+                $user->services()->attach($request->serviceId, $inputs);
+            }
 
             return $user->services()->get();
         }
