@@ -141,13 +141,11 @@ const DashboardSettings = ({
                               className="ripple-effect-dark"
                             >
                               <i className="icon-material-outline-business-center" />
-<<<<<<< HEAD
                               <Link to="/dashboard/dashboardmanagebidders">
                               <span className="text-info">Make Bid{" "}</span>
                               </Link>
-=======
+
                               Make Bid
->>>>>>> master
                             </label>
                           </div>
                         </div>

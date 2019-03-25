@@ -10,9 +10,7 @@ const ProfileContent = (props) => {
                     
                     <div className="single-page-section">
                         <h3 className="margin-bottom-25">About Me</h3>
-<<<<<<< HEAD
                         <p>{props.description ? props.description : 'Description'}</p>
-=======
                         <p>{props.description ? props.description : 'Am a proffessional service provider with good working ethics'}</p>
                     </div>
                     <div class="boxed-list margin-bottom-60">
@@ -36,7 +34,6 @@ const ProfileContent = (props) => {
                                 </li>
                             )}
                         </ul>
->>>>>>> master
                     </div>
 
                 </div>
@@ -53,11 +50,8 @@ const ProfileContent = (props) => {
                         </div>
 
                         
-<<<<<<< HEAD
                         <a href="#small-dialog" className="apply-now-button popup-with-zoom-anim margin-bottom-50">Make an Offer <i className="icon-material-outline-arrow-right-alt"></i></a>
-=======
                         <a href="#" onClick={(id) => props.clicked(id)} className="apply-now-button  margin-bottom-50">Make an Offer <i className="icon-material-outline-arrow-right-alt"></i></a>
->>>>>>> master
                         
                     </div>
                 </div>

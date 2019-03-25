@@ -118,7 +118,7 @@ const DashboardActiveBids = ({ handleInputChange, state, user}) => {
         <div>
           {/*       
 <!-- Edit Bid Popup
- ================================================== -->*/}
+ = -->*/}
           <div
             id="small-dialog"
             class="zoom-anim-dialog mfp-hide dialog-with-tabs"
