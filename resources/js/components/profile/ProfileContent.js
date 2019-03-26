@@ -50,7 +50,6 @@ const ProfileContent = (props) => {
                         </div>
 
                         
-                        <a href="#small-dialog" className="apply-now-button popup-with-zoom-anim margin-bottom-50">Make an Offer <i className="icon-material-outline-arrow-right-alt"></i></a>
                         <a href="#" onClick={(id) => props.clicked(id)} className="apply-now-button  margin-bottom-50">Make an Offer <i className="icon-material-outline-arrow-right-alt"></i></a>
                         
                     </div>

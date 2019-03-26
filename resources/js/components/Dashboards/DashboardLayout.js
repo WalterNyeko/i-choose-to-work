@@ -1,9 +1,23 @@
 import React, { Component } from 'react'
 import DashboardSidebar from './layout/DashboardSidebar';
 import AccountFooter from './AccountFooter';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import {getUser} from '../../store/actions/auth/loginAction'
 
 class DashboardLayout extends Component {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       
+    }
+  }
+
+  componentDidMount() {
+      this.props.getUser;
+  }
+  
+  
   render() {
     return (
       <>
@@ -46,7 +60,8 @@ class DashboardLayout extends Component {
 }
 
 const mapStateToprops = state => ({
-    role: state.auth.role
+    role: state.auth.role,
+    user: state.auth.user
 })
 
-export default connect(mapStateToprops, {})(DashboardLayout)
+export default connect(mapStateToprops, {getUser})(DashboardLayout)
