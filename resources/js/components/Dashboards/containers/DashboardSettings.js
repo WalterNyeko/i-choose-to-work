@@ -144,8 +144,6 @@ const DashboardSettings = ({
                               <Link to="/dashboard/dashboardmanagebidders">
                               <span className="text-info">Make Bid{" "}</span>
                               </Link>
-
-                              Make Bid
                             </label>
                           </div>
                         </div>
