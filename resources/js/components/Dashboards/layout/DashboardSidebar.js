@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from 'react-router-dom';
+import { routes } from "../../../constants";
 
 const role = localStorage.getItem('role')
 
@@ -31,16 +32,16 @@ const DashboardSidebar = (props) => {
 					<ul data-submenu-title="Organize and Manage">
 					
 						<li><Link to="/dashboard/dashboardmanagetasks">Manage Tasks <span className="nav-tag">2</span></Link></li>
+						{props.role === 'provider' &&
 						<li><Link to="/dashboard/dashboardactivebids">My Active Bids <span className="nav-tag">4</span></Link></li>
-								
+						}		
 					</ul>
 	
 					<ul data-submenu-title="Account">
-						<li><Link to="/dashboard/dashboardsettings"><i className="icon-material-outline-settings"></i> Settings</Link></li>
-                        {role === 'provider' && 
-                            <li><Link to="#"><i className="icon-material-outline-settings"></i> Settings</Link></li>
-                        }
-						<li><Link to="#"><i className="icon-material-outline-power-settings-new"></i> Logout</Link></li>
+						<li><Link to="/dashboard/dashboardsettings"> Settings</Link></li>
+						{props.role === 'provider' &&
+						<li><Link to={routes.PROVIDER_SERVICE}> Services</Link></li>
+						}
 					</ul>
 					
 				</div>

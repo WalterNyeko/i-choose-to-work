@@ -2,6 +2,7 @@ import React from "react";
 import DashboardLayout from "../layout/DashboardLayout";
 import { routes } from "../../../constants";
 import { Link } from 'react-router-dom';
+import { Upload, Icon, message } from 'antd';
 
 const DashboardSettings = ({
   handleInputChange, 

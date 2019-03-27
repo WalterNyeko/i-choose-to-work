@@ -34,6 +34,9 @@ class MainApp extends Component {
   constructor(props)
   {
       super(props);
+      this.state = {
+          role: ''
+      }
   }
 
   componentWillMount()
@@ -47,6 +50,9 @@ class MainApp extends Component {
     if(this.props.isLogin)
     {
       this.props.getUser()
+      this.setState({
+          role: localStorage.getItem('role')
+      })
     }
   }
 
@@ -65,7 +71,7 @@ class MainApp extends Component {
                 )
             )} />
         );
-    const role = localStorage.getItem('role')
+    const role = this.state.role
     const ProviderRoute = ({ component: Component, ...rest }) => (
             <Route {...rest} render={props => (
                 role === 'provider' ? (
@@ -98,13 +104,13 @@ class MainApp extends Component {
                 <PrivateRoute exact path='/profile/:id' component={ProviderProfile} />
                 <Route exact path="/search-services/:searchKey" component={ServiceSearch} />
                 
-                <Route exact path="/dashboard" component={DashboardLandingPage} />
-                <Route path="/dashboard/dashboardbookmarks" component={DashboardBookmarks} />
-                <Route path="/dashboard/dashboardreviews" component={DashboardReviews} />
-                <Route path="/dashboard/dashboardmanagetasks" component={DashboardManageTasks} />
-                <Route path="/dashboard/dashboardmanagebidders" component={DashboardManageBidders} />
-                <Route path="/dashboard/dashboardactivebids" component={DashboardActiveBids} />
-                <Route path="/dashboard/dashboardsettings" component={DashboardSettings} />
+                <PrivateRoute exact path="/dashboard" component={DashboardLandingPage} />
+                <PrivateRoute path="/dashboard/dashboardbookmarks" component={DashboardBookmarks} />
+                <PrivateRoute path="/dashboard/dashboardreviews" component={DashboardReviews} />
+                <PrivateRoute path="/dashboard/dashboardmanagetasks" component={DashboardManageTasks} />
+                <PrivateRoute path="/dashboard/dashboardmanagebidders" component={DashboardManageBidders} />
+                <PrivateRoute path="/dashboard/dashboardactivebids" component={DashboardActiveBids} />
+                <PrivateRoute path="/dashboard/dashboardsettings" component={DashboardSettings} />
         </> 
       </Router>
     )

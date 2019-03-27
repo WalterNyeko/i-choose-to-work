@@ -110,8 +110,7 @@ const DashboardManageBidders = ({ handleInputChange, state, user}) => {
         </div>
         <div>
           <div>
-            {/* <!-- Bid Acceptance Popup
-= -->*/}
+            {/* <!-- Bid Acceptance Popup -->*/}
             <div
               id="small-dialog-1"
               class="zoom-anim-dialog mfp-hide dialog-with-tabs"

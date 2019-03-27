@@ -2,13 +2,35 @@ import React, { Component } from 'react'
 import DashboardSidebar from './DashboardSidebar';
 import AccountFooter from './AccountFooter';
 import {connect} from 'react-redux'
+import {getUser} from '../../../store/actions/auth/loginAction';
 
 class DashboardLayout extends Component {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       role: this.props.role
+    }
+  }
+
+  static getDerivedStateFromProps(props, state) {
+      // ...
+  }
+
+  componentDidMount() {
+      this.props.getUser;
+      const role = localStorage.getItem('role');
+      this.setState({
+        role: role
+      })
+  }
+  
+  
   render() {
     return (
       <>
         <div className="dashboard-container">
-            <DashboardSidebar/>
+            <DashboardSidebar role={this.state.role}/>
             <div className="dashboard-content-container" data-simplebar>
 		        <div className="dashboard-content-inner" >
                     {/* <!-- Dashboard Headline --> */}
@@ -46,7 +68,8 @@ class DashboardLayout extends Component {
 }
 
 const mapStateToprops = state => ({
-    role: state.auth.role
+    role: state.auth.role,
+    user: state.auth.role,
 })
 
-export default connect(mapStateToprops, {})(DashboardLayout)
+export default connect(mapStateToprops, {getUser})(DashboardLayout)
