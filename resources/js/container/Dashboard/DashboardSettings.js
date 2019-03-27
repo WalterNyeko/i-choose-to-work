@@ -67,30 +67,12 @@ export default class DashboardSettings extends Component {
         return  axios.post(url, data, requestData).then(response => {
             console.log(response.data[1])
             if(response.data[1].success === 1){
-                this.showSuccessNotification(response.data[1].msg);
+                showSuccessNotification(response.data[1].msg);
             }else{
-                this.showErrorNotification(response.data[1].msg);
+                showErrorNotification(response.data[1].msg);
             }
         })
       }
-
-      showSuccessNotification(message){
-          const data = {
-              message: message,
-              description: 'Successful request',
-              duration: 0
-          }
-          notification.success(data);
-      }
-
-      showErrorNotification(message){
-        const data = {
-            message: message,
-            description: 'Error occured, please check the error and try again',
-            duration: 0
-        }
-        notification.error(data);
-    }
 
       updatePassword(){
         const url = Api.UPDATE_PASSWORD;
@@ -107,9 +89,9 @@ export default class DashboardSettings extends Component {
         }
         return  axios.post(url, data, requestHeader).then(response => {
             if(response.data[1].success === 1){
-                this.showSuccessNotification(response.data[1].msg);
+                showSuccessNotification(response.data[1].msg);
             }else{
-                this.showErrorNotification(response.data[1].msg);
+                showErrorNotification(response.data[1].msg);
             }
         })
       }
@@ -127,4 +109,21 @@ export default class DashboardSettings extends Component {
       </React.Fragment>
     )
   }
+}
+export const showSuccessNotification = (message) =>{
+  const data = {
+      message: message,
+      description: 'Successful request',
+      duration: 0
+  }
+  notification.success(data);
+}
+
+export const showErrorNotification = (message) =>{
+const data = {
+    message: message,
+    description: 'Error occured, please check the error and try again',
+    duration: 0
+}
+notification.error(data);
 }

@@ -55,11 +55,6 @@ class ReusableModal extends Component {
         >
           {modalBody? modalBody: (
               <div>
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
               </div>
           )}
         </Modal>
