@@ -1,87 +1,40 @@
 import React from "react";
 import DashboardLayout from "../layout/DashboardLayout";
-const renderModalContent = () => {
+import OurModal from '../commons/ReusableModal';
+const renderModalContent = (handleInputChange) => {
   return (
     <div>
-      {/*<!--Tabs -->*/}
-      <div className="sign-in-form">
-              <ul className="popup-tabs-nav">
-                <li>
-                  <a href="#tab">Edit Bid</a>
-                </li>
-              </ul>
-
-              <div className="popup-tabs-container">
-                {/*<!-- Tab -->*/}
-                <div className="popup-tab-content" id="tab">
-                  {/*<!-- Bidding -->*/}
-                  <div className="bidding-widget">
-                    {/*<!-- Headline -->*/}
-                    <span className="bidding-detail">
-                      Set your <strong>minimal hourly rate</strong>
-                    </span>
-
-                    {/*<!-- Price Slider -->*/}
-                    <div className="bidding-value">
-                      $<span id="biddingVal" />
-                    </div>
-                    <input
-                      className="bidding-slider"
-                      type="text"
-                      value=""
-                      data-slider-handle="custom"
-                      data-slider-currency="$"
-                      data-slider-min="10"
-                      data-slider-max="60"
-                      data-slider-value="40"
-                      data-slider-step="1"
-                      data-slider-tooltip="hide"
-                      onChange={handleInputChange}
-                    />
-
-                    {/*<!-- Headline -->*/}
-                    <span className="bidding-detail margin-top-30">
-                      Set your <strong>delivery time</strong>
-                    </span>
-
-                    {/*<!-- Fields -->*/}
-                    <div className="bidding-fields">
-                      <div className="bidding-field">
-                        {/*<!-- Quantity Buttons -->*/}
-                        <div className="qtyButtons with-border">
-                          <div className="qtyDec" />
-                          <input 
-                            type="text" 
-                            name="qtyInput" 
-                            value="2"
-                            onChange={handleInputChange} />
-                          <div className="qtyInc" />
-                        </div>
-                      </div>
-                      <div className="bidding-field">
-                        <select className="selectpicker default with-border" defaultValue="Days">
-                          <option >Days</option>
-                          <option>Hours</option>
-                        </select>
-                      </div>
-                    </div>
+        <span className="bidding-detail">
+          Set your <strong>minimal hourly rate</strong>
+        </span>
+            <input
+              className="bidding-slider"
+              type="text"
+              value=""
+              onChange={handleInputChange}
+            />
+              <span className="bidding-detail margin-top-30">
+                Set your <strong>delivery time</strong>
+              </span>
+                  <input 
+                    type="text" 
+                    name="qtyInput" 
+                    value="2"
+                    onChange={handleInputChange} 
+                  />
+                  <div className="">
+                  <span className="bidding-detail margin-top-30">
+                    Set your <strong>delivery time format</strong>
+                  </span>
+                    <select className="default with-border">
+                      <option >Days</option>
+                      <option>Hours</option>
+                    </select>
                   </div>
-
-                  {/*<!-- Button -->*/}
-                  <button
-                    className="button full-width button-sliding-icon ripple-effect"
-                    type="submit"
-                  >
-                    Save Changes{" "}
-                    <i className="icon-material-outline-arrow-right-alt" />
-                  </button>
-                </div>
-              </div>
-            </div>
-    </div>
+          </div>
   )
 }
-const DashboardActiveBids = ({ handleInputChange, state, user}) => {
+const DashboardActiveBids = ({ handleInputChange, handleSubmit, state, user}) => {
   return (
     <div>
       <DashboardLayout>
@@ -123,22 +76,37 @@ const DashboardActiveBids = ({ handleInputChange, state, user}) => {
 
               {/*<!-- Buttons -->*/}
               <div className="buttons-to-right always-visible">
-                <a
-                  href="#small-dialog"
-                  className="popup-with-zoom-anim button dark ripple-effect ico"
-                  title="Edit Bid"
-                  data-tippy-placement="top"
+                <div className="row">
+                <div className="col-md-1">
+                <OurModal
+                   buttonText="Edit Bid"
+                   modalTitle="Edit Bid"
+                   submitText="Save Changes"
+                   modalButtonClass="primary text-white icon-feather-edit"
+                   handleSubmit={handleSubmit}
+                   modalBody={renderModalContent(handleInputChange)} 
                 >
-                  <i className="icon-feather-edit" />
-                </a>
-                <a
-                  href="#"
-                  className="button red ripple-effect ico"
-                  title="Cancel Bid"
-                  data-tippy-placement="top"
+                  </OurModal>
+                </div>
+                <div className="col-md-1">
+                <OurModal
+                   buttonText="Delete Bid"
+                   modalTitle="Delete Bid"
+                   submitText="Delete"
+                   modalButtonClass="primary text-white icon-feather-edit"
+                   modalBody={(
+                    <div>
+                      <p>Are you sure you want to delete this?</p>
+                    </div>
+                  )}
+                   handleSubmit={handleSubmit}
                 >
-                  <i className="icon-feather-trash-2" />
-                </a>
+                  </OurModal>
+                </div>
+
+                <div className="col-md-10"></div>
+                  
+                </div>
               </div>
             </li>
             <li>
@@ -169,35 +137,47 @@ const DashboardActiveBids = ({ handleInputChange, state, user}) => {
 
               {/*<!-- Buttons -->*/}
               <div className="buttons-to-right always-visible">
-                <a
-                  href="#small-dialog"
-                  className="popup-with-zoom-anim button dark ripple-effect ico"
-                  title="Edit Bid"
-                  data-tippy-placement="top"
+              <div className="row">
+                <div className="col-md-1">
+                <OurModal
+                   buttonText="Edit Bid"
+                   modalTitle="Edit Bid"
+                   submitText="Save Changes"
+                   modalButtonClass="primary text-white icon-feather-edit"
+                   handleSubmit={handleSubmit}
+                   modalBody={renderModalContent(handleInputChange)} 
                 >
-                  <i className="icon-feather-edit" />
-                </a>
-                <a
-                  href="#"
-                  className="button red ripple-effect ico"
-                  title="Cancel Bid"
-                  data-tippy-placement="top"
+                  </OurModal>
+                </div>
+                <div className="col-md-1">
+                <OurModal
+                   buttonText="Delete Bid"
+                   modalTitle="Delete Bid"
+                   submitText="Delete"
+                   modalButtonClass="primary text-white icon-feather-edit"
+                   modalBody={(
+                     <div>
+                       <p>Are you sure you want to delete this?</p>
+                     </div>
+                   )}
+                   handleSubmit={handleSubmit}
                 >
-                  <i className="icon-feather-trash-2" />
-                </a>
+                  </OurModal>
+                </div>
+
+                <div className="col-md-10"></div>
+                  
+                </div>
               </div>
             </li>
           
           </ul>
         </div>
-            {/**Active content ends */}
 
       </div>
 
-      <div>
-       {this.renderModalContent()}
+       {/* {renderModalContent(handleInputChange)} */}
           
-      </div>
       </DashboardLayout>
     </div>
   );
