@@ -16,12 +16,8 @@ class MainNav extends Component {
           isLogin: false,
       }
   }
-  componentWillMount()
-  {
-    // if(this.props.isLogin === true)
-    // {
-    //     this.props.getUser(this.props.token)
-    // }
+  componentWillMount(){
+      
   }
   
   handleOnChange(e)
@@ -31,21 +27,14 @@ class MainNav extends Component {
       })
   }
 
-  handleLogout()
-  {
-    //   this.props.logout()
+  handleLogout(){
+
   }
 
   onLoginClick(e)
   {
       e.preventDefault();
-
-      const name = this.state.name;
-      const pass = this.state.pass;
-    //   this.props.login(name, pass);
-
       this.toggle('login');
-      
   }
 
   render() {
@@ -88,7 +77,10 @@ class MainNav extends Component {
                             {this.props.isLogin === false ?
                             <>
                                 <div className="header-widget">
-                                    <NavLink to={routes.LOGIN} className="log-in-button"><i className="icon-feather-log-in"></i> <span>Log In / Register</span></NavLink>
+                                    <NavLink to={routes.LOGIN} className="log-in-button"><i className="icon-feather-log-in"></i> <span>Log In</span></NavLink>
+                                </div>
+                                <div className="header-widget">
+                                    <NavLink to={routes.REGISTER} className="log-in-button"><i className="icon-feather-log-in"></i> <span>Register</span></NavLink>
                                 </div>
                                 <div className="header-widget">
                                     <NavLink to={routes.BECOME_PROVIDER} className="log-in-button"><i className="icon-material-outline-monetization-on"></i> <span>Become Service Provider</span></NavLink>
