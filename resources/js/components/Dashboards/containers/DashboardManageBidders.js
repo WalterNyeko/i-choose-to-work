@@ -4,13 +4,13 @@ import OurModal from '../commons/ReusableModal';
 const renderModalContent = () =>{
   return (
     <div>
-       <div class="welcome-text">
+       <div className="welcome-text">
           <h3>Accept Offer From David</h3>
-          <div class="bid-acceptance margin-top-15">$3200</div>
+          <div className="bid-acceptance margin-top-15">$3200</div>
         </div>
 
         <form id="terms">
-          <div class="radio">
+          <div className="radio">
             <input
               id="radio-1"
               name="radio"
@@ -18,7 +18,7 @@ const renderModalContent = () =>{
               required
             />
             <label htmlFor="radio-1">
-              <span class="radio-label" /> I have read and agree to
+              <span className="radio-label" /> I have read and agree to
               the Terms and Conditions
             </label>
           </div>
@@ -34,12 +34,12 @@ const DashboardManageBidders = ({ handleSubmit, handleInputChange, state, user})
         <div>
           {/**Dashboard manage bidders content Start */}
           {/* <!-- Headline -->*/}
-          <div class="headline">
+          <div className="headline">
             <h3>
-              <i class="icon-material-outline-supervisor-account" /> 3 Bidders
+              <i className="icon-material-outline-supervisor-account" /> 3 Bidders
             </h3>
-            <div class="sort-by">
-              <select class="selectpicker hide-tick">
+            <div className="sort-by">
+              <select className="selectpicker hide-tick">
                 <option>Highest First</option>
                 <option>Lowest First</option>
                 <option>Fastest First</option>
@@ -47,22 +47,22 @@ const DashboardManageBidders = ({ handleSubmit, handleInputChange, state, user})
             </div>
           </div>
 
-          <div class="content">
-            <ul class="dashboard-box-list">
+          <div className="content">
+            <ul className="dashboard-box-list">
               <li>
                 {/*<!-- Overview -->*/}
-                <div class="freelancer-overview manage-candidates">
-                  <div class="freelancer-overview-inner">
+                <div className="freelancer-overview manage-candidates">
+                  <div className="freelancer-overview-inner">
                     {/*<!-- Avatar -->*/}
-                    <div class="freelancer-avatar">
-                      <div class="verified-badge" />
+                    <div className="freelancer-avatar">
+                      <div className="verified-badge" />
                       <a href="#">
                         <img src="images/user-avatar-big-02.jpg" alt="" />
                       </a>
                     </div>
 
                     {/*<!-- Name -->*/}
-                    <div class="freelancer-name">
+                    <div className="freelancer-name">
                       <h4>
                         <a href="#">
                           Mugula Abbey
@@ -70,11 +70,11 @@ const DashboardManageBidders = ({ handleSubmit, handleInputChange, state, user})
                       </h4>
 
                       {/*<!-- Details -->*/}
-                      <span class="freelancer-detail-item">
+                      <span className="freelancer-detail-item">
                         <a href="#">
-                          <i class="icon-feather-mail" />
+                          <i className="icon-feather-mail" />
                           <span
-                            class="__cf_email__"
+                            className="__cf_email__"
                             data-cfemail="1c787d6a75785c79647d716c7079327f7371"
                           >
                             [email&#160;protected]
@@ -83,12 +83,12 @@ const DashboardManageBidders = ({ handleSubmit, handleInputChange, state, user})
                       </span>
 
                       {/* <!-- Rating -->*/}
-                      <div class="freelancer-rating">
-                        <div class="star-rating" data-rating="5.0" />
+                      <div className="freelancer-rating">
+                        <div className="star-rating" data-rating="5.0" />
                       </div>
 
                       {/* <!-- Bid Details -->*/}
-                      <ul class="dashboard-task-info bid-info">
+                      <ul className="dashboard-task-info bid-info">
                         <li>
                           <strong>60000</strong>
                           <span>Fixed Price</span>
@@ -105,7 +105,7 @@ const DashboardManageBidders = ({ handleSubmit, handleInputChange, state, user})
                         buttonText="Accept Offer"
                         modalTitle="Accept Offer"
                         submitText="Accept"
-                        modalButtonClass="primary text-dark"
+                        modalButtonclassName="primary text-dark"
                         handleSubmit={handleSubmit}
                         modalBody={renderModalContent()} />
                         
@@ -126,21 +126,21 @@ const DashboardManageBidders = ({ handleSubmit, handleInputChange, state, user})
 ================================================== -->*/}
           <div
             id="small-dialog-2"
-            class="zoom-anim-dialog mfp-hide dialog-with-tabs"
+            className="zoom-anim-dialog mfp-hide dialog-with-tabs"
           >
             {/*  <!--Tabs -->*/}
-            <div class="sign-in-form">
-              <ul class="popup-tabs-nav">
+            <div className="sign-in-form">
+              <ul className="popup-tabs-nav">
                 <li>
                   <a href="#tab2">Send Message</a>
                 </li>
               </ul>
 
-              <div class="popup-tabs-container">
+              <div className="popup-tabs-container">
                 {/* <!-- Tab -->*/}
-                <div class="popup-tab-content" id="tab2">
+                <div className="popup-tab-content" id="tab2">
                   {/*<!-- Welcome Text -->*/}
-                  <div class="welcome-text">
+                  <div className="welcome-text">
                     <h3>Direct Message To David</h3>
                   </div>
 
@@ -150,18 +150,18 @@ const DashboardManageBidders = ({ handleSubmit, handleInputChange, state, user})
                       name="textarea"
                       cols="10"
                       placeholder="Message"
-                      class="with-border"
+                      className="with-border"
                       required
                     />
                   </form>
 
                   {/* <!-- Button -->*/}
                   <button
-                    class="button full-width button-sliding-icon ripple-effect"
+                    className="button full-width button-sliding-icon ripple-effect"
                     type="submit"
                     form="send-pm"
                   >
-                    Send <i class="icon-material-outline-arrow-right-alt" />
+                    Send <i className="icon-material-outline-arrow-right-alt" />
                   </button>
                 </div>
               </div>

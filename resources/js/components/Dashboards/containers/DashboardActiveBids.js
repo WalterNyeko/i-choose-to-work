@@ -1,6 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 import DashboardLayout from "../layout/DashboardLayout";
 import OurModal from '../commons/ReusableModal';
+import { Spin } from "antd";
+import { Link } from 'react-router-dom';
+
 const renderModalContent = (handleInputChange) => {
   return (
     <div>
@@ -34,118 +37,87 @@ const renderModalContent = (handleInputChange) => {
           </div>
   )
 }
-const DashboardActiveBids = ({ handleInputChange, handleSubmit, state, user}) => {
-  return (
-    <div>
-      <DashboardLayout>
-      <div>
-        {/**Active content starts */}
-        <div className="headline">
-          <h3>
-            <i className="icon-material-outline-gavel" /> Bids List
-          </h3>
-        </div>
 
-        <div className="content">
-          <ul className="dashboard-box-list">
-            <li>
-              {/*<!-- Job Listing -->*/}
-              <div className="job-listing width-adjustment">
-                {/*<!-- Job Listing Details -->*/}
-                <div className="job-listing-details">
-                  {/*<!-- Details -->*/}
-                  <div className="job-listing-description">
-                    <h3 className="job-listing-title">
-                      <a href="#">Pet care</a>
-                    </h3>
-                  </div>
-                </div>
-              </div>
+class DashboardActiveBids extends Component {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       offers: [],
+       loading: false,
+       errors: []
+    }
+  }
 
-              {/*<!-- Task Details -->*/}
-              <ul className="dashboard-task-info">
-                <li>
-                  <strong>UGX4000</strong>
-                  <span>Rate</span>
-                </li>
-                <li>
-                  <strong>9/04/2019</strong>
-                  <span>Delivery Time</span>
-                </li>
-              </ul>
-
-              {/*<!-- Buttons -->*/}
-              <div className="buttons-to-right always-visible">
-                <div className="row">
-                <div className="col-md-1">
-                <OurModal
-                   buttonText="Edit Bid"
-                   modalTitle="Edit Bid"
-                   submitText="Save Changes"
-                   modalButtonClass="primary text-white icon-feather-edit"
-                   handleSubmit={handleSubmit}
-                   modalBody={renderModalContent(handleInputChange)} 
-                >
-                  </OurModal>
-                </div>
-                <div className="col-md-1">
-                <OurModal
-                   buttonText="Delete Bid"
-                   modalTitle="Delete Bid"
-                   submitText="Delete"
-                   modalButtonClass="primary text-white icon-feather-edit"
-                   modalBody={(
-                    <div>
-                      <p>Are you sure you want to delete this?</p>
+  componentWillMount() {
+    const token = localStorage.getItem('token');
+    this.setState({
+      loading: true
+    })
+    axios.get('/api/my-offers', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then((res) => {
+      this.setState({
+        loading: false,
+        offers: res.data
+      })
+    })
+    .catch((err) => {
+      this.setState({
+        errors: err,
+        loading: false
+      })
+    })
+  }
+  
+  
+  render()
+  {
+    let offers = null;
+    if(this.state.offers.length)
+    {
+      offers = this.state.offers.map((offa, index) => 
+            <li key={index}>
+                {/*<!-- Job Listing -->*/}
+                <div className="job-listing width-adjustment">
+                  {/*<!-- Job Listing Details -->*/}
+                  <div className="job-listing-details">
+                    {/*<!-- Details -->*/}
+                    <div className="job-listing-description">
+                      <h3 className="job-listing-title">
+                        <Link to={`/view-request/${offa.id}`}>{offa.sevice_request.description}</Link>
+                      </h3>
                     </div>
-                  )}
-                   handleSubmit={handleSubmit}
-                >
-                  </OurModal>
-                </div>
-
-                <div className="col-md-10"></div>
-                  
-                </div>
-              </div>
-            </li>
-            <li>
-              {/*<!-- Job Listing -->*/}
-              <div className="job-listing width-adjustment">
-                {/*<!-- Job Listing Details -->*/}
-                <div className="job-listing-details">
-                  {/*<!-- Details -->*/}
-                  <div className="job-listing-description">
-                    <h3 className="job-listing-title">
-                      <a href="#">Build me a website in Angular JS</a>
-                    </h3>
                   </div>
                 </div>
-              </div>
 
-              {/*<!-- Task Details -->*/}
-              <ul className="dashboard-task-info">
-                <li>
-                  <strong>$2,550</strong>
-                  <span>Fixed price</span>
-                </li>
-                <li>
-                  <strong>14 Days</strong>
-                  <span>Delivery Time</span>
-                </li>
-              </ul>
+                {/*<!-- Task Details -->*/}
+                <ul className="dashboard-task-info">
+                  <li>
+                    <strong>UGX {offa.estimated_cost}</strong>
+                    <span>Rate</span>
+                  </li>
+                  <li>
+                    <strong>{offa.delivery_date}</strong>
+                    <span>Delivery Time</span>
+                  </li>
+                </ul>
 
-              {/*<!-- Buttons -->*/}
-              <div className="buttons-to-right always-visible">
+                {/*<!-- Buttons -->*/}
+
+                <div className="buttons-to-right always-visible">
               <div className="row">
                 <div className="col-md-1">
                 <OurModal
                    buttonText="Edit Bid"
                    modalTitle="Edit Bid"
                    submitText="Save Changes"
-                   modalButtonClass="primary text-white icon-feather-edit"
-                   handleSubmit={handleSubmit}
-                   modalBody={renderModalContent(handleInputChange)} 
+                   modalButtonclassName="primary text-white icon-feather-edit"
+                   handleSubmit={this.props.handleSubmit}
+                   modalBody={renderModalContent(this.props.handleInputChange)} 
                 >
                   </OurModal>
                 </div>
@@ -154,13 +126,13 @@ const DashboardActiveBids = ({ handleInputChange, handleSubmit, state, user}) =>
                    buttonText="Delete Bid"
                    modalTitle="Delete Bid"
                    submitText="Delete"
-                   modalButtonClass="primary text-white icon-feather-edit"
+                   modalButtonclassName="primary text-white icon-feather-edit"
                    modalBody={(
                      <div>
                        <p>Are you sure you want to delete this?</p>
                      </div>
                    )}
-                   handleSubmit={handleSubmit}
+                   handleSubmit={this.props.handleSubmit}
                 >
                   </OurModal>
                 </div>
@@ -169,18 +141,41 @@ const DashboardActiveBids = ({ handleInputChange, handleSubmit, state, user}) =>
                   
                 </div>
               </div>
-            </li>
-          
-          </ul>
-        </div>
+                    
+           </li>
+      );
+    }
+    else 
+    {
+      offers = <Spin/>
+    }
+      return (
+          <div>
+            <DashboardLayout>
+            <div>
+              {/**Active content starts */}
+              <div className="headline">
+                <h3>
+                  <i className="icon-material-outline-gavel" /> Bids List
+                </h3>
+              </div>
 
-      </div>
+              <div className="content">
+                <ul className="dashboard-box-list">
+                  
+                  {offers}
+                
+                </ul>
+              </div>
+                  {/**Active content ends */}
 
-       {/* {renderModalContent(handleInputChange)} */}
-          
-      </DashboardLayout>
-    </div>
-  );
+            </div>
+
+            
+            </DashboardLayout>
+          </div>
+        );
+    }
 };
 
 export default DashboardActiveBids;
