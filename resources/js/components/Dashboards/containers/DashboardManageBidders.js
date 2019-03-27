@@ -1,7 +1,32 @@
 import React from "react";
 import DashboardLayout from "../layout/DashboardLayout";
+import OurModal from '../commons/ReusableModal';
+const renderModalContent = () =>{
+  return (
+    <div>
+       <div class="welcome-text">
+          <h3>Accept Offer From David</h3>
+          <div class="bid-acceptance margin-top-15">$3200</div>
+        </div>
 
-const DashboardManageBidders = ({ handleInputChange, state, user}) => {
+        <form id="terms">
+          <div class="radio">
+            <input
+              id="radio-1"
+              name="radio"
+              type="radio"
+              required
+            />
+            <label htmlFor="radio-1">
+              <span class="radio-label" /> I have read and agree to
+              the Terms and Conditions
+            </label>
+          </div>
+        </form>
+    </div>
+  )
+}
+const DashboardManageBidders = ({ handleSubmit, handleInputChange, state, user}) => {
   return (
     <div>
       <DashboardLayout>
@@ -75,29 +100,15 @@ const DashboardManageBidders = ({ handleInputChange, state, user}) => {
                       </ul>
 
                       {/* <!-- Buttons -->*/}
-                      <div class="buttons-to-right always-visible margin-top-25 margin-bottom-0">
-                        <a
-                          href="#small-dialog-1"
-                          class="popup-with-zoom-anim button ripple-effect"
-                        >
-                          <i class="icon-material-outline-check" />
-                          Accept Offer
-                        </a>
-                        <a
-                          href="#small-dialog-2"
-                          class="popup-with-zoom-anim button dark ripple-effect"
-                        >
-                          <i class="icon-feather-mail" /> Send Message
-                        </a>
-                        <a
-                          href="#"
-                          class="button gray ripple-effect ico"
-                          title="Remove Bid"
-                          data-tippy-placement="top"
-                        >
-                          <i class="icon-feather-trash-2" />
-                        </a>
-                      </div>
+                      <br/>
+                      <OurModal 
+                        buttonText="Accept Offer"
+                        modalTitle="Accept Offer"
+                        submitText="Accept"
+                        modalButtonClass="primary text-dark"
+                        handleSubmit={handleSubmit}
+                        modalBody={renderModalContent()} />
+                        
                     </div>
                   </div>
                 </div>
@@ -109,59 +120,6 @@ const DashboardManageBidders = ({ handleInputChange, state, user}) => {
           {/**Dashboard manage bidders content end */}
         </div>
         <div>
-          <div>
-            {/* <!-- Bid Acceptance Popup
-================================================== -->*/}
-            <div
-              id="small-dialog-1"
-              class="zoom-anim-dialog mfp-hide dialog-with-tabs"
-            >
-              {/* <!--Tabs -->*/}
-              <div class="sign-in-form">
-                <ul class="popup-tabs-nav">
-                  <li>
-                    <a href="#tab1">Accept Offer</a>
-                  </li>
-                </ul>
-
-                <div class="popup-tabs-container">
-                  {/*  <!-- Tab -->*/}
-                  <div class="popup-tab-content" id="tab">
-                    {/*<!-- Welcome Text -->*/}
-                    <div class="welcome-text">
-                      <h3>Accept Offer From David</h3>
-                      <div class="bid-acceptance margin-top-15">$3200</div>
-                    </div>
-
-                    <form id="terms">
-                      <div class="radio">
-                        <input
-                          id="radio-1"
-                          name="radio"
-                          type="radio"
-                          required
-                        />
-                        <label for="radio-1">
-                          <span class="radio-label" /> I have read and agree to
-                          the Terms and Conditions
-                        </label>
-                      </div>
-                    </form>
-
-                    {/* <!-- Button -->*/}
-                    <button
-                      class="margin-top-15 button full-width button-sliding-icon ripple-effect"
-                      type="submit"
-                      form="terms"
-                    >
-                      Accept <i class="icon-material-outline-arrow-right-alt" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
           {/*   <!-- Bid Acceptance Popup / End -->*/}
 
           {/*  <!-- Send Direct Message Popup

@@ -1,27 +1,26 @@
-.card-container > .ant-tabs-card > .ant-tabs-content {
-    height: 120px;
-    margin-top: -16px;
-  }
-  
-  .card-container > .ant-tabs-card > .ant-tabs-content > .ant-tabs-tabpane {
-    background: #fff;
-    padding: 16px;
-  }
-  
-  .card-container > .ant-tabs-card > .ant-tabs-bar {
-    border-color: #fff;
-    padding-left: 16px;
-  }
-  
-  .card-container > .ant-tabs-card > .ant-tabs-bar .ant-tabs-tab {
-    border-color: transparent;
-    background: transparent;
-    padding-left: 16px;
-  }
-  
-  .card-container > .ant-tabs-card > .ant-tabs-bar .ant-tabs-tab-active {
-    border-color: #fff;
-    background: #fff;
-    padding-left: 16px;
 
-  }
+h2 {
+  color: #ffffff !important ;
+  display: block;
+  font-size: 22px;
+  -webkit-margin-before: 0.83em;
+  -webkit-margin-after: 0.83em;
+  -webkit-margin-start: 0em;
+  -webkit-margin-end: 0em;
+  font-weight: bold;
+  margin-left: 1.4em;
+}
+
+.ReactModal__Overlay {
+  background-color:  rgba(0, 0, 0, 0.5) !important;
+}
+
+.modalClass {
+  height: 55%;
+  width: 45%;
+}
+
+.ReactModal__Body--open {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
