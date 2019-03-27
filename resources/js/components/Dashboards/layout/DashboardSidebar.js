@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from 'react-router-dom';
+import { routes } from "../../../constants";
 
 const role = localStorage.getItem('role')
 
@@ -37,10 +38,7 @@ const DashboardSidebar = (props) => {
 	
 					<ul data-submenu-title="Account">
 						<li><Link to="/dashboard/dashboardsettings"><i className="icon-material-outline-settings"></i> Settings</Link></li>
-                        {role === 'provider' && 
-                            <li><Link to="#"><i className="icon-material-outline-settings"></i> Settings</Link></li>
-                        }
-						<li><Link to="#"><i className="icon-material-outline-power-settings-new"></i> Logout</Link></li>
+						<li><Link to={routes.LOGIN}><i className="icon-material-outline-power-settings-new"></i> Logout</Link></li>
 					</ul>
 					
 				</div>

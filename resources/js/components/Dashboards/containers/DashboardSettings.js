@@ -41,7 +41,8 @@ const DashboardSettings = ({
                       className="file-upload" 
                       type="file" 
                       accept="image/*"
-                      onChange={handleInputChange}/>
+                      onChange={handleInputChange}
+                      />
                   </div>
                 </div>
 
@@ -50,7 +51,13 @@ const DashboardSettings = ({
                     <div className="col-xl-6">
                       <div className="submit-field">
                         <h5>Full Name</h5>
-                        <input type="text" className="with-border" value="Tom" />
+                        <input 
+                          type="text" 
+                          className="with-border" 
+                          value="Tom"
+                          onChange={handleInputChange}
+
+                        />
                       </div>
                     </div>
 
@@ -78,7 +85,9 @@ const DashboardSettings = ({
                             name="account-type-radio"
                             id="freelancer-radio"
                             className="account-type-radio"
-                            checked
+                            defaultChecked
+                            onChange={handleInputChange}
+
                           />
                           <label
                             htmlFor="freelancer-radio"
@@ -95,6 +104,8 @@ const DashboardSettings = ({
                             name="account-type-radio"
                             id="employer-radio"
                             className="account-type-radio"
+                            onChange={handleInputChange}
+
                           />
                           <label
                             htmlFor="employer-radio"
@@ -119,7 +130,8 @@ const DashboardSettings = ({
                               name="account-type-radio"
                               id="freelancer-radio"
                               className="account-type-radio"
-                              checked
+                              defaultChecked
+                              onChange={handleInputChange}
                             />
                             <label
                               htmlFor="freelancer-radio"
@@ -129,20 +141,22 @@ const DashboardSettings = ({
                               Service Provider
                             </label>
                           </div>
-
                           <div>
                             <input
                               type="radio"
                               name="account-type-radio"
                               id="employer-radio"
                               className="account-type-radio"
+                              onChange={handleInputChange}
                             />
                             <label
                               htmlFor="employer-radio"
                               className="ripple-effect-dark"
                             >
                               <i className="icon-material-outline-business-center" />
-                              Make Bid
+                              <Link to="/dashboard/dashboardmanagebidders">
+                              <span className="text-info">Make Bid{" "}</span>
+                              </Link>
                             </label>
                           </div>
                         </div>
@@ -197,8 +211,8 @@ const DashboardSettings = ({
                           name="description"
                           rows="5" 
                           className="with-border"
-                          onChange={handleInputChange}>
-                          {state.description}
+                          onChange={handleInputChange}
+                          value={state.description}>
                         </textarea>
                       </div>
                     </div>
@@ -269,7 +283,8 @@ const DashboardSettings = ({
                     <input 
                       type="checkbox" 
                       id="two-step" 
-                      checked />
+                      defaultChecked
+                      onChange={handleInputChange} />
                     <label htmlFor="two-step">
                       <span className="checkbox-icon" /> Enable Two-Step
                       Verification via Email

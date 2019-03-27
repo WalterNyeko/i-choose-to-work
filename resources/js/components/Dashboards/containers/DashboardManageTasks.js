@@ -9,36 +9,36 @@ const DashboardManageTasks = ({handleInputChange, state, user}) => {
       <div>
           {/*** manage tasks Childern start */}
            {/* <!-- Headline -->*/}
-           <div class="headline">
+           <div className="headline">
                                 <h3>
-                                    <i class="icon-material-outline-assignment" />{" "}
+                                    <i className="icon-material-outline-assignment" />{" "}
                                     My Tasks
                                 </h3>
                             </div>
 
-                            <div class="content">
-                                <ul class="dashboard-box-list">
+                            <div className="content">
+                                <ul className="dashboard-box-list">
                                     <li>
                                         {/*<!-- Job Listing -->*/}
-                                        <div class="job-listing width-adjustment">
+                                        <div className="job-listing width-adjustment">
                                             {/*<!-- Job Listing Details -->*/}
-                                            <div class="job-listing-details">
+                                            <div className="job-listing-details">
                                                 {/* <!-- Details -->*/}
-                                                <div class="job-listing-description">
-                                                    <h3 class="job-listing-title">
+                                                <div className="job-listing-description">
+                                                    <h3 className="job-listing-title">
                                                         <a href="#">
                                                             Task 1
                                                         </a>
-                                                        <span class="dashboard-status-button yellow">
+                                                        <span className="dashboard-status-button yellow">
                                                             Expiring
                                                         </span>
                                                     </h3>
 
                                                     {/*<!-- Job Listing Footer -->*/}
-                                                    <div class="job-listing-footer">
+                                                    <div className="job-listing-footer">
                                                         <ul>
                                                             <li>
-                                                                <i class="icon-material-outline-access-time" />
+                                                                <i className="icon-material-outline-access-time" />
                                                                 23 hours left
                                                             </li>
                                                         </ul>
@@ -48,7 +48,7 @@ const DashboardManageTasks = ({handleInputChange, state, user}) => {
                                         </div>
 
                                         {/* <!-- Task Details -->*/}
-                                        <ul class="dashboard-task-info">
+                                        <ul className="dashboard-task-info">
                                             <li>
                                                 <strong>3</strong>
                                                 <span>Bids</span>
@@ -57,54 +57,54 @@ const DashboardManageTasks = ({handleInputChange, state, user}) => {
                                         </ul>
 
                                         {/* <!-- Buttons -->*/}
-                                        <div class="buttons-to-right always-visible">
+                                        <div className="buttons-to-right always-visible">
                                             <Link
                                                 to="/dashboard/dashboardmanagebidders"
-                                                class="button ripple-effect"
+                                                className="button ripple-effect"
                                             >
-                                                <i class="icon-material-outline-supervisor-account" />
+                                                <i className="icon-material-outline-supervisor-account" />
                                                 Manage Bidders{" "}
-                                                <span class="button-info">
+                                                <span className="button-info">
                                                     3
                                                 </span>
                                             </Link>
                                             <a
                                                 href="#"
-                                                class="button gray ripple-effect ico"
+                                                className="button gray ripple-effect ico"
                                                 title="Edit"
                                                 data-tippy-placement="top"
                                             >
-                                                <i class="icon-feather-edit" />
+                                                <i className="icon-feather-edit" />
                                             </a>
                                             <a
                                                 href="#"
-                                                class="button gray ripple-effect ico"
+                                                className="button gray ripple-effect ico"
                                                 title="Remove"
                                                 data-tippy-placement="top"
                                             >
-                                                <i class="icon-feather-trash-2" />
+                                                <i className="icon-feather-trash-2" />
                                             </a>
                                         </div>
                                     </li>
 
                                     <li>
                                         {/*<!-- Job Listing -->*/}
-                                        <div class="job-listing width-adjustment">
+                                        <div className="job-listing width-adjustment">
                                             {/*<!-- Job Listing Details -->*/}
-                                            <div class="job-listing-details">
+                                            <div className="job-listing-details">
                                                 {/*<!-- Details -->*/}
-                                                <div class="job-listing-description">
-                                                    <h3 class="job-listing-title">
+                                                <div className="job-listing-description">
+                                                    <h3 className="job-listing-title">
                                                         <a href="#">
                                                            Task 2
                                                         </a>
                                                     </h3>
 
                                                     {/*<!-- Job Listing Footer -->*/}
-                                                    <div class="job-listing-footer">
+                                                    <div className="job-listing-footer">
                                                         <ul>
                                                             <li>
-                                                                <i class="icon-material-outline-access-time" />
+                                                                <i className="icon-material-outline-access-time" />
                                                                 6 days, 23 hours
                                                                 left
                                                             </li>
@@ -115,7 +115,7 @@ const DashboardManageTasks = ({handleInputChange, state, user}) => {
                                         </div>
 
                                         {/*<!-- Task Details -->*/}
-                                        <ul class="dashboard-task-info">
+                                        <ul className="dashboard-task-info">
                                             <li>
                                                 <strong>3</strong>
                                                 <span>Bids</span>
@@ -131,32 +131,32 @@ const DashboardManageTasks = ({handleInputChange, state, user}) => {
                                         </ul>
 
                                         {/*<!-- Buttons -->*/}
-                                        <div class="buttons-to-right always-visible">
+                                        <div className="buttons-to-right always-visible">
                                             <Link
                                                 to="/dashboard/dashboardmanagebidders"
-                                                class="button ripple-effect"
+                                                className="button ripple-effect"
                                             >
-                                                <i class="icon-material-outline-supervisor-account" />
+                                                <i className="icon-material-outline-supervisor-account" />
                                                 Manage Bidders{" "}
-                                                <span class="button-info">
+                                                <span className="button-info">
                                                     3
                                                 </span>
                                             </Link>
                                             <a
                                                 href="#"
-                                                class="button gray ripple-effect ico"
+                                                className="button gray ripple-effect ico"
                                                 title="Edit"
                                                 data-tippy-placement="top"
                                             >
-                                                <i class="icon-feather-edit" />
+                                                <i className="icon-feather-edit" />
                                             </a>
                                             <a
                                                 href="#"
-                                                class="button gray ripple-effect ico"
+                                                className="button gray ripple-effect ico"
                                                 title="Remove"
                                                 data-tippy-placement="top"
                                             >
-                                                <i class="icon-feather-trash-2" />
+                                                <i className="icon-feather-trash-2" />
                                             </a>
                                         </div>
                                     </li>
