@@ -9,4 +9,6 @@ class RoleModel extends Model
     protected $guarded = [];
 
     protected $table = 'model_has_roles';
+
+    public $timestamps = false;
 }
