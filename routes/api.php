@@ -166,6 +166,7 @@ Route::namespace('Api')->group(function () {
     Route::get('services/recent/requests', 'ServiceRequestController@recentServiceRequests');
     Route::get('services/{category}/requests', 'ServiceRequestController@categoryServiceRequests');
     Route::get('services/requests/service/{service}', 'ServiceRequestController@serviceServiceRequests');
+    //delete service request
     Route::delete('delete/services/requests/{id}', 'ServiceRequestController@destroy');
 
     // Cancelled/Not Service Requests
@@ -191,10 +192,13 @@ Route::namespace('Api')->group(function () {
 
     // Service Delivery Offers
     Route::get('delivery/recent/offers', 'ServiceDeliveryOfferController@recentOffers');
+    //accepting an offer
     Route::post('delivery/offers/acceptance', 'ServiceDeliveryOfferController@acceptDeliveryOffer')
         ->middleware('auth:api', 'check-permissions');
     Route::delete('delete/services/offers/{id}', 'BidController@destroy');
+    //editing service request offer
     Route::post('delivery/services/update/{id}', 'BidController@update');
+    //getting offers
     Route::get('delivery/requests/services/offers/{id}', 'ServiceDeliveryOfferController@serviceRequestOffers');
 
 });

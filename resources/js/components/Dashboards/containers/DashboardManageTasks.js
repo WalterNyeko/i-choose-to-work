@@ -89,7 +89,7 @@ class DashboardManageTasks extends Component {
                 {/* <!-- Buttons -->*/}
                 <div class="buttons-to-right always-visible">
                     <Link
-                        to="/dashboard/dashboardmanagebidders"
+                        to={`/dashboard/dashboardmanagebidders/${task.id}`}
                         class="button ripple-effect"
                     >
                         <i class="icon-material-outline-supervisor-account" />
