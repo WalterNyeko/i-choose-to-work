@@ -70,7 +70,15 @@ class BidController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $bid = ServiceDeliveryOffer::findOrFail($id);
+
+        $bid->estimated_cost = $request->estimated_cost;
+        $bid->delivery_date = $request->delivery_date;
+        $bid->description = $request->description;
+
+        $bid->save();
+
+        return new ServiceDeliveryOffer($bid);
     }
 
     /**

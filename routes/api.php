@@ -194,6 +194,7 @@ Route::namespace('Api')->group(function () {
     Route::post('delivery/offers/acceptance', 'ServiceDeliveryOfferController@acceptDeliveryOffer')
         ->middleware('auth:api', 'check-permissions');
     Route::delete('delete/services/offers/{id}', 'BidController@destroy');
+    Route::post('delivery/services/update/{id}', 'BidController@update');
 
 });
 
