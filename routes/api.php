@@ -166,6 +166,7 @@ Route::namespace('Api')->group(function () {
     Route::get('services/recent/requests', 'ServiceRequestController@recentServiceRequests');
     Route::get('services/{category}/requests', 'ServiceRequestController@categoryServiceRequests');
     Route::get('services/requests/service/{service}', 'ServiceRequestController@serviceServiceRequests');
+    Route::delete('delete/services/requests', 'ServiceRequestController@destroy');
 
     // Cancelled/Not Service Requests
     Route::get('services/requests/true/cancelled', 'ServiceRequestController@cancelledServiceRequests');
