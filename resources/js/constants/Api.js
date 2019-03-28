@@ -23,5 +23,6 @@ export const Api = {
     MAKE_OFFER_TO_SERVICE_PROVIDER: '/api/make-offer',
     UNCANCELLED_SERVICES: '/api/services/requests/false/cancelled',
     EMPLOYERS_REQUESTS: '/api/services/user/requests',
-    MY_REQUESTS: '/api/my-requests'
+    MY_REQUESTS: '/api/my-requests',
+    SERVICE_REQUEST_OFFERS: 'api/delivery/requests/services/offers/id'
 }
