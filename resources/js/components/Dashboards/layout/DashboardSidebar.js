@@ -25,8 +25,8 @@ const DashboardSidebar = (props) => {
 	
 					<ul data-submenu-title="Start">
 						<li><Link to="/dashboard"><i className="icon-material-outline-dashboard"></i> Dashboard</Link></li>
-						<li><Link to="/dashboard/dashboardbookmarks"><i className="icon-material-outline-star-border"></i> Bookmarks</Link></li>
-						<li><Link to="/dashboard/dashboardreviews"><i className="icon-material-outline-rate-review"></i> Reviews</Link></li>
+						{/* <li><Link to="/dashboard/dashboardbookmarks"><i className="icon-material-outline-star-border"></i> Bookmarks</Link></li>
+						<li><Link to="/dashboard/dashboardreviews"><i className="icon-material-outline-rate-review"></i> Reviews</Link></li> */}
 					</ul>
 					
 					<ul data-submenu-title="Organize and Manage">

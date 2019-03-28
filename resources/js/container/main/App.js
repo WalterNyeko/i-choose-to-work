@@ -27,7 +27,7 @@ import ProviderProfile from '../../components/serviceProviders/ProviderProfile';
 import DashboardLandingPage from '../../components/Dashboards/containers/DashboardLandingPage';
 import DashboardBookmarks from '../../components/Dashboards/containers/DashboardBookmarks';
 import DashboardReviews from '../../components/Dashboards/components/DashboardReviews';
-import DashboardManageTasks from '../../components/Dashboards/components/DashboardManageTasks';
+import DashboardManageTasks from '../../components/Dashboards/containers/DashboardManageTasks';
 import DashboardManageBidders from '../../components/Dashboards/components/DashboardManageBidders';
 import DashboardActiveBids from '../../components/Dashboards/components/DashboardActiveBids';
 import DashboardSettings from '../../container/Dashboard/DashboardSettings';
