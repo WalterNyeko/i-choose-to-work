@@ -9,15 +9,11 @@ class DashboardReviews extends Component {
             body: '',
             rating: 0,
             title: '',
-            loading: false,
-            visible: false,
         }
         this.handleInputChange= this.handleInputChange.bind(this);
         this.handleSubmit=this.handleSubmit.bind(this);
         this.handleEditReview=this.handleEditReview.bind(this);
         this.onStarClick=this.onStarClick.bind(this);
-        this.showModal = this.showModal.bind(this);
-        this.handleCancelModal = this.handleCancelModal.bind(this);
     }
 
     componentWillMount(){
@@ -47,37 +43,13 @@ class DashboardReviews extends Component {
       return  axios.get(url, requestHeader).then(response => console.log(response))
     }
 
-    handleSubmit(e){
-        e.preventDefault();
-        this.setState({ loading: true });
-      setTimeout(() => {
-        this.setState({ loading: false, visible: false });
-      }, 3000);
-      console.log(this.state, 'submitting review')
-      this.setState({
-        body: '',
-            rating: 0,
-            title: '',
-            loading: false,
-            visible: false,
-      })
+
+    handleSubmit(){
+        console.log(this.state, 'submiting review')        
     }
 
-    handleEditReview(e){
-        e.preventDefault();
-        this.setState({ loading: true });
-      setTimeout(() => {
-        this.setState({ loading: false, visible: false });
-      }, 3000);
-      console.log(this.state, 'editing review')
-      this.setState({
-        body: '',
-            rating: 0,
-            title: '',
-            loading: false,
-            visible: false,
-      })
-
+    handleEditReview(){
+        console.log(this.state, 'editing review')
     }
 
     onStarClick(nextValue, prevValue, name) {
@@ -86,24 +58,9 @@ class DashboardReviews extends Component {
 
     handleInputChange(e){
         this.setState({[e.target.name]:e.target.value});
-        console.log(localStorage.getItem('id'))
-        console.log(localStorage.getItem('user').id)
     }
-
-    showModal() {
-      this.setState({
-        visible: true,
-      });
-    }
-  
-    handleCancelModal(){
-      this.setState({ visible: false });
-    }
-  
-  
 
   render() {
-    const { visible, loading } = this.state;
     return (
       <React.Fragment>
           <DashboardReviewsComponent
@@ -111,13 +68,12 @@ class DashboardReviews extends Component {
             body={this.state.body}
             handleInputChange={this.handleInputChange}
             handleSubmit={this.handleSubmit}
+            handleCloseModal={this.handleCloseModal}
             handleEditReview={this.handleEditReview}
             title={this.state.title}
             onStarClick={this.onStarClick}
-            showModal={this.showModal}
-            handleCancelModal={this.handleCancelModal}
-            visible={visible}
-            loading={loading}/>
+            handleModalStateChange={this.handleModalStateChange}
+            state={this.state}/>
       </React.Fragment>
     )
   }

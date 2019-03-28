@@ -1,10 +1,9 @@
 import React from "react";
 import DashboardLayout from "../layout/DashboardLayout";
-import EditReviewModal from './EditReviewModal';
-import LeaveReviewModal from './LeaveReviewModal';
 import StarRatingComponent from 'react-star-rating-component';
 import '../../../assets/styles/modal.css';
 import { Tabs } from 'antd';
+import OurModal from '../commons/ReusableModal';
 const TabPane = Tabs.TabPane;
 
 
@@ -14,11 +13,11 @@ function renderModalContent(title,handleInputChange, rating, onStarClick, body) 
     <div>
       {/* <!-- Form -->*/}
       <form method="post" id="leave-review-form">
-              <div class="feedback-yes-no">
+              <div className="feedback-yes-no">
                   <strong>
                       What is the title of the work done?
                   </strong>
-                  <div class="mt-4">
+                  <div className="mt-4">
                       <input
                           id="title"
                           name="title"
@@ -33,9 +32,9 @@ function renderModalContent(title,handleInputChange, rating, onStarClick, body) 
                   
               </div>
 
-              <div class="feedback-yes-no">
+              <div className="feedback-yes-no">
                   <strong>Your Rating</strong>
-                  <div class="leave-rating">
+                  <div className="leave-rating">
                   <StarRatingComponent 
                       name="Your Review" 
                       starCount={5}
@@ -43,10 +42,10 @@ function renderModalContent(title,handleInputChange, rating, onStarClick, body) 
                       onStarClick={onStarClick}
                   />
                   </div>
-                  <div class="clearfix" />
+                  <div className="clearfix" />
               </div>
               <textarea
-                  class="with-border"
+                  className="with-border"
                   placeholder="This was my review text"
                   name="body"
                   id="message2"
@@ -61,6 +60,8 @@ function renderModalContent(title,handleInputChange, rating, onStarClick, body) 
     </div>
   )
 }
+
+
 
 const DashboardReviews = (props) => {
   return (
@@ -90,22 +91,19 @@ const DashboardReviews = (props) => {
                   </span>
                 </div>
               </div>
-                <LeaveReviewModal 
-                  buttonText="Leave a Review"
-                  modalTitle="Rate The Service"
-                  submitText="Submit Review"
-                  handleCancelModal={props.handleCancelModal}
-                  showModal={props.showModal}
-                  handleSubmit={props.handleSubmit}
-                  visible={props.visible}
-                  loading={props.loading}
-                  modalBody={renderModalContent(
-                    props.title,
-                    props.handleInputChange,
-                    props.rating,
-                    props.onStarClick,
-                    props.body
-                  )}
+                <OurModal
+                   buttonText="Submit Review"
+                   modalTitle="Rate The Service"
+                   submitText="Submit"
+                   modalButtonClass="primary text-white"
+                   handleSubmit={props.handleSubmit}
+                   modalBody={renderModalContent(
+                     props.title,
+                     props.handleInputChange,
+                     props.rating,
+                     props.onStarClick,
+                     props.body
+                   )} 
                 />
             </li>
             <li>
@@ -119,22 +117,19 @@ const DashboardReviews = (props) => {
                 </div>
               </div>
                     
-              <LeaveReviewModal 
-                  buttonText="Leave a Review"
-                  modalTitle="Rate The Service"
-                  submitText="Submit Review"
-                  handleCancelModal={props.handleCancelModal}
-                  showModal={props.showModal}
-                  handleSubmit={props.handleSubmit}
-                  visible={props.visible}
-                  loading={props.loading}
-                  modalBody={renderModalContent(
-                    props.title,
-                    props.handleInputChange,
-                    props.rating,
-                    props.onStarClick,
-                    props.body
-                  )}
+              <OurModal
+                buttonText="Submit Review"
+                modalTitle="Rate The Service"
+                submitText="Submit"
+                modalButtonClass="primary text-white"
+                handleSubmit={props.handleSubmit}
+                modalBody={renderModalContent(
+                  props.title,
+                  props.handleInputChange,
+                  props.rating,
+                  props.onStarClick,
+                  props.body
+                )} 
                 />
             </li>
             <li>
@@ -159,22 +154,19 @@ const DashboardReviews = (props) => {
                   </div>
                 </div>
               </div>
-              <EditReviewModal 
-                  buttonText="Edit Review"
-                  modalTitle="Rate The Service"
-                  submitText="Save Changes"
-                  handleCancelModal={props.handleCancelModal}
-                  showModal={props.showModal}
-                  handleSubmit={props.handleEditReview}
-                  visible={props.visible}
-                  loading={props.loading}
-                  modalBody={renderModalContent(
-                    props.title,
-                    props.handleInputChange,
-                    props.rating,
-                    props.onStarClick,
-                    props.body
-                  )}
+              <OurModal
+                   buttonText="Edit Review"
+                   modalTitle="Edit Service Rating"
+                   submitText="Save Changes"
+                   modalButtonClass="primary text-white"
+                   handleSubmit={props.handleEditReview}
+                   modalBody={renderModalContent(
+                     props.title,
+                     props.handleInputChange,
+                     props.rating,
+                     props.onStarClick,
+                     props.body
+                   )} 
                 />
             </li>
             <li>
@@ -199,22 +191,19 @@ const DashboardReviews = (props) => {
                   </div>
                 </div>
               </div>
-              <EditReviewModal 
-                  buttonText="Edit Review"
-                  modalTitle="Rate The Service"
-                  submitText="Save Changes"
-                  handleCancelModal={props.handleCancelModal}
-                  showModal={props.showModal}
-                  handleSubmit={props.handleEditReview}
-                  visible={props.visible}
-                  loading={props.loading}
-                  modalBody={renderModalContent(
-                    props.title,
-                    props.handleInputChange,
-                    props.rating,
-                    props.onStarClick,
-                    props.body
-                  )}
+              <OurModal
+                 buttonText="Edit Review"
+                 modalTitle="Edit Service Rating"
+                 submitText="Save Changes"
+                 modalButtonClass="primary text-white"
+                 handleSubmit={props.handleEditReview}
+                 modalBody={renderModalContent(
+                   props.title,
+                   props.handleInputChange,
+                   props.rating,
+                   props.onStarClick,
+                   props.body
+                 )} 
                 />
             </li>
           </ul>
@@ -253,22 +242,19 @@ const DashboardReviews = (props) => {
                   </span>
                 </div>
               </div>
-                <LeaveReviewModal 
-                  buttonText="Leave a Review"
-                  modalTitle="Rate The Service"
-                  submitText="Submit Review"
-                  handleCancelModal={props.handleCancelModal}
-                  showModal={props.showModal}
-                  handleSubmit={props.handleSubmit}
-                  visible={props.visible}
-                  loading={props.loading}
-                  modalBody={renderModalContent(
-                    props.title,
-                    props.handleInputChange,
-                    props.rating,
-                    props.onStarClick,
-                    props.body
-                  )}
+              <OurModal
+                 buttonText="Submit Review"
+                 modalTitle="Rate The Service"
+                 submitText="Submit"
+                 modalButtonClass="primary text-white"
+                 handleSubmit={props.handleSubmit}
+                 modalBody={renderModalContent(
+                   props.title,
+                   props.handleInputChange,
+                   props.rating,
+                   props.onStarClick,
+                   props.body
+                 )} 
                 />
             </li>
             <li>
@@ -282,22 +268,19 @@ const DashboardReviews = (props) => {
                 </div>
               </div>
                     
-              <LeaveReviewModal 
-                  buttonText="Leave a Review"
-                  modalTitle="Rate The Service"
-                  submitText="Submit Review"
-                  handleCancelModal={props.handleCancelModal}
-                  showModal={props.showModal}
-                  handleSubmit={props.handleSubmit}
-                  visible={props.visible}
-                  loading={props.loading}
-                  modalBody={renderModalContent(
-                    props.title,
-                    props.handleInputChange,
-                    props.rating,
-                    props.onStarClick,
-                    props.body
-                  )}
+              <OurModal
+                 buttonText="Submit Review"
+                 modalTitle="Rate The Service"
+                 submitText="Submit"
+                 modalButtonClass="primary text-white"
+                 handleSubmit={props.handleSubmit}
+                 modalBody={renderModalContent(
+                   props.title,
+                   props.handleInputChange,
+                   props.rating,
+                   props.onStarClick,
+                   props.body
+                 )} 
                 />
             </li>
             <li>
@@ -322,22 +305,19 @@ const DashboardReviews = (props) => {
                   </div>
                 </div>
               </div>
-              <EditReviewModal 
-                  buttonText="Edit Review"
-                  modalTitle="Rate The Service"
-                  submitText="Save Changes"
-                  handleCancelModal={props.handleCancelModal}
-                  showModal={props.showModal}
-                  handleSubmit={props.handleEditReview}
-                  visible={props.visible}
-                  loading={props.loading}
-                  modalBody={renderModalContent(
-                    props.title,
-                    props.handleInputChange,
-                    props.rating,
-                    props.onStarClick,
-                    props.body
-                  )}
+              <OurModal
+               buttonText="Edit Review"
+               modalTitle="Edit Service Rating"
+               submitText="Save Changes"
+               modalButtonClass="primary text-white"
+               handleSubmit={props.handleEditReview}
+               modalBody={renderModalContent(
+                 props.title,
+                 props.handleInputChange,
+                 props.rating,
+                 props.onStarClick,
+                 props.body
+               )} 
                 />
             </li>
             <li>
@@ -362,22 +342,19 @@ const DashboardReviews = (props) => {
                   </div>
                 </div>
               </div>
-              <EditReviewModal 
-                  buttonText="Edit Review"
-                  modalTitle="Rate The Service"
-                  submitText="Save Changes 1"
-                  handleCancelModal={props.handleCancelModal}
-                  showModal={props.showModal}
-                  handleSubmit={props.handleEditReview}
-                  visible={props.visible}
-                  loading={props.loading}
-                  modalBody={renderModalContent(
-                    props.title,
-                    props.handleInputChange,
-                    props.rating,
-                    props.onStarClick,
-                    props.body
-                  )}
+              <OurModal
+                 buttonText="Edit Review"
+                 modalTitle="Edit Service Rating"
+                 submitText="Save Changes"
+                 modalButtonClass="primary text-white"
+                 handleSubmit={props.handleEditReview}
+                 modalBody={renderModalContent(
+                   props.title,
+                   props.handleInputChange,
+                   props.rating,
+                   props.onStarClick,
+                   props.body
+                 )} 
                 />
             </li>
           </ul>
@@ -391,11 +368,9 @@ const DashboardReviews = (props) => {
         </div>
         </div>
         </div>
-      
       </TabPane>
     </Tabs>
         </DashboardLayout>
-      
     </div>
   );
 };
