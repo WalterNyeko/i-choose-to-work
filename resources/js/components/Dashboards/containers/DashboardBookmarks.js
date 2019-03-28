@@ -300,7 +300,7 @@ const DashboardBookmarks = () => {
           <div>
             <div>
               {/*<!-- Apply for a job popup
-    ================================================== -->*/}
+    = -->*/}
               <div
                 id="small-dialog"
                 className="zoom-anim-dialog mfp-hide dialog-with-tabs"

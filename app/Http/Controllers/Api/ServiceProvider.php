@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\User;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Notifications\VerifyProvider;
 
 class ServiceProvider extends Controller
 {
@@ -51,6 +54,9 @@ class ServiceProvider extends Controller
         {
             $user = $request->user();
 
+            $userDetails = $user->with('bioProfile')->get();
+            // $userDetails = User::with('profile')->find($user->id);
+
             if($user->hasRole('provider'))
             {
                 $user->services()->attach($request->serviceId, $inputs);
@@ -59,7 +65,10 @@ class ServiceProvider extends Controller
                 $user->assignRole(['provider']);
                 $user->services()->attach($request->serviceId, $inputs);
             }
-
+            $service = Service::find($request->serviceId);
+            $serviceName = $service->name;
+            \Notification::route('mail' ,env('ADMIN_EMAIL'))
+                        ->notify(new VerifyProvider($userDetails, $serviceName));
             return $user->services()->get();
         }
     

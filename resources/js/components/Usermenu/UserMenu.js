@@ -30,7 +30,7 @@ class UserMenu extends Component {
         <div className="header-widget">
                 <div className="header-notifications user-menu">
                     <div className="header-notifications-trigger">
-                        <a href={`#${routes.DASHBOARD}`}><div className="user-avatar status-online"><img src="user.png" alt=""/></div></a>
+                        <a href={`#${routes.DASHBOARD}`} target="blank"><div className="user-avatar status-online"><img src="user.png" alt=""/></div></a>
                     </div>
                     
                 </div>

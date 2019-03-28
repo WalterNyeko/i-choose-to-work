@@ -122,6 +122,51 @@ const DashboardManageBidders = ({ handleSubmit, handleInputChange, state, user})
         <div>
           {/*   <!-- Bid Acceptance Popup / End -->*/}
 
+          {/*  <!-- Send Direct Message Popup
+= -->*/}
+          <div
+            id="small-dialog-2"
+            className="zoom-anim-dialog mfp-hide dialog-with-tabs"
+          >
+            {/*  <!--Tabs -->*/}
+            <div className="sign-in-form">
+              <ul className="popup-tabs-nav">
+                <li>
+                  <a href="#tab2">Send Message</a>
+                </li>
+              </ul>
+
+              <div className="popup-tabs-container">
+                {/* <!-- Tab -->*/}
+                <div className="popup-tab-content" id="tab2">
+                  {/*<!-- Welcome Text -->*/}
+                  <div className="welcome-text">
+                    <h3>Direct Message To David</h3>
+                  </div>
+
+                  {/*  <!-- Form -->*/}
+                  <form method="post" id="send-pm">
+                    <textarea
+                      name="textarea"
+                      cols="10"
+                      placeholder="Message"
+                      className="with-border"
+                      required
+                    />
+                  </form>
+
+                  {/* <!-- Button -->*/}
+                  <button
+                    className="button full-width button-sliding-icon ripple-effect"
+                    type="submit"
+                    form="send-pm"
+                  >
+                    Send <i className="icon-material-outline-arrow-right-alt" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
           {/*  <!-- Send Direct Message Popup / End -->*/}
         </div>
       </div>

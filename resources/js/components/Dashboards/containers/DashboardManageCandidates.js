@@ -247,7 +247,7 @@ const DashboardManageCandidates = () => {
         </div>
 
         {/**  <!-- Send Direct Message Popup
-================================================== -->*/}
+= -->*/}
         <div>
           <div
             id="small-dialog"

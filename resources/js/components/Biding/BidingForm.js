@@ -12,11 +12,19 @@ class Biding extends Component {
     super(props)
   
     this.state = {
-       
+       data: ''
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.openNotification = this.openNotification.bind(this);
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange(date, dateString) {
+      this.setState({
+        date: dateString
+      })
+      console.log(dateString);
   }
 
   handleSubmit(e){
@@ -27,7 +35,7 @@ class Biding extends Component {
                 service_req_id: this.props.id,
                 estimated_cost: values.amount,
                 description: values.description,
-                delivery_date: values.delivery_date
+                delivery_date: this.state.date
             }
             this.props.bidPost(data)
             this.openNotification()
@@ -37,8 +45,8 @@ class Biding extends Component {
 
   openNotification(){
       const args = {
-          message: 'Notification Title',
-          description: 'I will never close automatically. I will be close automatically. I will never close automatically.',
+          message: 'Offer Submited',
+          description: 'Congs, your offer has been sent successfully',
           duration: 0,
       };
       notification.success(args);
@@ -72,7 +80,7 @@ class Biding extends Component {
                                      <h5>Delivery Date</h5>
                                      <Form.Item>
                                          {getFieldDecorator('date')(
-                                             <DatePicker style={{ width: '100%' }} onChange={this.props.onChange} />
+                                             <DatePicker style={{ width: '100%' }} onChange={this.onChange} />
                                          )}
                                      </Form.Item>
                                 </div>

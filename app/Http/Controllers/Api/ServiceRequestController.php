@@ -90,7 +90,8 @@ class ServiceRequestController extends ApiBaseController
      */
     public function destroy($id)
     {
-        //
+        $serviceRequest = ServiceRequest::findOrFail($id)->delete();
+        return response()->json(['message' => 'Service request deleted successfully']);
     }
 
 

@@ -10,6 +10,7 @@ const ProfileContent = (props) => {
                     
                     <div className="single-page-section">
                         <h3 className="margin-bottom-25">About Me</h3>
+                        <p>{props.description ? props.description : 'Description'}</p>
                         <p>{props.description ? props.description : 'Am a proffessional service provider with good working ethics'}</p>
                     </div>
                     <div class="boxed-list margin-bottom-60">
