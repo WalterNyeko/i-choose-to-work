@@ -199,4 +199,16 @@ class AuthController extends Controller
 
         return response()->json('Successfully registered as a Service Provider');
     }
+
+    public function addFcmToken(Request $request)
+    {
+        $user = $request->user();
+        if($request->fcm_token)
+        {
+            $user->fcm = $request->fcm_token;
+            $user->save();
+
+            return null;
+        }
+    }
 }
