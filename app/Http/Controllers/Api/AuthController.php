@@ -58,15 +58,33 @@ class AuthController extends Controller
             if($data['role'] === 'provider')
             {
                 $user->assignRole(['public', 'provider']);
-            }
+                }
+
+            $tokenResult = $user->createToken('Personal Access Token');
+            $token = $tokenResult->token;
+
+
+            $token->save();
+
+            return response()->json([
+                    'access_token' => $tokenResult->accessToken,
+                    'token_type' => 'Bearer',
+                    'expires_at' => Carbon::parse(
+                        $tokenResult->token->expires_at
+                    )->toDateTimeString(),
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'phone' => $user->bioProfile->phone_number
+            ]);
             
 
-            $data1 = [
-                'email' => $data['email'],
-                'password' => $data['password'],
-            ];
+            // $data1 = [
+            //     'email' => $data['email'],
+            //     'password' => $data['password'],
+            // ];
 
-            return $this-> grant_token($data1, $request);    
+            // return $this-> grant_token($data1, $request);  
+
         }
     }
 
