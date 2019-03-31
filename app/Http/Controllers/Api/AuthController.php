@@ -66,6 +66,14 @@ class AuthController extends Controller
 
             $token->save();
 
+            if ($user->hasRole('provider')) {
+                $role = 'provider';
+            }
+
+            if (!$user->hasRole('provider')) {
+                    $role = 'public';
+            } 
+
             return response()->json([
                     'access_token' => $tokenResult->accessToken,
                     'token_type' => 'Bearer',
@@ -74,7 +82,8 @@ class AuthController extends Controller
                     )->toDateTimeString(),
                     'name' => $user->name,
                     'email' => $user->email,
-                    'phone' => $user->bioProfile->phone_number
+                    'phone' => $user->bioProfile->phone_number,
+                    'role' => $role
             ]);
             
 
@@ -149,9 +158,16 @@ class AuthController extends Controller
                 $user = $request->user();
                 $tokenResult = $user->createToken('Personal Access Token');
                 $token = $tokenResult->token;
-                
+
 
                 $token->save();
+                if ($user->hasRole('provider')) {
+                    $role = 'provider';
+                } 
+
+                if (!$user->hasRole('provider')) {
+                    $role = 'public';
+                } 
                 return response()->json([
                     'access_token' => $tokenResult->accessToken,
                     'token_type' => 'Bearer',
@@ -160,7 +176,8 @@ class AuthController extends Controller
                     )->toDateTimeString(),
                     'name' => $user->name,
                     'email' => $user->email,
-                    'phone' => $user->bioProfile->phone_number
+                    'phone' => $user->bioProfile->phone_number,
+                    'role' => $role
                 ]);
             }
             else 
