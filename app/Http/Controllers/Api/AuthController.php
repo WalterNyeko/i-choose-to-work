@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Route;
 use GuzzleHttp\Exception\GuzzleException;
+use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -57,15 +58,43 @@ class AuthController extends Controller
             if($data['role'] === 'provider')
             {
                 $user->assignRole(['public', 'provider']);
+                }
+
+            $tokenResult = $user->createToken('Personal Access Token');
+            $token = $tokenResult->token;
+
+
+            $token->save();
+
+            if ($user->hasRole('provider')) {
+                $role = 'provider';
             }
+
+            if (!$user->hasRole('provider')) {
+                    $role = 'public';
+            } 
+
+            return response()->json([
+                    'access_token' => $tokenResult->accessToken,
+                    'token_type' => 'Bearer',
+                    'expires_at' => Carbon::parse(
+                        $tokenResult->token->expires_at
+                    )->toDateTimeString(),
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'id' => $user->id,
+                    'phone' => $user->bioProfile->phone_number,
+                    'role' => $role
+            ]);
             
 
-            $data1 = [
-                'email' => $data['email'],
-                'password' => $data['password'],
-            ];
+            // $data1 = [
+            //     'email' => $data['email'],
+            //     'password' => $data['password'],
+            // ];
 
-            return $this-> grant_token($data1, $request);    
+            // return $this-> grant_token($data1, $request);  
+
         }
     }
 
@@ -87,12 +116,15 @@ class AuthController extends Controller
 
         $token =  $response;
 
+        
         return $token;
         
         
-        // $token = json_decode((string)$response->getBody(), true);
+        // $token = json_encode((string)$response->getBody(), true);
 
-        // return \Json(['token' => $token->getBody(), 'user' => $user, 'isProvider' => $isProvider], 200);
+        // $user = ['abbey' => 'abbey'];
+
+        // return response()->json([$token, 'user' => $user], 200);
         
     }
 
@@ -123,7 +155,32 @@ class AuthController extends Controller
             {
                 // $user = \Auth::user();
                 // $isProvider = $this->isProvider($user);
-                return $this->grant_token($data, $request);
+                // return $this->grant_token($data, $request);
+                $user = $request->user();
+                $tokenResult = $user->createToken('Personal Access Token');
+                $token = $tokenResult->token;
+
+
+                $token->save();
+                if ($user->hasRole('provider')) {
+                    $role = 'provider';
+                } 
+
+                if (!$user->hasRole('provider')) {
+                    $role = 'public';
+                } 
+                return response()->json([
+                    'access_token' => $tokenResult->accessToken,
+                    'token_type' => 'Bearer',
+                    'expires_at' => Carbon::parse(
+                        $tokenResult->token->expires_at
+                    )->toDateTimeString(),
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'id' => $user->id,
+                    'phone' => $user->bioProfile->phone_number,
+                    'role' => $role
+                ]);
             }
             else 
             {
@@ -160,5 +217,17 @@ class AuthController extends Controller
         $user->syncRoles(['provider', 'public']);
 
         return response()->json('Successfully registered as a Service Provider');
+    }
+
+    public function addFcmToken(Request $request)
+    {
+        $user = $request->user();
+        if($request->fcm_token)
+        {
+            $user->fcm = $request->fcm_token;
+            $user->save();
+
+            return null;
+        }
     }
 }

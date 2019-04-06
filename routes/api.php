@@ -28,6 +28,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     
 });
 
+Route::post('/addFcm','Api\AuthController@addFcmToken')->middleware('auth:api');
+
 //test sms 
 Route::post('send', 'ServiceRequestController@sendSmso');
 
