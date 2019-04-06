@@ -4,6 +4,7 @@ namespace App;
 
 use App\Models\Skills;
 use App\Models\Service;
+use App\Scopes\UserRatingScope;
 use App\ServiceRequest;
 use App\Models\Education;
 use App\Models\BioProfile;
@@ -104,5 +105,17 @@ class User extends Authenticatable implements MustVerifyEmail, ReviewRateable
     public function offers()
     {
         return $this->hasMany(ServiceDeliveryOffer::class, 'provider_id');
+    }
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new UserRatingScope);
     }
 }
