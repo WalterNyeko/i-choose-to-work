@@ -8,31 +8,23 @@ class DashboardManageBidders extends Component {
     constructor(props){
         super(props);
         this.state = {
-            numberOfBids: '',
-            averageBid: '',
-            bidRange: '',
-            bidRangeRate: '',
-            titleOfRequest: '',
-            timeLeft: '',
-            offer_id: 1,
+            bidders: [],
+            loading: false,
+            errors: []
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
       }
 
       componentWillMount(){
-        this.retrieveBidders();
+        const { id } = this.props.match.params;
+        this.retrieveBidders(id);
       }
   
       componentWillReceiveProps(props){
+        const { data } = props.data;
           this.setState({
-            numberOfBids: '',
-            averageBid: '',
-            bidRange: '',
-            bidRangeRate: '',
-            titleOfRequest: '',
-            timeLeft: '',
-            offer_id: 1,
+            bidders: data
           })
       }
    
@@ -40,12 +32,10 @@ class DashboardManageBidders extends Component {
           this.setState({[e.target.name]:e.target.value});
       }
 
-      handleSubmit(){
-        console.log('accepting offer....');
-        const url = Api.UPDATE_PROFILE;
-        const { offer_id } = this.state;
+      handleSubmit(id){
+        const url = `delivery/offers/acceptance/`;
         const data = {
-          offer_id
+          id
         }
 
         const requestData = {
@@ -63,15 +53,26 @@ class DashboardManageBidders extends Component {
         })
       }
 
-      retrieveBidders(){
-        const url = Api.MANAGE_BIDDERS;
+      retrieveBidders(id){
+        const url = `api/delivery/requests/services/offers/${id}`;
         const requestHeader = {
             headers: {
                 "content-type": "application/json",
                 Authorization: "Bearer " + localStorage.getItem("token")
             },
         }
-        return  axios.get(url, requestHeader).then(response => console.log(response))
+        return  axios.get(url, requestHeader).then((res) => {
+          this.setState({
+              loading: false,
+              bidders: res.data.data
+          })
+      })
+        .catch((err) => {
+            this.setState({
+                errors: err,
+                loading: false
+            })
+        })
       }
   
   render() {

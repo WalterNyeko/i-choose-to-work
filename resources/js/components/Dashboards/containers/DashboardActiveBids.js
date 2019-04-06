@@ -38,48 +38,11 @@ const renderModalContent = (handleInputChange) => {
   )
 }
 
-class DashboardActiveBids extends Component {
-  constructor(props) {
-    super(props)
-  
-    this.state = {
-       offers: [],
-       loading: false,
-       errors: []
-    }
-  }
-
-  componentWillMount() {
-    const token = localStorage.getItem('token');
-    this.setState({
-      loading: true
-    })
-    axios.get('/api/my-offers', {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
-    .then((res) => {
-      this.setState({
-        loading: false,
-        offers: res.data
-      })
-    })
-    .catch((err) => {
-      this.setState({
-        errors: err,
-        loading: false
-      })
-    })
-  }
-  
-  
-  render()
-  {
+const DashboardActiveBids = (props) => {
     let offers = null;
-    if(this.state.offers.length)
+    if(props.state.activeBidders.length)
     {
-      offers = this.state.offers.map((offa, index) => 
+      offers = props.state.activeBidders.map((offa, index) => 
             <li key={index}>
                 {/*<!-- Job Listing -->*/}
                 <div className="job-listing width-adjustment">
@@ -116,8 +79,9 @@ class DashboardActiveBids extends Component {
                    modalTitle="Edit Bid"
                    submitText="Save Changes"
                    modalButtonclassName="primary text-white icon-feather-edit"
-                   handleSubmit={this.props.handleSubmit}
-                   modalBody={renderModalContent(this.props.handleInputChange)} 
+                   handleSubmit={props.handleSubmit}
+                   id={offa.id}
+                   modalBody={renderModalContent(props.handleInputChange)} 
                 >
                   </OurModal>
                 </div>
@@ -126,13 +90,14 @@ class DashboardActiveBids extends Component {
                    buttonText="Delete Bid"
                    modalTitle="Delete Bid"
                    submitText="Delete"
+                   id={offa.id}
                    modalButtonclassName="primary text-white icon-feather-edit"
                    modalBody={(
                      <div>
                        <p>Are you sure you want to delete this?</p>
                      </div>
                    )}
-                   handleSubmit={this.props.handleSubmit}
+                   handleSubmit={props.handleSubmit}
                 >
                   </OurModal>
                 </div>
@@ -175,7 +140,6 @@ class DashboardActiveBids extends Component {
             </DashboardLayout>
           </div>
         );
-    }
 };
 
 export default DashboardActiveBids;

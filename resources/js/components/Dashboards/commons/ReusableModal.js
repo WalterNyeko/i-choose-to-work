@@ -24,7 +24,8 @@ class ReusableModal extends Component {
       handleOk(){
           const { handleSubmit } = this.props;
         this.setState({ loading: true });
-        handleSubmit();
+        const { id } = this.props;
+        handleSubmit(id);
         setTimeout(() => {
           this.setState({ loading: false, visible: false });
         }, 3000);

@@ -6,33 +6,30 @@ class DashboardActiveBids extends Component {
     constructor(props){
         super(props);
         this.state = {
-            numberOfBids: '',
-            averageBid: '',
-            bidRange: '',
-            bidRangeRate: '',
-            titleOfRequest: '',
-            timeLeft: '',
+            activeBidders: [],
+            loading: false,
+            errors: []
         }
         this.handleInputChange = this.handleInputChange.bind(this);
       }
 
       componentWillMount(){
+        this.setState({
+          loading: true
+        })
         this.retrieveBidders();
       }
   
       componentWillReceiveProps(props){
+        const { data } = props.data;
           this.setState({
-            numberOfBids: '',
-            averageBid: '',
-            bidRange: '',
-            bidRangeRate: '',
-            titleOfRequest: '',
-            timeLeft: '',
+            activeBidders: data
           })
       }
    
       handleInputChange(e){
-          this.setState({[e.target.name]:e.target.value});
+        const { name, value } = e.target;
+          this.setState({[name]: value});
       }
 
       retrieveBidders(){
@@ -43,7 +40,18 @@ class DashboardActiveBids extends Component {
                 Authorization: "Bearer " + localStorage.getItem("token")
             },
         }
-        return  axios.get(url, requestHeader).then(response => console.log(response))
+        return  axios.get(url, requestHeader).then((res) => {
+          this.setState({
+              loading: false,
+              activeBidders: res.data
+          })
+      })
+        .catch((err) => {
+            this.setState({
+                errors: err,
+                loading: false
+            })
+        })
       }
   
   render() {
