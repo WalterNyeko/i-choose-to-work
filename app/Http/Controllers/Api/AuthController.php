@@ -82,6 +82,7 @@ class AuthController extends Controller
                     )->toDateTimeString(),
                     'name' => $user->name,
                     'email' => $user->email,
+                    'id' => $user->id,
                     'phone' => $user->bioProfile->phone_number,
                     'role' => $role
             ]);
@@ -176,6 +177,7 @@ class AuthController extends Controller
                     )->toDateTimeString(),
                     'name' => $user->name,
                     'email' => $user->email,
+                    'id' => $user->id,
                     'phone' => $user->bioProfile->phone_number,
                     'role' => $role
                 ]);
