@@ -33,27 +33,32 @@ class DashboardManageBidders extends Component {
       }
 
       handleSubmit(id){
-        const url = `delivery/offers/acceptance/`;
+        const url = `api/delivery/offers/acceptance/`;
         const data = {
           id
         }
-
+        console.log(id)
         const requestData = {
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("token")
             }
         }
         return  axios.post(url, data, requestData).then(response => {
-
-            if(response.data[1].success === 1){
-                showSuccessNotification(response.data[1].msg);
+            console.log(response.data.data)
+            if(response.data.data.is_offer_accepted === 1){
+                showSuccessNotification("Accepted");
+                const {
+                    id
+                } = this.props.match.params;
+                this.retrieveBidders(id);
             }else{
-                showErrorNotification(response.data[1].msg);
+                showErrorNotification("Rejected");
             }
         })
       }
 
       retrieveBidders(id){
+        
         const url = `api/delivery/requests/services/offers/${id}`;
         const requestHeader = {
             headers: {
@@ -62,9 +67,10 @@ class DashboardManageBidders extends Component {
             },
         }
         return  axios.get(url, requestHeader).then((res) => {
+          // console.log(res.data,'datatatata')
           this.setState({
               loading: false,
-              bidders: res.data.data
+              bidders: res.data
           })
       })
         .catch((err) => {

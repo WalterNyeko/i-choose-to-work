@@ -4,7 +4,7 @@ import OurModal from '../commons/ReusableModal';
 import { Spin } from "antd";
 import { Link } from 'react-router-dom';
 
-const renderModalContent = (handleInputChange) => {
+const renderModalContent = (handleInputChange, estimated_cost, delivery_time) => {
   return (
     <div>
         <span className="bidding-detail">
@@ -13,8 +13,11 @@ const renderModalContent = (handleInputChange) => {
             <input
               className="bidding-slider"
               type="text"
-              value=""
-              onChange={handleInputChange}
+              value = {
+                  estimated_cost
+              }
+              onChange={handleInputChange.bind(this)}
+              name="estimated_cost"
             />
               <span className="bidding-detail margin-top-30">
                 Set your <strong>delivery time</strong>
@@ -22,8 +25,11 @@ const renderModalContent = (handleInputChange) => {
                   <input 
                     type="text" 
                     name="qtyInput" 
-                    value="2"
+                    value = {
+                        delivery_time
+                    }
                     onChange={handleInputChange} 
+                    name="delivery_time"
                   />
                   <div className="">
                   <span className="bidding-detail margin-top-30">
@@ -70,7 +76,6 @@ const DashboardActiveBids = (props) => {
                 </ul>
 
                 {/*<!-- Buttons -->*/}
-
                 <div className="buttons-to-right always-visible">
               <div className="row">
                 <div className="col-md-1">
@@ -79,9 +84,17 @@ const DashboardActiveBids = (props) => {
                    modalTitle="Edit Bid"
                    submitText="Save Changes"
                    modalButtonclassName="primary text-white icon-feather-edit"
-                   handleSubmit={props.handleSubmit}
+                   handleEdit={props.handleEdit}
+                   minimal_rate = {
+                       offa.estimated_cost
+                   }
+                   delivery_time = {
+                       offa.delivery_date
+                   }
                    id={offa.id}
-                   modalBody={renderModalContent(props.handleInputChange)} 
+                   modalBody = {
+                       renderModalContent(props.handleInputChange, offa.estimated_cost, offa.delivery_date)
+                   }
                 >
                   </OurModal>
                 </div>
@@ -97,7 +110,7 @@ const DashboardActiveBids = (props) => {
                        <p>Are you sure you want to delete this?</p>
                      </div>
                    )}
-                   handleSubmit={props.handleSubmit}
+                   handleDelete={props.handleDelete}
                 >
                   </OurModal>
                 </div>

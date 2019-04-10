@@ -22,13 +22,63 @@ class ReusableModal extends Component {
       }
     
       handleOk(){
-          const { handleSubmit } = this.props;
-        this.setState({ loading: true });
-        const { id } = this.props;
-        handleSubmit(id);
-        setTimeout(() => {
-          this.setState({ loading: false, visible: false });
-        }, 3000);
+        console.log(this.props)
+        if(this.props.modalTitle === "Edit Bid"){
+          this.setState({
+              loading: true
+          });
+          const {
+              handleEdit,
+              delivery_time,
+              minimal_rate,
+              id
+          } = this.props;
+          console.log(this.props)
+          handleEdit(id, minimal_rate, delivery_time)
+           setTimeout(() => {
+               this.setState({
+                   loading: false,
+                   visible: false
+               });
+           }, 3000);
+        } else if (this.props.modalTitle === "Delete Bid") {
+          console.log(this.props)
+          this.setState({
+              loading: true
+          });
+          const {
+              handleDelete,
+              id
+          } = this.props;
+          console.log('deleting')
+          this.props.handleDelete(id);
+          setTimeout(() => {
+              this.setState({
+                  loading: false,
+                  visible: false
+              });
+          }, 3000);
+        }else{
+            const {
+                handleSubmit,
+            } = this.props;
+
+            this.setState({
+                loading: true
+            });
+            const {
+                id
+            } = this.props;
+            handleSubmit(id);
+             setTimeout(() => {
+                 this.setState({
+                     loading: false,
+                     visible: false
+                 });
+             }, 3000);
+          }
+          
+       
       }
     
       handleCancel(){

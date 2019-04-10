@@ -100,7 +100,7 @@ class ServiceDeliveryOfferController extends Controller
 
     public function serviceRequestOffers($id)
     {
-        $offers = ServiceDeliveryOffer::where('service_req_id', $id)->get();
-        return new ServiceDeliveryOfferCollection($offers);
+        $offers = ServiceDeliveryOffer::where('service_req_id', $id)->with(['seviceRequest', 'provider'])->get();
+        return $offers->toJson();
     }
 }

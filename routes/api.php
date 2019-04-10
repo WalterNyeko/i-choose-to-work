@@ -196,7 +196,7 @@ Route::namespace('Api')->group(function () {
     Route::get('delivery/recent/offers', 'ServiceDeliveryOfferController@recentOffers');
     //accepting an offer
     Route::post('delivery/offers/acceptance', 'ServiceDeliveryOfferController@acceptDeliveryOffer')
-        ->middleware('auth:api', 'check-permissions');
+        ->middleware('auth:api');
     Route::delete('delete/services/offers/{id}', 'BidController@destroy');
     //editing service request offer
     Route::post('delivery/services/update/{id}', 'BidController@update');

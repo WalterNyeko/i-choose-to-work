@@ -27,11 +27,13 @@ const renderModalContent = (name, price) =>{
   )
 }
 const DashboardManageBidders = ({ handleSubmit, handleInputChange, state, user}) => {
- console.log(state);
+  {
+      state.bidders && state.bidders.map(bidder => console.log(bidder))
+  }
   return (
     <div>
       <DashboardLayout>
-      <div>
+        <div>
         <div>
           {/**Dashboard manage bidders content Start */}
           {/* <!-- Headline -->*/}
@@ -48,7 +50,8 @@ const DashboardManageBidders = ({ handleSubmit, handleInputChange, state, user})
             </div>
           </div>
 
-          <div className="content">
+          {state.bidders && state.bidders.map((bidder, index) => (
+            <div className="content" key={index}>
             <ul className="dashboard-box-list">
               <li>
                 {/*<!-- Overview -->*/}
@@ -57,16 +60,16 @@ const DashboardManageBidders = ({ handleSubmit, handleInputChange, state, user})
                     {/*<!-- Avatar -->*/}
                     <div className="freelancer-avatar">
                       <div className="verified-badge" />
-                      <a href="#">
-                        <img src="images/user-avatar-big-02.jpg" alt="" />
-                      </a>
+                      <div className="user-avatar status-online"><img src="user.png" alt=""/></div>
                     </div>
 
                     {/*<!-- Name -->*/}
                     <div className="freelancer-name">
                       <h4>
                         <a href="#">
-                          Mugula Abbey
+                          {
+                              bidder.provider.name
+                          }
                         </a>
                       </h4>
 
@@ -78,39 +81,51 @@ const DashboardManageBidders = ({ handleSubmit, handleInputChange, state, user})
                             className="__cf_email__"
                             data-cfemail="1c787d6a75785c79647d716c7079327f7371"
                           >
-                            [email&#160;protected]
+                            [{bidder.provider.email}]
                           </span>
                         </a>
                       </span>
 
-                      {/* <!-- Rating -->*/}
-                      <div className="freelancer-rating">
+                      {/* <!-- Rating --> */}
+                      {/* <div className="freelancer-rating">
                         <div className="star-rating" data-rating="5.0" />
-                      </div>
+                      </div> */}
 
                       {/* <!-- Bid Details -->*/}
                       <ul className="dashboard-task-info bid-info">
                         <li>
-                          <strong>60000</strong>
+                          < strong > {
+                              bidder.estimated_cost ? bidder.estimated_cost: `Not Specified`} </strong>
                           <span>Fixed Price</span>
                         </li>
                         <li>
-                          <strong>9/04/2019</strong>
+                          < strong > {
+                              bidder.delivery_date ? bidder.delivery_date: ` Not specified` }</strong>
                           <span>Delivery day</span>
                         </li>
                       </ul>
 
                       {/* <!-- Buttons -->*/}
                       <br/>
-                      <OurModal 
-                        buttonText="Accept Offer"
-                        modalTitle="Accept Offer"
-                        submitText="Accept"
-                        modalButtonclassName="primary text-dark"
-                        handleSubmit={handleSubmit}
-                        id="1"
-                        modalBody={renderModalContent("Abbey","UGX 3200")} />
-                        
+                      {bidder.is_offer_accepted? (
+                        <span style={{ color: 'green' }}>Offer Accepted</span>
+                      ): (
+                        < OurModal
+                        buttonText = "Accept Offer"
+                        modalTitle = "Accept Offer"
+                        submitText = "Accept"
+                        modalButtonclassName = "primary text-dark"
+                        handleSubmit = {
+                            handleSubmit
+                        }
+                        id = {
+                            bidder.id
+                        }
+                        modalBody = {
+                            renderModalContent(bidder.provider.name, bidder.estimated_cost ? bidder.estimated_cost : `Not Speciied`)
+                        }
+                        />
+                      )}      
                     </div>
                   </div>
                 </div>
@@ -119,7 +134,8 @@ const DashboardManageBidders = ({ handleSubmit, handleInputChange, state, user})
                 
             </ul>
           </div>
-          {/**Dashboard manage bidders content end */}
+          
+          ))}
         </div>
         <div>
           {/*   <!-- Bid Acceptance Popup / End -->*/}
