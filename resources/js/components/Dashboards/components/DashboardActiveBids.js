@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { Api } from '../../../constants/Api';
 import DashboardActiveBidsComponent from '../containers/DashboardActiveBids';
-
+import {
+    showErrorNotification,
+    showSuccessNotification
+}
+from '../../../container/Dashboard/DashboardSettings';
 class DashboardActiveBids extends Component {
     constructor(props){
         super(props);
@@ -75,16 +79,14 @@ class DashboardActiveBids extends Component {
     }
     console.log('tye')
     return axios.delete(url, data, requestData).then(response => {
-        console.log(response.data.data)
-        // if (response.data.data.is_offer_accepted === 1) {
-        //     showSuccessNotification("Accepted");
-        //     const {
-        //         id
-        //     } = this.props.match.params;
-        //     this.retrieveBidders(id);
-        // } else {
-        //     showErrorNotification("Rejected");
-        // }
+        console.log(response)
+        if (response.data.data && response.data.data.message === "Bid deleted successfully") {
+            showSuccessNotification(response.data.data.message);
+         
+            this.retrieveBidders();
+        } else {
+            showErrorNotification("Delete Request Rejected");
+        }
     })
 }
 

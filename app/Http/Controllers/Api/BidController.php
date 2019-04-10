@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Resources\ServiceDeliveryOffer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\ServiceDeliveryOffer;
+use App\Http\Resources\ServiceDeliveryOffer as ServiceDeliveryOfferResource;
 
 class BidController extends Controller
 {
@@ -78,7 +79,7 @@ class BidController extends Controller
 
         $bid->save();
 
-        return new ServiceDeliveryOffer($bid);
+        return new ServiceDeliveryOfferResource($bid);
     }
 
     /**
