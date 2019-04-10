@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import DashboardReviewsComponent from '../containers/DashboardReviews';
 import { Api } from '../../../constants/Api';
+import { showErrorNotification, showSuccessNotification } 
+from '../../../container/Dashboard/DashboardSettings';
 
 class DashboardReviews extends Component {
     constructor(props){
@@ -9,6 +11,7 @@ class DashboardReviews extends Component {
             body: '',
             rating: 0,
             title: '',
+            id: ''
         }
         this.handleInputChange= this.handleInputChange.bind(this);
         this.handleSubmit=this.handleSubmit.bind(this);
@@ -45,11 +48,55 @@ class DashboardReviews extends Component {
 
 
     handleSubmit(){
-        console.log(this.state, 'submiting review')        
+        console.log(this.state, 'submiting review');
+        const url = Api.UPDATE_PROFILE;
+        const { body, rating, title, id } = this.state;
+        const data = {
+          title: title,
+          body: body,
+          rating: rating,
+          id: id
+        }
+
+        const requestData = {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token")
+            }
+        }
+        return  axios.post(url, data, requestData).then(response => {
+
+            if(response.data[1].success === 1){
+                showSuccessNotification(response.data[1].msg);
+            }else{
+                showErrorNotification(response.data[1].msg);
+            }
+        })     
     }
 
     handleEditReview(){
-        console.log(this.state, 'editing review')
+        console.log(this.state, 'editing review');
+        const url = Api.UPDATE_PROFILE;
+        const { body, rating, title, id } = this.state;
+        const data = {
+          title: title,
+          body: body,
+          rating: rating,
+          id: id
+        }
+
+        const requestData = {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token")
+            }
+        }
+        return  axios.post(url, data, requestData).then(response => {
+
+            if(response.data[1].success === 1){
+                showSuccessNotification(response.data[1].msg);
+            }else{
+                showErrorNotification(response.data[1].msg);
+            }
+        }) 
     }
 
     onStarClick(nextValue, prevValue, name) {

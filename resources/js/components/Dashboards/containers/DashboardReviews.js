@@ -63,7 +63,14 @@ function renderModalContent(title,handleInputChange, rating, onStarClick, body) 
 
 
 
-const DashboardReviews = (props) => {
+const DashboardReviews = ({
+    handleEditReview, 
+    handleInputChange, 
+    handleSubmit,
+    onStarClick,
+    title, 
+    body, 
+    rating}) => {
   return (
     <div>
       <DashboardLayout>
@@ -96,13 +103,13 @@ const DashboardReviews = (props) => {
                    modalTitle="Rate The Service"
                    submitText="Submit"
                    modalButtonClass="primary text-white"
-                   handleSubmit={props.handleSubmit}
+                   handleSubmit={handleSubmit}
                    modalBody={renderModalContent(
-                     props.title,
-                     props.handleInputChange,
-                     props.rating,
-                     props.onStarClick,
-                     props.body
+                     title,
+                     handleInputChange,
+                     rating,
+                     onStarClick,
+                     body
                    )} 
                 />
             </li>
@@ -122,13 +129,13 @@ const DashboardReviews = (props) => {
                 modalTitle="Rate The Service"
                 submitText="Submit"
                 modalButtonClass="primary text-white"
-                handleSubmit={props.handleSubmit}
+                handleSubmit={handleSubmit}
                 modalBody={renderModalContent(
-                  props.title,
-                  props.handleInputChange,
-                  props.rating,
-                  props.onStarClick,
-                  props.body
+                  title,
+                  handleInputChange,
+                  rating,
+                  onStarClick,
+                  body
                 )} 
                 />
             </li>
@@ -159,13 +166,13 @@ const DashboardReviews = (props) => {
                    modalTitle="Edit Service Rating"
                    submitText="Save Changes"
                    modalButtonClass="primary text-white"
-                   handleSubmit={props.handleEditReview}
+                   handleSubmit={handleEditReview}
                    modalBody={renderModalContent(
-                     props.title,
-                     props.handleInputChange,
-                     props.rating,
-                     props.onStarClick,
-                     props.body
+                     title,
+                     handleInputChange,
+                     rating,
+                     onStarClick,
+                     body
                    )} 
                 />
             </li>
@@ -196,13 +203,13 @@ const DashboardReviews = (props) => {
                  modalTitle="Edit Service Rating"
                  submitText="Save Changes"
                  modalButtonClass="primary text-white"
-                 handleSubmit={props.handleEditReview}
+                 handleSubmit={handleEditReview}
                  modalBody={renderModalContent(
-                   props.title,
-                   props.handleInputChange,
-                   props.rating,
-                   props.onStarClick,
-                   props.body
+                   title,
+                   handleInputChange,
+                   rating,
+                   onStarClick,
+                   body
                  )} 
                 />
             </li>
@@ -247,13 +254,13 @@ const DashboardReviews = (props) => {
                  modalTitle="Rate The Service"
                  submitText="Submit"
                  modalButtonClass="primary text-white"
-                 handleSubmit={props.handleSubmit}
+                 handleSubmit={handleSubmit}
                  modalBody={renderModalContent(
-                   props.title,
-                   props.handleInputChange,
-                   props.rating,
-                   props.onStarClick,
-                   props.body
+                   title,
+                   handleInputChange,
+                   rating,
+                   onStarClick,
+                   body
                  )} 
                 />
             </li>
@@ -273,13 +280,13 @@ const DashboardReviews = (props) => {
                  modalTitle="Rate The Service"
                  submitText="Submit"
                  modalButtonClass="primary text-white"
-                 handleSubmit={props.handleSubmit}
+                 handleSubmit={handleSubmit}
                  modalBody={renderModalContent(
-                   props.title,
-                   props.handleInputChange,
-                   props.rating,
-                   props.onStarClick,
-                   props.body
+                   title,
+                   handleInputChange,
+                   rating,
+                   onStarClick,
+                   body
                  )} 
                 />
             </li>
@@ -310,13 +317,13 @@ const DashboardReviews = (props) => {
                modalTitle="Edit Service Rating"
                submitText="Save Changes"
                modalButtonClass="primary text-white"
-               handleSubmit={props.handleEditReview}
+               handleSubmit={handleEditReview}
                modalBody={renderModalContent(
-                 props.title,
-                 props.handleInputChange,
-                 props.rating,
-                 props.onStarClick,
-                 props.body
+                 title,
+                 handleInputChange,
+                 rating,
+                 onStarClick,
+                 body
                )} 
                 />
             </li>
@@ -347,13 +354,13 @@ const DashboardReviews = (props) => {
                  modalTitle="Edit Service Rating"
                  submitText="Save Changes"
                  modalButtonClass="primary text-white"
-                 handleSubmit={props.handleEditReview}
+                 handleSubmit={handleEditReview}
                  modalBody={renderModalContent(
-                   props.title,
-                   props.handleInputChange,
-                   props.rating,
-                   props.onStarClick,
-                   props.body
+                   title,
+                   handleInputChange,
+                   rating,
+                   onStarClick,
+                   body
                  )} 
                 />
             </li>

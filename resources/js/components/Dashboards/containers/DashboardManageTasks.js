@@ -1,74 +1,35 @@
-import React, {Component} from 'react'
+import React from 'react'
 import DashboardLayout from '../layout/DashboardLayout';
-import {Link} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Spin } from 'antd';
+import { Button } from 'antd';
 
-class DashboardManageTasks extends Component {
-  constructor(props) {
-    super(props)
-  
-    this.state = {
-       tasks: [],
-       loading: false,
-       errors: []
-    }
-    this.getTasks = this.getTasks.bind(this);
-  }
-
-  componentDidMount() {
-      this.getTasks();
-  }
-  
-  getTasks()
-  {
-      this.setState({
-          loading: true
-      });
-      const token = localStorage.getItem('token');
-      axios.get('api/services/user/requests', {
-          headers: {
-              Authorization: `Bearer ${token}`
-          }
-      })
-      .then((res) => {
-          this.setState({
-              loading: false,
-              tasks: res.data.data
-          })
-      })
-      .catch((err) => {
-          this.setState({
-              errors: err,
-              loading: false
-          })
-      })
-  }
-  render() {
+const DashboardManageTasks = (props) => {
     let tasks = null;
-    if(this.state.tasks.length)
+    if(props.state.tasks.length)
     {
-        tasks = this.state.tasks.map((task, i) =>
-            <li>
+        tasks = props.state.tasks.map((task, i) =>
+            <li key={i}>
                 {/*<!-- Job Listing -->*/}
-                <div class="job-listing width-adjustment">
+                <div className="job-listing width-adjustment">
                     {/*<!-- Job Listing Details -->*/}
-                    <div class="job-listing-details">
+                    <div className="job-listing-details">
                         {/* <!-- Details -->*/}
-                        <div class="job-listing-description">
-                            <h3 class="job-listing-title">
+                        <div className="job-listing-description">
+                            <h3 className="job-listing-title">
                                 <a className="text-capitalize" href="#">
                                     {task.service.name}
                                 </a>
-                                <span class="dashboard-status-button yellow">
+                                <span className="dashboard-status-button yellow">
                                     {task.created_at}
                                 </span>
                             </h3>
 
                             {/*<!-- Job Listing Footer -->*/}
-                            <div class="job-listing-footer">
+                            <div className="job-listing-footer">
                                 <ul>
                                     <li>
-                                        <i class="icon-material-outline-access-time" />
+                                        <i className="icon-material-outline-access-time" />
                                         {task.expected_start_date}
                                     </li>
                                 </ul>
@@ -78,7 +39,7 @@ class DashboardManageTasks extends Component {
                 </div>
 
                 {/* <!-- Task Details -->*/}
-                <ul class="dashboard-task-info">
+                <ul className="dashboard-task-info">
                     <li>
                         <strong>{task.offer.length}</strong>
                         <span>Bids</span>
@@ -87,33 +48,18 @@ class DashboardManageTasks extends Component {
                 </ul>
 
                 {/* <!-- Buttons -->*/}
-                <div class="buttons-to-right always-visible">
-                    <Link
-                        to={`/dashboard/dashboardmanagebidders/${task.id}`}
-                        class="button ripple-effect"
-                    >
-                        <i class="icon-material-outline-supervisor-account" />
-                        Manage Bidders{" "}
-                        <span class="button-info">
-                            {task.offer.length}
-                        </span>
-                    </Link>
-                    {/* <a
-                        href="#"
-                        class="button gray ripple-effect ico"
-                        title="Edit"
-                        data-tippy-placement="top"
-                    >
-                        <i class="icon-feather-edit" />
-                    </a> */}
-                    <a
-                        href="#"
-                        class="button gray ripple-effect ico"
-                        title="Remove"
-                        data-tippy-placement="top"
-                    >
-                        <i class="icon-feather-trash-2" />
-                    </a>
+                <div className="buttons-to-right always-visible">
+                    <NavLink to={`/dashboard/dashboardmanagebidders/${task.id}`}>
+                    <Button className="primary">Manage Bidders{" "}</Button>
+                    </NavLink>
+                     {' '}
+                    <Button className="danger">Edit</Button>
+                     {' '}
+                    <Button className="danger">Delete</Button>
+                    <span className="button-info">
+                        {task.offer.length}
+                    </span>
+                    
                 </div>
             </li>
         )
@@ -128,15 +74,15 @@ class DashboardManageTasks extends Component {
       <div>
           {/*** manage tasks Childern start */}
            {/* <!-- Headline -->*/}
-           <div class="headline">
+           <div className="headline">
                                 <h3>
-                                    <i class="icon-material-outline-assignment" />{" "}
+                                    <i className="icon-material-outline-assignment" />{" "}
                                     My Posted Tasks
                                 </h3>
                             </div>
 
-                            <div class="content">
-                                <ul class="dashboard-box-list">
+                            <div className="content">
+                                <ul className="dashboard-box-list">
                                     {tasks}
                                 </ul>
                             </div>
@@ -148,6 +94,5 @@ class DashboardManageTasks extends Component {
   )
   }  
 
-}
 
 export default DashboardManageTasks

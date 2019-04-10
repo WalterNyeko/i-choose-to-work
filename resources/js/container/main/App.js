@@ -27,7 +27,7 @@ import ProviderProfile from '../../components/serviceProviders/ProviderProfile';
 import DashboardLandingPage from '../../components/Dashboards/containers/DashboardLandingPage';
 import DashboardBookmarks from '../../components/Dashboards/containers/DashboardBookmarks';
 import DashboardReviews from '../../components/Dashboards/components/DashboardReviews';
-import DashboardManageTasks from '../../components/Dashboards/containers/DashboardManageTasks';
+import DashboardManageTasks from '../../components/Dashboards/components/DashboardManageTasks';
 import DashboardManageBidders from '../../components/Dashboards/components/DashboardManageBidders';
 import DashboardActiveBids from '../../components/Dashboards/components/DashboardActiveBids';
 import DashboardSettings from '../../container/Dashboard/DashboardSettings';
@@ -111,7 +111,7 @@ class MainApp extends Component {
                 <PrivateRoute path="/dashboard/dashboardbookmarks" component={DashboardBookmarks} />
                 <PrivateRoute path="/dashboard/dashboardreviews" component={DashboardReviews} />
                 <PrivateRoute path="/dashboard/dashboardmanagetasks" component={DashboardManageTasks} />
-                <PrivateRoute path="/dashboard/dashboardmanagebidders" component={DashboardManageBidders} />
+                <PrivateRoute path="/dashboard/dashboardmanagebidders/:id" component={DashboardManageBidders} />
                 <PrivateRoute path="/dashboard/dashboardactivebids" component={DashboardActiveBids} />
                 <PrivateRoute path="/dashboard/dashboardsettings" component={DashboardSettings} />
         </> 

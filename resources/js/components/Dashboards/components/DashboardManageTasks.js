@@ -6,12 +6,9 @@ class DashboardManageTasks extends Component {
     constructor(props){
         super(props);
         this.state = {
-            numberOfBids: '',
-            averageBid: '',
-            bidRange: '',
-            bidRangeRate: '',
-            titleOfRequest: '',
-            timeLeft: '',
+            tasks: [],
+            loading: false,
+            errors: []
         }
         this.handleInputChange = this.handleInputChange.bind(this);
       }
@@ -22,12 +19,7 @@ class DashboardManageTasks extends Component {
   
       componentWillReceiveProps(props){
           this.setState({
-            numberOfBids: '',
-            averageBid: '',
-            bidRange: '',
-            bidRangeRate: '',
-            titleOfRequest: '',
-            timeLeft: '',
+            tasks: []
           })
       }
    
@@ -43,7 +35,19 @@ class DashboardManageTasks extends Component {
                 Authorization: "Bearer " + localStorage.getItem("token")
             },
         }
-        return  axios.get(url, requestHeader).then(response => console.log(response))
+        return  axios.get(url, requestHeader)
+        .then((res) => {
+          this.setState({
+              loading: false,
+              tasks: res.data.data
+          })
+      })
+        .catch((err) => {
+            this.setState({
+                errors: err,
+                loading: false
+            })
+        })
       }
   
   render() {

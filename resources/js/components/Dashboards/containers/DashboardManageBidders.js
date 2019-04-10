@@ -1,12 +1,12 @@
 import React from "react";
 import DashboardLayout from "../layout/DashboardLayout";
 import OurModal from '../commons/ReusableModal';
-const renderModalContent = () =>{
+const renderModalContent = (name, price) =>{
   return (
     <div>
        <div className="welcome-text">
-          <h3>Accept Offer From David</h3>
-          <div className="bid-acceptance margin-top-15">$3200</div>
+          <h3>Accept Offer From {name}</h3>
+          <div className="bid-acceptance margin-top-15">{price}</div>
         </div>
 
         <form id="terms">
@@ -27,6 +27,7 @@ const renderModalContent = () =>{
   )
 }
 const DashboardManageBidders = ({ handleSubmit, handleInputChange, state, user}) => {
+ console.log(state);
   return (
     <div>
       <DashboardLayout>
@@ -107,7 +108,8 @@ const DashboardManageBidders = ({ handleSubmit, handleInputChange, state, user})
                         submitText="Accept"
                         modalButtonclassName="primary text-dark"
                         handleSubmit={handleSubmit}
-                        modalBody={renderModalContent()} />
+                        id="1"
+                        modalBody={renderModalContent("Abbey","UGX 3200")} />
                         
                     </div>
                   </div>
